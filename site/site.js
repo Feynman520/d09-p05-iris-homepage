@@ -12,11 +12,11 @@
       installer: 'Feynman520/d09-p03-iris-installer',
     },
     fallback: {
-      face: { version: 'v2.57.1' },
+      face: { version: 'v2.58.0' },
       messenger: { version: 'v0.3.2' },
-      installer: { version: 'v1.2.0', bytes: 250231538, date: '2026-09-13', asset: 'IRIS-Setup_v1.2.0_2026-09-13.zip',
+      installer: { version: 'v1.3.0', bytes: 250264609, date: '2026-09-13', asset: 'IRIS-Setup_v1.3.0_2026-09-13.zip',
         url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/latest',
-        sha: '76949ee5c8c6f0d15b9d4cf3a2524ca3ccd646bec7ad5de7e4895682721accfe' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
+        sha: '95df3b98f8c857a6f0aa2690a4cefacd854b2c58d9bae3a5d576dc351f8d0e45' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
   };
 
