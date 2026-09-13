@@ -137,6 +137,7 @@
       </ol>
       <p class="note"><span data-i18n="dl.note">파일이 손상되지 않았는지 확인하려면 PowerShell에서 아래 명령의 결과를 SHA-256 값과 비교하세요.</span></p>
       <pre><code id="dl-hashcmd">Get-FileHash .\IRIS-Setup_v1.2.0_2026-09-13.zip -Algorithm SHA256</code></pre>
+      <p class="note" data-i18n="dl.update">이미 설치했다면 IRIS 창의 설정 → 업데이트에서 한 번에 갱신됩니다.</p>
       <p class="note" data-i18n="dl.more"><a href="/install">설치 안내</a>에 화면별 설명과 막혔을 때의 대처가 있습니다.</p>
     </div>
   </section>
@@ -157,6 +158,22 @@
     <p class="note" data-i18n="in.lic">모든 소스는 MIT 허가서로 공개되어 있습니다. 동봉 부품의 허가서 목록은 zip 안 <code>payload/licenses/NOTICES.md</code>에 있습니다.</p>
   </section>
 
+  <section class="sec" id="components">
+    <h2 data-i18n="comp.h">구성 요소와 새 소식</h2>
+    <p class="lead" data-i18n="comp.lead">방문할 때마다 GitHub에서 새로 읽어 옵니다 — 세 부품의 지금 판과 최신 소식입니다.</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th data-i18n="comp.th1">부품</th><th data-i18n="comp.th2">판</th><th data-i18n="comp.th3">날짜</th><th data-i18n="comp.th4">한 줄</th></tr></thead>
+      <tbody>
+        <tr><td data-i18n="comp.face">IRIS 창</td><td id="comp-face-ver">v2.57.1</td><td id="comp-face-date">—</td><td id="comp-face-note">—</td></tr>
+        <tr><td data-i18n="comp.messenger">메신저</td><td id="comp-messenger-ver">v0.3.2</td><td id="comp-messenger-date">—</td><td id="comp-messenger-note">—</td></tr>
+        <tr><td data-i18n="comp.installer">설치 패키지</td><td id="comp-installer-ver">v1.2.0</td><td id="comp-installer-date">—</td><td id="comp-installer-note">—</td></tr>
+      </tbody>
+    </table></div>
+    <details><summary id="comp-face-summary">v2.57.1 변경 내용</summary><p id="comp-face-body"></p></details>
+    <details><summary id="comp-messenger-summary">v0.3.2 변경 내용</summary><p id="comp-messenger-body"></p></details>
+    <details><summary id="comp-installer-summary">v1.2.0 변경 내용</summary><p id="comp-installer-body"></p></details>
+  </section>
+
   <section class="sec" id="faq">
     <h2 data-i18n="faq.h">자주 묻는 질문</h2>
     <details><summary data-i18n="faq.1q">유료 구독이 꼭 필요한가요?</summary><p data-i18n="faq.1a">네. IRIS는 에이전트를 만들지 않고, 여러분이 이미 쓰는 Claude 또는 ChatGPT 구독으로 Claude Code·Codex CLI를 돌립니다. IRIS 자체는 무료입니다.</p></details>
@@ -164,6 +181,7 @@
     <details><summary data-i18n="faq.3q">지우고 싶으면요?</summary><p data-i18n="faq.3a">C:\IRIS 폴더와 바탕화면 바로가기를 지우면 끝입니다. 레지스트리나 시스템 폴더에는 아무것도 쓰지 않습니다.</p></details>
     <details><summary data-i18n="faq.4q">맥이나 리눅스에서도 되나요?</summary><p data-i18n="faq.4a">지금은 윈도우 10/11 64비트만 지원합니다. 다른 운영체제는 계획에 있지만 날짜는 정해지지 않았습니다.</p></details>
     <details><summary data-i18n="faq.5q">이미 Claude Code가 설치되어 있으면 충돌하나요?</summary><p data-i18n="faq.5a">아니요. IRIS는 자기 폴더 안의 별도 사본을 쓰고, 기존 설치본과 설정에는 손대지 않습니다.</p></details>
+    <details><summary data-i18n="faq.6q">새 판이 나오면 다시 설치해야 하나요?</summary><p data-i18n="faq.6a">아니요. 이미 설치했다면 IRIS 창의 설정 → 업데이트에서 한 번에 갱신됩니다.</p></details>
   </section>
 </main>
 

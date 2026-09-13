@@ -139,6 +139,8 @@ td:first-child { white-space: nowrap; font-weight: 500; }
 td { color: var(--ink-2); }
 td:first-child { color: var(--ink); }
 .tbl-wrap { overflow-x: auto; }
+#components td:nth-child(2), #components td:nth-child(3),
+#components th:nth-child(2), #components th:nth-child(3) { white-space: nowrap; }
 /* 자주 묻는 질문 */
 details { border-bottom: 1px solid var(--line); }
 details:first-of-type { border-top: 1px solid var(--line); }

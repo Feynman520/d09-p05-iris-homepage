@@ -1,15 +1,23 @@
 // IRIS homepage · © 2026 Sejun Ham (함세준) · MIT · https://feynman520.github.io/card/#home
-/* 세 가지만 한다: ① 언어 전환(KO 원문 / EN 사전) ② 최신 릴리스 읽어 다운로드 단추 채우기 ③ 별의 구 띄우기 + 워드마크 두 번 클릭 서명. */
+/* 네 가지만 한다: ① 언어 전환(KO 원문 / EN 사전) ② 최신 릴리스 3곳을 읽어 다운로드 단추와 「구성 요소와 새 소식」 절 채우기 ③ 별의 구 띄우기 + 워드마크 두 번 클릭 서명. */
 (function () {
   'use strict';
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-  // ---- ① 설정 한 곳: 설치 패키지 저장소와 마지막으로 안 판(API 가 막혔을 때 그리는 값) ----
+  // ---- ① 설정 한 곳: 세 부품의 저장소와 마지막으로 안 판(API 가 막혔을 때 그리는 값) ----
   const CONFIG = {
-    repo: 'Feynman520/d09-p03-iris-installer',
-    fallback: { version: 'v1.2.0', bytes: 250231538, date: '2026-09-13', asset: 'IRIS-Setup_v1.2.0_2026-09-13.zip',
-      url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/latest',
-      sha: '76949ee5c8c6f0d15b9d4cf3a2524ca3ccd646bec7ad5de7e4895682721accfe' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
+    repos: {
+      face: 'Feynman520/d06-p02-iris-face',
+      messenger: 'Feynman520/d06-p04-iris-messenger',
+      installer: 'Feynman520/d09-p03-iris-installer',
+    },
+    fallback: {
+      face: { version: 'v2.57.1' },
+      messenger: { version: 'v0.3.2' },
+      installer: { version: 'v1.2.0', bytes: 250231538, date: '2026-09-13', asset: 'IRIS-Setup_v1.2.0_2026-09-13.zip',
+        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/latest',
+        sha: '76949ee5c8c6f0d15b9d4cf3a2524ca3ccd646bec7ad5de7e4895682721accfe' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
+    },
   };
 
   // ---- ② 언어 ----
@@ -57,6 +65,7 @@
       'dl.step1': 'Download the zip and extract it.', 'dl.step2': 'Double-click <code>IRIS-설치.cmd</code> inside the extracted folder.',
       'dl.step3': 'Follow the installer screen that opens in your browser. The only manual step is logging in to your subscription.',
       'dl.note': 'To verify the file, compare the output of this PowerShell command with the SHA-256 value.',
+      'dl.update': 'Already installed? Settings → Update in the IRIS window brings everything up to date in one step.',
       'dl.more': 'The <a href="/install?lang=en">install guide</a> explains each screen and what to do if you get stuck.',
       'in.h': 'What is inside',
       'in.lead': 'Everything goes into one folder, C:\\IRIS, and the only thing outside it is an “IRIS” shortcut on the desktop. To remove IRIS, delete the folder.',
@@ -67,12 +76,18 @@
       'in.r4t': 'IRIS window', 'in.r4': 'The desktop app that steers several sessions from one window — the one in the screens above.',
       'in.r5t': 'Setup guide and rules', 'in.r5': 'The guide the assistant reads on first run to set up your workspace with you, plus the default rule files.',
       'in.lic': 'All source is published under the MIT license. Licenses of bundled parts are listed in <code>payload/licenses/NOTICES.md</code> inside the zip.',
+      'comp.h': 'Components and news',
+      'comp.lead': 'Read fresh from GitHub on every visit — the current version and release notes of all three parts.',
+      'comp.th1': 'Part', 'comp.th2': 'Version', 'comp.th3': 'Date', 'comp.th4': 'One line',
+      'comp.face': 'IRIS window', 'comp.messenger': 'Messenger', 'comp.installer': 'Installer package',
+      'comp.none': 'No release notes yet.', 'comp.nover': 'No release yet',
       'faq.h': 'Questions',
       'faq.1q': 'Do I need a paid subscription?', 'faq.1a': 'Yes. IRIS does not ship an AI of its own; it runs Claude Code and Codex CLI under the Claude or ChatGPT subscription you already have. IRIS itself is free.',
       'faq.2q': 'Where do my files and conversations go?', 'faq.2a': 'They stay on your PC. The IRIS window, relay and installer send nothing off your machine. What the agent CLIs exchange with the AI vendors follows each CLI\'s own policy.',
       'faq.3q': 'How do I uninstall?', 'faq.3a': 'Delete the C:\\IRIS folder and the desktop shortcut. Nothing is written to the registry or system folders.',
       'faq.4q': 'Does it run on macOS or Linux?', 'faq.4a': 'Windows 10/11 64-bit only for now. Other systems are planned, without a date.',
       'faq.5q': 'Will it conflict with an existing Claude Code install?', 'faq.5a': 'No. IRIS uses its own copy inside its folder and leaves your existing install and settings alone.',
+      'faq.6q': 'A new version came out — do I have to reinstall?', 'faq.6a': 'No. Already installed? Settings → Update in the IRIS window brings everything up to date in one step.',
       'foot.card': 'Digital card', 'foot.installer': 'Installer', 'foot.face': 'IRIS window', 'foot.messenger': 'Messenger', 'foot.privacy': 'Privacy',
       // 설치 안내 쪽
       'inst.title': 'IRIS — Install guide', 'crumb.home': 'IRIS', 'inst.h': 'Install guide',
@@ -83,6 +98,8 @@
       'inst.s3h': 'Subscription', 'inst.s3': 'Tick what you have: Claude, ChatGPT, or both. With both, Claude Code leads the first setup.',
       'inst.s4h': 'Installing', 'inst.s4': 'Bundled runtime and the IRIS window are unpacked, Claude Code is fetched from npm. About 1 GB, a few minutes.',
       'inst.s5h': 'Login and hand-over', 'inst.s5': 'The browser opens the login page of your subscription once. Afterwards the IRIS window opens and the assistant takes over the rest of the setup.',
+      'inst.updh': 'Updating',
+      'inst.upd': 'Once installed, new versions show up under Settings → Update in the IRIS window. When one is available, press the “Update” button at the top of that section — after the download and its checks finish, a confirmation card appears. Confirm it and every open session ends, the new version is applied, and the window reopens with those sessions resumed automatically.',
       'inst.stuckh': 'If you get stuck',
       'inst.k1h': 'Windows warns about an unknown app', 'inst.k1': 'IRIS-설치.cmd is a plain script, not a signed .exe, so SmartScreen may warn. Choose “More info” → “Run anyway”. The script only starts the bundled Node.js.',
       'inst.k2h': 'The login window does not appear', 'inst.k2': 'Look for a browser tab in the background. If nothing appears within a minute, press “Retry” on the installer screen; the login step can be repeated safely.',
@@ -105,16 +122,15 @@
     for (const el of $$('[data-i18n-content]')) { const k = el.dataset.i18nContent; if (!original.has(el)) original.set(el, el.content); el.content = en && I18N.en[k] != null ? I18N.en[k] : original.get(el); }
     for (const b of $$('.lang button')) b.setAttribute('aria-pressed', String(b.dataset.lang === (en ? 'en' : 'ko')));
     try { localStorage.setItem(KEY, en ? 'en' : 'ko'); } catch {}
+    renderAllComponents();
   }
   function initialLang() {
     const q = new URLSearchParams(location.search).get('lang'); if (q === 'en' || q === 'ko') return q;
     try { const s = localStorage.getItem(KEY); if (s === 'en' || s === 'ko') return s; } catch {}
     return /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
   }
-  for (const b of $$('.lang button')) b.addEventListener('click', () => setLang(b.dataset.lang));
-  setLang(initialLang());
 
-  // ---- ③ 최신 릴리스 → 단추 ----
+  // ---- ③ 최신 릴리스 3곳 → 다운로드 단추 + 「구성 요소와 새 소식」 절 ----
   const mb = (bytes) => `${Math.round(bytes / 1048576)} MB`;
   function paint(r) {
     const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.textContent = v; };
@@ -124,20 +140,72 @@
     if (r.shaUrl) { const l = document.getElementById('dl-shalink'); if (l) l.href = r.shaUrl; }
     if (r.sha) { const s = document.getElementById('dl-sha'); if (s) { s.textContent = r.sha; s.hidden = false; } }
   }
-  paint(CONFIG.fallback);
-  if (document.getElementById('dl-btn')) (async () => {
-    try {
-      const res = await fetch(`https://api.github.com/repos/${CONFIG.repo}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
-      if (!res.ok) return;
-      const rel = await res.json();
-      const zip = (rel.assets || []).find(a => /\.zip$/i.test(a.name)); if (!zip) return;
-      const shaAsset = (rel.assets || []).find(a => /\.sha256$/i.test(a.name));
-      const version = String(rel.tag_name || '').replace(/^.*--/, '') || CONFIG.fallback.version;
-      const r = { version, bytes: zip.size, date: String(rel.published_at || '').slice(0, 10), asset: zip.name, url: zip.browser_download_url, shaUrl: shaAsset?.browser_download_url,
-        sha: version === CONFIG.fallback.version ? CONFIG.fallback.sha : null }; // 새 판이 나왔는데 이 파일이 아직 옛 값이면 값 대신 링크만
-      paint(r);
-    } catch {}
-  })();
+
+  const PARTS = ['face', 'messenger', 'installer'];
+  const compData = {}; // 부품별 { version, date, note(한 줄), notes(전문) } — fallback 으로 시작, 성공한 fetch 로만 덮어씀
+  for (const key of PARTS) compData[key] = { version: CONFIG.fallback[key].version || null, date: null, note: null, notes: null };
+
+  function stripMd(line) { return line.replace(/^[#*\-\s]+/, '').trim(); }
+  function firstLine(body) {
+    for (const raw of String(body || '').split(/\r?\n/)) {
+      const t = raw.trim();
+      if (t) return stripMd(t);
+    }
+    return '';
+  }
+  function fillNotes(el, body) {
+    el.textContent = '';
+    const lines = String(body || '').split(/\r?\n/);
+    lines.forEach((line, i) => {
+      el.appendChild(document.createTextNode(line));
+      if (i < lines.length - 1) el.appendChild(document.createElement('br'));
+    });
+  }
+  function t(en, ko) { return document.documentElement.lang === 'en' ? en : ko; }
+  function renderComponent(key) {
+    const d = compData[key]; if (!d) return;
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    set(`comp-${key}-ver`, d.version || t(I18N.en['comp.nover'], '아직 판이 없습니다'));
+    set(`comp-${key}-date`, d.date || '—');
+    set(`comp-${key}-note`, d.note || (d.version ? '—' : t(I18N.en['comp.none'], '변경 내용 없음')));
+    const sum = document.getElementById(`comp-${key}-summary`);
+    if (sum) sum.textContent = d.version ? t(`What's new in ${d.version}`, `${d.version} 변경 내용`) : t(I18N.en['comp.none'], '변경 내용 없음');
+    const body = document.getElementById(`comp-${key}-body`);
+    if (body) { if (d.notes) fillNotes(body, d.notes); else body.textContent = t(I18N.en['comp.none'], '아직 내용이 없습니다.'); }
+  }
+  function renderAllComponents() { for (const key of PARTS) renderComponent(key); }
+
+  for (const b of $$('.lang button')) b.addEventListener('click', () => setLang(b.dataset.lang));
+  setLang(initialLang()); // 여기서 renderAllComponents() 도 한 번 불려 fallback 이 먼저 그려진다
+
+  const onIndex = !!document.getElementById('dl-btn');
+  if (onIndex) {
+    paint(CONFIG.fallback.installer);
+    async function fetchRelease(key) {
+      try {
+        const res = await fetch(`https://api.github.com/repos/${CONFIG.repos[key]}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
+        return res.ok ? await res.json() : null;
+      } catch { return null; }
+    }
+    (async () => {
+      const results = await Promise.all(PARTS.map(fetchRelease)); // 페이지당 요청 3개, 병렬
+      PARTS.forEach((key, i) => {
+        const rel = results[i];
+        if (!rel) return; // 실패한 것은 fallback 그대로 둔다
+        const version = String(rel.tag_name || '').replace(/^.*--/, '') || compData[key].version;
+        compData[key] = { version, date: String(rel.published_at || '').slice(0, 10), note: firstLine(rel.body) || null, notes: rel.body || null };
+        renderComponent(key);
+        if (key === 'installer') {
+          const zip = (rel.assets || []).find(a => /\.zip$/i.test(a.name));
+          if (zip) {
+            const shaAsset = (rel.assets || []).find(a => /\.sha256$/i.test(a.name));
+            paint({ version, bytes: zip.size, date: compData.installer.date, asset: zip.name, url: zip.browser_download_url, shaUrl: shaAsset?.browser_download_url,
+              sha: version === CONFIG.fallback.installer.version ? CONFIG.fallback.installer.sha : null }); // 새 판이 나왔는데 이 파일이 아직 옛 값이면 값 대신 링크만
+          }
+        }
+      });
+    })();
+  }
 
   // ---- ④ 별의 구 + 서명 ----
   const canvas = document.getElementById('iris');
