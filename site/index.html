@@ -118,7 +118,7 @@
         <a class="btn" id="dl-btn" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/latest"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v13M6 11l6 6 6-6M4 20h16"/></svg><span data-i18n="dl.btn">IRIS 내려받기</span></a>
         <div class="dl-meta">
           <div><span id="dl-ver">v1.2.0</span> · <span id="dl-size">239 MB</span> · <span id="dl-date">2026-09-13</span> · Windows 10 / 11 64-bit</div>
-          <div><a href="https://github.com/Feynman520/d09-p03-iris-installer/releases" rel="noopener" data-i18n="dl.all">모든 판 보기</a> · <a id="dl-shalink" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/latest" rel="noopener">SHA-256</a></div>
+          <div><a href="https://github.com/Feynman520/d09-p03-iris-installer/releases" rel="noopener" data-i18n="dl.all">모든 판 보기</a> · <a id="dl-shalink" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/latest" rel="noopener">SHA-256</a> · <span data-i18n="dl.bytes">정확한 크기</span> <span class="sha" id="dl-bytes">250,264,924 bytes</span></div>
           <div class="sha" id="dl-sha" hidden></div>
         </div>
       </div>
@@ -135,7 +135,7 @@
         <li><span data-i18n="dl.step2">풀린 폴더 안의 <code>IRIS-설치.cmd</code> 를 두 번 클릭합니다.</span></li>
         <li><span data-i18n="dl.step3">브라우저에 열리는 설치 화면을 따라갑니다. 사람이 직접 하는 일은 구독 계정 로그인 하나입니다.</span></li>
       </ol>
-      <p class="note"><span data-i18n="dl.note">파일이 손상되지 않았는지 확인하려면 PowerShell에서 아래 명령의 결과를 SHA-256 값과 비교하세요.</span></p>
+      <p class="note"><span data-i18n="dl.note">압축이 안 풀리면 먼저 파일의 속성 창에서 크기를 보세요. 위의 바이트 수와 다르면 내려받기가 중간에 끊긴 것이니 다시 내려받으면 됩니다. 파일 자체를 확인하려면 PowerShell에서 아래 명령의 결과를 SHA-256 값과 비교하세요.</span></p>
       <pre><code id="dl-hashcmd">Get-FileHash .\IRIS-Setup_v1.2.0_2026-09-13.zip -Algorithm SHA256</code></pre>
       <p class="note" data-i18n="dl.update">이미 설치했다면 IRIS 창의 설정 → 업데이트에서 한 번에 갱신됩니다.</p>
       <p class="note" data-i18n="dl.more"><a href="/install">설치 안내</a>에 화면별 설명과 막혔을 때의 대처가 있습니다.</p>

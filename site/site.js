@@ -14,9 +14,9 @@
     fallback: {
       face: { version: 'v2.58.0' },
       messenger: { version: 'v0.3.2' },
-      installer: { version: 'v1.3.1', bytes: 250265014, date: '2026-09-13', asset: 'IRIS-Setup_v1.3.1_2026-09-13.zip',
+      installer: { version: 'v1.3.2', bytes: 250264924, date: '2026-09-14', asset: 'IRIS-Setup_v1.3.2_2026-09-14.zip',
         url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/latest',
-        sha: '644d76eeb8449b3556b7245dd3b9f699f521cc4f83a09556663e9f4a248e3177' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
+        sha: '338465090c88d94230ed0f79d282cd4ffdf31d8ffc08457125059196a8e5d683' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
   };
 
@@ -64,7 +64,8 @@
       'dl.stepsh': 'Install in three steps',
       'dl.step1': 'Download the zip and extract it.', 'dl.step2': 'Double-click <code>IRIS-설치.cmd</code> inside the extracted folder.',
       'dl.step3': 'Follow the installer screen that opens in your browser. The only manual step is logging in to your subscription.',
-      'dl.note': 'To verify the file, compare the output of this PowerShell command with the SHA-256 value.',
+      'dl.note': 'If extraction fails, first check the file size in its Properties window: a different number of bytes means the download was cut short — download it again. To verify the file itself, compare the output of this PowerShell command with the SHA-256 value.',
+      'dl.bytes': 'exact size',
       'dl.update': 'Already installed? Settings → Update in the IRIS window brings everything up to date in one step.',
       'dl.more': 'The <a href="/install?lang=en">install guide</a> explains each screen and what to do if you get stuck.',
       'in.h': 'What is inside',
@@ -135,6 +136,7 @@
   function paint(r) {
     const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.textContent = v; };
     set('chip-ver', r.version); set('chip-size', mb(r.bytes)); set('dl-ver', r.version); set('dl-size', mb(r.bytes)); set('dl-date', r.date); set('foot-ver', r.version);
+    if (r.bytes) set('dl-bytes', `${Number(r.bytes).toLocaleString('en-US')} bytes`); // 정확한 바이트 수 — 내려받기가 중간에 끊긴 파일을 사용자가 속성 창에서 바로 알아보게
     for (const id of ['dock-dl', 'dl-btn']) { const a = document.getElementById(id); if (a) a.href = r.url; }
     const cmd = document.getElementById('dl-hashcmd'); if (cmd) cmd.textContent = `Get-FileHash .\\${r.asset} -Algorithm SHA256`;
     if (r.shaUrl) { const l = document.getElementById('dl-shalink'); if (l) l.href = r.shaUrl; }
