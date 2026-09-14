@@ -155,9 +155,10 @@
   const mirrorFor = (asset) => (CONFIG.mirror && asset && CONFIG.mirror.assets.includes(asset)) ? `${CONFIG.mirror.base}/${asset}` : null;
   // GitHub 첨부 서버가 막힌 네트워크 감지: 첨부 주소에 HEAD 를 no-cors 로 던진다. 응답 내용은 못 읽지만(opaque) "연결됐는지"는 안다 —
   // github.com 의 302 를 따라 release-assets 로 갔다가 연결이 끊기면 fetch 가 거부된다. 그러면 두 단추를 미러로 돌리고 한 줄 알린다.
-  let probed = false;
+  let probedUrl = null;
   function probeGithub(url, mirrorUrl) {
-    if (probed || !url || !/^https:\/\/github\.com\//.test(url)) return; probed = true;
+    // 첨부 주소(…/releases/download/…)만 재는 의미가 있다 — fallback 의 releases/latest 는 github.com 페이지라 항상 열린다.
+    if (!url || probedUrl === url || !/^https:\/\/github\.com\/.+\/releases\/download\//.test(url)) return; probedUrl = url;
     const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 7000);
     fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-store', redirect: 'follow', signal: ctl.signal })
       .then(() => {})
