@@ -18,6 +18,9 @@
         url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/latest',
         sha: 'ea4602b6229bb670566392765958a7a41323cc2819d42ec1c61b6a36eb540254' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
+    // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
+    // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
+    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: ['IRIS-Setup_v1.4.3_2026-09-14.zip'] },
   };
 
   // ---- ② 언어 ----
@@ -66,6 +69,8 @@
       'dl.step3': 'Follow the installer screen that opens in your browser. The only manual step is logging in to your subscription.',
       'dl.note': 'If extraction fails, first check the file size in its Properties window: a different number of bytes means the download was cut short — download it again. To verify the file itself, compare the output of this PowerShell command with the SHA-256 value.',
       'dl.bytes': 'exact size',
+      'dl.mirror': 'Download from the mirror (Cloudflare) if GitHub is blocked on your network',
+      'dl.netnote': 'GitHub’s download server is not reachable from this network, so the button points to the mirror (same file, same SHA-256).',
       'dl.update': 'Already installed? Settings → Update in the IRIS window brings everything up to date in one step.',
       'dl.more': 'The <a href="/install?lang=en">install guide</a> explains each screen and what to do if you get stuck.',
       'in.h': 'What is inside',
@@ -142,6 +147,25 @@
     const cmd = document.getElementById('dl-hashcmd'); if (cmd) cmd.textContent = `Get-FileHash .\\${r.asset} -Algorithm SHA256`;
     if (r.shaUrl) { const l = document.getElementById('dl-shalink'); if (l) l.href = r.shaUrl; }
     if (r.sha) { const s = document.getElementById('dl-sha'); if (s) { s.textContent = r.sha; s.hidden = false; } }
+    // 미러 링크: 미러에 있는 판이면 보이고, 아니면 숨긴다
+    const mirrorUrl = mirrorFor(r.asset);
+    const ml = document.getElementById('dl-mirror'); if (ml) { ml.hidden = !mirrorUrl; if (mirrorUrl) ml.href = mirrorUrl; }
+    if (mirrorUrl) probeGithub(r.url, mirrorUrl);
+  }
+  const mirrorFor = (asset) => (CONFIG.mirror && asset && CONFIG.mirror.assets.includes(asset)) ? `${CONFIG.mirror.base}/${asset}` : null;
+  // GitHub 첨부 서버가 막힌 네트워크 감지: 첨부 주소에 HEAD 를 no-cors 로 던진다. 응답 내용은 못 읽지만(opaque) "연결됐는지"는 안다 —
+  // github.com 의 302 를 따라 release-assets 로 갔다가 연결이 끊기면 fetch 가 거부된다. 그러면 두 단추를 미러로 돌리고 한 줄 알린다.
+  let probed = false;
+  function probeGithub(url, mirrorUrl) {
+    if (probed || !url || !/^https:\/\/github\.com\//.test(url)) return; probed = true;
+    const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 7000);
+    fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-store', redirect: 'follow', signal: ctl.signal })
+      .then(() => {})
+      .catch(() => {
+        for (const id of ['dock-dl', 'dl-btn']) { const a = document.getElementById(id); if (a) a.href = mirrorUrl; }
+        const n = document.getElementById('dl-netnote'); if (n) n.hidden = false;
+      })
+      .finally(() => clearTimeout(t));
   }
 
   const PARTS = ['face', 'messenger', 'installer'];
