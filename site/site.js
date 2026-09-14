@@ -69,8 +69,7 @@
       'dl.step3': 'Follow the installer screen that opens in your browser. The only manual step is logging in to your subscription.',
       'dl.note': 'If extraction fails, first check the file size in its Properties window: a different number of bytes means the download was cut short — download it again. To verify the file itself, compare the output of this PowerShell command with the SHA-256 value.',
       'dl.bytes': 'exact size',
-      'dl.mirror': 'Download from the mirror (Cloudflare) if GitHub is blocked on your network',
-      'dl.netnote': 'GitHub’s download server is not reachable from this network, so the button points to the mirror (same file, same SHA-256).',
+      'dl.via': 'The download button serves the file from Cloudflare.', 'dl.github': 'Download directly from GitHub instead',
       'dl.update': 'Already installed? Settings → Update in the IRIS window brings everything up to date in one step.',
       'dl.more': 'The <a href="/install?lang=en">install guide</a> explains each screen and what to do if you get stuck.',
       'in.h': 'What is inside',
@@ -143,31 +142,16 @@
     const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.textContent = v; };
     set('chip-ver', r.version); set('chip-size', mb(r.bytes)); set('dl-ver', r.version); set('dl-size', mb(r.bytes)); set('dl-date', r.date); set('foot-ver', r.version);
     if (r.bytes) set('dl-bytes', `${Number(r.bytes).toLocaleString('en-US')} bytes`); // 정확한 바이트 수 — 내려받기가 중간에 끊긴 파일을 사용자가 속성 창에서 바로 알아보게
-    for (const id of ['dock-dl', 'dl-btn']) { const a = document.getElementById(id); if (a) a.href = r.url; }
+    // 내려받기 단추 = 미러(Cloudflare) 우선(2026-09-15). GitHub 첨부 서버가 막힌 네트워크가 실재하고, 브라우저 쪽 자동 감지(no-cors 탐침)는
+    // 막힘 방식(재설정/지연)에 따라 놓칠 수 있어 사용자가 두 번 헛걸음했다. 미러에 있는 판이면 무조건 미러, 아니면(막 나온 판) GitHub.
+    const primary = mirrorFor(r.asset) || r.url;
+    for (const id of ['dock-dl', 'dl-btn']) { const a = document.getElementById(id); if (a) a.href = primary; }
+    const gh = document.getElementById('dl-github'); if (gh) gh.href = r.url;
     const cmd = document.getElementById('dl-hashcmd'); if (cmd) cmd.textContent = `Get-FileHash .\\${r.asset} -Algorithm SHA256`;
     if (r.shaUrl) { const l = document.getElementById('dl-shalink'); if (l) l.href = r.shaUrl; }
     if (r.sha) { const s = document.getElementById('dl-sha'); if (s) { s.textContent = r.sha; s.hidden = false; } }
-    // 미러 링크: 미러에 있는 판이면 보이고, 아니면 숨긴다
-    const mirrorUrl = mirrorFor(r.asset);
-    const ml = document.getElementById('dl-mirror'); if (ml) { ml.hidden = !mirrorUrl; if (mirrorUrl) ml.href = mirrorUrl; }
-    if (mirrorUrl) probeGithub(r.url, mirrorUrl);
   }
   const mirrorFor = (asset) => (CONFIG.mirror && asset && CONFIG.mirror.assets.includes(asset)) ? `${CONFIG.mirror.base}/${asset}` : null;
-  // GitHub 첨부 서버가 막힌 네트워크 감지: 첨부 주소에 HEAD 를 no-cors 로 던진다. 응답 내용은 못 읽지만(opaque) "연결됐는지"는 안다 —
-  // github.com 의 302 를 따라 release-assets 로 갔다가 연결이 끊기면 fetch 가 거부된다. 그러면 두 단추를 미러로 돌리고 한 줄 알린다.
-  let probedUrl = null;
-  function probeGithub(url, mirrorUrl) {
-    // 첨부 주소(…/releases/download/…)만 재는 의미가 있다 — fallback 의 releases/latest 는 github.com 페이지라 항상 열린다.
-    if (!url || probedUrl === url || !/^https:\/\/github\.com\/.+\/releases\/download\//.test(url)) return; probedUrl = url;
-    const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 7000);
-    fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-store', redirect: 'follow', signal: ctl.signal })
-      .then(() => {})
-      .catch(() => {
-        for (const id of ['dock-dl', 'dl-btn']) { const a = document.getElementById(id); if (a) a.href = mirrorUrl; }
-        const n = document.getElementById('dl-netnote'); if (n) n.hidden = false;
-      })
-      .finally(() => clearTimeout(t));
-  }
 
   const PARTS = ['face', 'messenger', 'installer'];
   const compData = {}; // 부품별 { version, date, note(한 줄), notes(전문) } — fallback 으로 시작, 성공한 fetch 로만 덮어씀
