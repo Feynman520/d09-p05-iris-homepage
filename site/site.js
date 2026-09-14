@@ -12,7 +12,7 @@
       installer: 'Feynman520/d09-p03-iris-installer',
     },
     fallback: {
-      face: { version: 'v2.63.0' },
+      face: { version: 'v2.64.0' },
       messenger: { version: 'v0.3.2' },
       installer: { version: 'v1.4.4', bytes: 250393779, date: '2026-09-14', asset: 'IRIS-Setup_v1.4.4_2026-09-14.zip',
         url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/latest',
