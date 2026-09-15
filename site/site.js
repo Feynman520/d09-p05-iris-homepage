@@ -66,11 +66,11 @@
       'dl.req4': 'A paid Claude (claude.ai) or ChatGPT (chatgpt.com) subscription — the agent CLI works under that account',
       'dl.stepsh': 'Install in three steps',
       'dl.step1': 'Download the zip, then <strong>before extracting</strong> right-click it → Properties → tick “Unblock” at the bottom → OK. Now extract it.', 'dl.step2': 'Double-click <code>IRIS-설치.cmd</code> inside the extracted folder. If Windows says “Smart App Control blocked this file”, step 1 was skipped — see the two fixes in the <a href="/install?lang=en#sac">install guide</a>.',
-      'dl.step3': 'Follow the installer screen that opens in your browser. The only manual step is logging in to your subscription.',
+      'dl.step3': 'Follow the installer screen that opens in your browser. Once the readiness check finishes, answer two questions (subscription and work folder) — after that, the only manual step is logging in to your subscription.',
       'dl.note': 'If extraction fails, first check the file size in its Properties window: a different number of bytes means the download was cut short — download it again. To verify the file itself, compare the output of this PowerShell command with the SHA-256 value.',
       'dl.bytes': 'exact size',
       'dl.via': 'The download button serves the file from Cloudflare.', 'dl.github': 'Download directly from GitHub instead',
-      'dl.update': 'Already installed? Settings → Update in the IRIS window brings everything up to date in one step.',
+      'dl.update': 'Already installed? Settings → Update in the IRIS window brings everything up to date in one step, in most cases. Coming from 1.x is the exception — 2.0 installs fresh (your existing data is left untouched). <a href="install.html#upd1x">Details</a>',
       'dl.more': 'The <a href="/install?lang=en">install guide</a> explains each screen and what to do if you get stuck.',
       'in.h': 'What is inside',
       'in.lead': 'Everything goes into one folder, C:\\IRIS, and the only thing outside it is an “IRIS” shortcut on the desktop. To remove IRIS, delete the folder.',
@@ -92,21 +92,41 @@
       'faq.3q': 'How do I uninstall?', 'faq.3a': 'Delete the C:\\IRIS folder and the desktop shortcut. Nothing is written to the registry or system folders.',
       'faq.4q': 'Does it run on macOS or Linux?', 'faq.4a': 'Windows 10/11 64-bit only for now. Other systems are planned, without a date.',
       'faq.5q': 'Will it conflict with an existing Claude Code install?', 'faq.5a': 'No. IRIS uses its own copy inside its folder and leaves your existing install and settings alone.',
-      'faq.6q': 'A new version came out — do I have to reinstall?', 'faq.6a': 'No. Already installed? Settings → Update in the IRIS window brings everything up to date in one step.',
+      'faq.6q': 'A new version came out — do I have to reinstall?', 'faq.6a': 'If already installed, in most cases Settings → Update in the IRIS window brings everything up to date in one step. Coming from 1.x to 2.0 is the exception, though — installation works differently now, so it installs fresh (your existing data is left untouched).',
       'foot.card': 'Digital card', 'foot.installer': 'Installer', 'foot.face': 'IRIS window', 'foot.messenger': 'Messenger', 'foot.privacy': 'Privacy',
       // 설치 안내 쪽
       'inst.title': 'IRIS — Install guide', 'crumb.home': 'IRIS', 'inst.h': 'Install guide',
       'inst.lead': 'What each installer screen does, in order, and what to do when something stops.',
-      'inst.s0h': 'Before you start', 'inst.s0': 'Download the zip from the home page and, <strong>before extracting</strong>, right-click it → Properties → tick “Unblock” at the bottom → OK (this removes the mark Windows puts on files from the internet; skip it and Smart App Control on Windows 11 blocks the installer). Then extract it anywhere and double-click <code>IRIS-설치.cmd</code>. A console window flashes briefly and the installer opens in your browser at 127.0.0.1:3460.',
-      'inst.s1h': 'Readiness check', 'inst.s1': 'Windows version, free space on drive C and internet access are checked automatically. Anything missing is named, with what to do.',
-      'inst.s2h': 'Install location', 'inst.s2': 'IRIS always installs to C:\\IRIS. If it already exists, the installer switches to update mode and never overwrites your files.',
-      'inst.s3h': 'Subscription', 'inst.s3': 'Tick what you have: Claude, ChatGPT, or both. With both, Claude Code leads the first setup.',
-      'inst.s4h': 'Installing', 'inst.s4': 'Bundled runtime and the IRIS window are unpacked, Claude Code is fetched from npm. About 1 GB, a few minutes.',
-      'inst.s5h': 'Login and hand-over', 'inst.s5': 'The browser opens the login page of your subscription once. Afterwards the IRIS window opens and the assistant takes over the rest of the setup.',
+      'inst.s0h': '① Download and extract', 'inst.s0': 'Download the zip from the home page. <strong>Before extracting</strong>, right-click it → Properties → tick “Unblock” at the bottom → OK (this removes the mark Windows puts on files from the internet; skip it and Smart App Control on Windows 11 blocks the next step — if it does, see <a href="#sac">If you get stuck</a> below). Then extract it anywhere.',
+      'inst.s1h': '② Double-click IRIS-설치.cmd', 'inst.s1': 'In the extracted folder, double-click <code>IRIS-설치.cmd</code>. A console window flashes briefly and the installer screen opens in your browser (127.0.0.1:3460). From here almost everything runs on its own — the only manual part left is answering two questions.',
+      'inst.s2h': '③ Readiness check', 'inst.s2': 'Windows version, free space on drive C and internet access are checked automatically. IRIS always installs to <code>C:\\IRIS</code> and never asks for a location — if it already exists, the installer switches to update mode and never overwrites your files. Anything missing is named, with what to do.',
+      'inst.s3h': '④ Two questions', 'inst.s3': 'Shows the subscriptions you have: Claude, ChatGPT, or both (with both, Claude Code leads the first setup). Next, choose how to lay out your work folder — pick one of the ready-made layouts; English names can be left blank. Finally a summary with a folder tree is shown, and pressing “Start install” moves on.',
+      'inst.s4h': '⑤ Installing', 'inst.s4': 'Bundled runtime and the IRIS window are unpacked, Claude Code is fetched from npm. A progress bar shows the current step; if something fails, an error code and log path are shown right there. “Retry” resumes from that step without deleting files already created. About 1 GB, a few minutes.',
+      'inst.s5h': '⑥ Login', 'inst.s5': 'The browser opens the login page of the subscription(s) you chose. With both, Claude then ChatGPT open once each. It is safe to press it again if a login window is slow or does not appear.',
+      'inst.s6h': '⑦ Done', 'inst.s6': 'After a summary of what was installed, press “Open IRIS” — the IRIS window opens and the assistant sends the first greeting on its own. The module drawer opens with a one-time messenger login note; skipping it is fine, it can be done later from settings.',
       'inst.updh': 'Updating',
       'inst.upd': 'Once installed, new versions show up under Settings → Update in the IRIS window. When one is available, press the “Update” button at the top of that section — after the download and its checks finish, a confirmation card appears. Confirm it and every open session ends, the new version is applied, and the window reopens with those sessions resumed automatically.',
+      'inst.upd1x': 'Coming from 1.x: 2.0 changes how installation works, so it installs fresh. Your existing data is left untouched — just run the installer. Instead of the “Update” button above, download the new zip from the home page and follow the steps (①–⑦) on this page.',
       'inst.stuckh': 'If you get stuck',
-      'inst.k1h': '“Smart App Control blocked a file that may be unsafe”', 'inst.k1': 'Smart App Control on Windows 11 refuses to double-click a <code>.cmd</code> file that carries the “downloaded from the internet” mark (the mark spreads to every file extracted from the zip). Nothing is wrong with the file — it is the origin mark — and there is no “Run anyway” button. Either fix works. <strong>① Quick:</strong> with the extracted folder open, click the address bar at the top, type <code>cmd</code>, press Enter, then type <code>IRIS-설치.cmd</code> and press Enter. <strong>② Clean:</strong> right-click the zip → Properties → tick “Unblock” → OK → extract again → double-click. Do not turn Smart App Control off — it is hard to turn back on. Once running, the installer removes the mark from the bundled parts itself, so this does not recur later.',
+      'inst.sach': 'If installation does not go through',
+      'inst.sacbody': '<p>Double-clicking <code>IRIS-설치.cmd</code> (IRIS-Setup.cmd) does nothing, or a window says something like “This app was blocked for your protection.” The cause is Windows Smart App Control: it marks files downloaded from the internet, and when it is on, it blocks a marked executable with no “Run anyway” button at all. Nothing is wrong with your PC or with IRIS — either fix below is enough.</p>'
+        + '<h4>[Method A] Unblock, then extract again (recommended)</h4>'
+        + '<ol><li>Right-click the downloaded zip file.</li>'
+        + '<li>Click “Properties” at the bottom.</li>'
+        + '<li>Near the bottom of the window, next to “Security: This file came from another computer...”, tick the “Unblock” box. (If you do not see this text, it is already unblocked — go to Method B.)</li>'
+        + '<li>Click “OK”.</li>'
+        + '<li>Delete the folder you extracted earlier, then extract the zip again.</li>'
+        + '<li>Double-click <code>IRIS-설치.cmd</code> again.</li></ol>'
+        + '<h4>[Method B] Run it from Explorer’s address bar</h4>'
+        + '<ol><li>Open the extracted folder in Explorer.</li>'
+        + '<li>Click the address bar at the top once — the path text turns blue and gets selected.</li>'
+        + '<li>Type the line below in its place and press Enter.<br><code>cmd /c IRIS-설치.cmd</code></li>'
+        + '<li>A black console window appears and installation starts.</li></ol>'
+        + '<p>Files the installer creates itself do not carry this mark, so once you get past this once, it will not happen again from the next step onward.</p>'
+        + '<h4>If it still does not work</h4>'
+        + '<ul><li>An install log is kept at the path below. Paste it into Explorer’s address bar to open the folder.<br><code>%LOCALAPPDATA%\\IRIS-Installer\\bootstrap.log</code></li>'
+        + '<li>A version of this guide with screenshots is on the home page.<br><a href="https://iris-workspace.com/install.html#sac">https://iris-workspace.com/install.html#sac</a></li>'
+        + '<li>When you ask for help, attach the log file above — it tells us right away where things stopped.</li></ul>',
       'inst.k1bh': 'Windows warns about an unknown app (SmartScreen)', 'inst.k1b': 'On PCs where Smart App Control is off, SmartScreen may warn instead. Choose “More info” → “Run anyway”. The script only starts the bundled Node.js.',
       'inst.k2h': 'The login window does not appear', 'inst.k2': 'Look for a browser tab in the background. If nothing appears within a minute, press “Retry” on the installer screen; the login step can be repeated safely.',
       'inst.k3h': 'Something else failed', 'inst.k3': 'The log is at <code>C:\\IRIS\\_agent\\shared\\package-install.log</code>. Open an issue on GitHub with the last lines of that file — it contains no secrets.',

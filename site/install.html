@@ -34,35 +34,65 @@
   <h1 data-i18n="inst.h">설치 안내</h1>
   <p class="lead" data-i18n="inst.lead">설치기의 화면이 차례로 무엇을 하는지, 그리고 중간에 멈췄을 때 무엇을 하면 되는지 적었습니다.</p>
 
-  <h2 data-i18n="inst.s0h">시작하기 전에</h2>
-  <p data-i18n="inst.s0">홈에서 zip을 내려받고, <strong>압축을 풀기 전에</strong> zip 파일을 오른쪽 클릭 → 속성 → 아래쪽 「차단 해제」에 체크 → 확인을 누릅니다(윈도우가 인터넷에서 받은 파일에 붙이는 표식을 지우는 것으로, 이걸 건너뛰면 윈도우 11의 스마트 앱 컨트롤이 설치 파일 실행을 막습니다). 그다음 아무 곳에나 압축을 풀고 <code>IRIS-설치.cmd</code>를 두 번 클릭합니다. 검은 창이 잠깐 보였다가 브라우저에 설치 화면(127.0.0.1:3460)이 열립니다.</p>
+  <h2 data-i18n="inst.s0h">① 내려받기와 압축 풀기</h2>
+  <p data-i18n="inst.s0">홈에서 zip을 내려받습니다. <strong>압축을 풀기 전에</strong> zip 파일을 오른쪽 클릭 → 속성 → 아래쪽 「차단 해제」에 체크 → 확인을 누르세요(윈도우가 인터넷에서 받은 파일에 붙이는 표식을 지우는 것으로, 건너뛰면 윈도우 11의 스마트 앱 컨트롤이 다음 단계를 막습니다 — 막히면 아래 <a href="#sac">막혔을 때</a>를 보세요). 그다음 아무 곳에나 압축을 풉니다.</p>
 
-  <h2 data-i18n="inst.s1h">준비 확인</h2>
-  <p data-i18n="inst.s1">윈도우 버전, C 드라이브 여유 공간, 인터넷 연결을 자동으로 확인합니다. 모자라는 것이 있으면 무엇을 하면 되는지 그 자리에 적힙니다.</p>
-  <div class="win"><div class="win-bar"><span>ⓐ</span><span class="dot"></span></div><img src="img/install-1-precheck.png" width="1280" height="800" alt="준비 확인 결과 화면" loading="lazy"></div>
+  <h2 data-i18n="inst.s1h">② IRIS-설치.cmd 두 번 클릭</h2>
+  <p data-i18n="inst.s1">풀어 둔 폴더에서 <code>IRIS-설치.cmd</code>를 두 번 클릭합니다. 검은 창이 잠깐 보였다가 브라우저에 설치 화면(127.0.0.1:3460)이 열립니다. 사람이 손으로 하는 일은 여기까지가 대부분이고, 다음 화면부터는 질문 두 가지에 답하는 것 말고는 설치기가 알아서 진행합니다.</p>
 
-  <h2 data-i18n="inst.s2h">설치 위치</h2>
-  <p data-i18n="inst.s2">IRIS는 항상 C:\IRIS에 설치됩니다. 이미 있으면 설치기가 업데이트 모드로 바뀌고, 여러분의 자료는 절대 덮어쓰지 않습니다.</p>
-  <div class="win"><div class="win-bar"><span>ⓑ</span><span class="dot"></span></div><img src="img/install-2-location.png" width="1280" height="800" alt="설치 위치 자동 확인 화면" loading="lazy"></div>
+  <h2 data-i18n="inst.s2h">③ 자동 확인</h2>
+  <p data-i18n="inst.s2">윈도우 버전, C 드라이브 여유 공간, 인터넷 연결을 자동으로 확인합니다. IRIS는 항상 <code>C:\IRIS</code>에 설치되며 위치를 묻지 않습니다 — 이미 있으면 설치기가 업데이트 모드로 바뀌고, 여러분의 자료는 절대 덮어쓰지 않습니다. 모자라는 것이 있으면 무엇을 하면 되는지 그 자리에 적힙니다.</p>
+  <div class="win"><div class="win-bar"><span>ⓐ</span><span class="dot"></span></div><img src="img/install-1-precheck.png" width="1280" height="800" alt="자동 확인 결과 화면" loading="lazy"></div>
 
-  <h2 data-i18n="inst.s3h">구독 고르기</h2>
-  <p data-i18n="inst.s3">가진 것을 표시합니다: Claude, ChatGPT, 또는 둘 다. 둘 다면 Claude Code가 첫 세팅을 주도합니다.</p>
-  <div class="win"><div class="win-bar"><span>ⓒ</span><span class="dot"></span></div><img src="img/install-3-subscription.png" width="1280" height="800" alt="구독 선택 화면" loading="lazy"></div>
+  <h2 data-i18n="inst.s3h">④ 질문 두 가지</h2>
+  <p data-i18n="inst.s3">가진 구독을 표시합니다: Claude, ChatGPT, 또는 둘 다(둘 다면 Claude Code가 첫 세팅을 주도합니다). 이어서 작업 폴더를 어떻게 꾸릴지 고릅니다 — 미리 만들어 둔 구성 중 하나를 고르면 되고, 영어 이름은 비워 둬도 됩니다. 마지막으로 고른 내용을 폴더 나무와 함께 요약으로 보여주며, 「이대로 설치 시작」을 누르면 다음 단계로 넘어갑니다.</p>
+  <div class="win"><div class="win-bar"><span>ⓑ</span><span class="dot"></span></div><img src="img/install-3-subscription.png" width="1280" height="800" alt="질문 화면(구독·작업 폴더)" loading="lazy"></div>
 
-  <h2 data-i18n="inst.s4h">설치</h2>
-  <p data-i18n="inst.s4">동봉된 런타임과 IRIS 창을 풀고, Claude Code를 npm에서 내려받습니다. 약 1 GB, 수 분이 걸립니다.</p>
-  <div class="win"><div class="win-bar"><span>ⓓ</span><span class="dot"></span></div><img src="img/install-4-progress.png" width="1280" height="800" alt="설치 진행 화면" loading="lazy"></div>
+  <h2 data-i18n="inst.s4h">⑤ 자동 설치</h2>
+  <p data-i18n="inst.s4">동봉된 런타임과 IRIS 창을 풀고, Claude Code를 npm에서 내려받아 설치합니다. 진행 막대에 지금 하는 일이 단계별로 표시되며, 중간에 오류가 나면 오류 코드와 로그 위치가 그 자리에 적힙니다. 「다시 시도」를 누르면 그 단계부터 다시 하며, 이미 만든 파일을 지우지 않습니다. 약 1 GB, 수 분이 걸립니다.</p>
+  <div class="win"><div class="win-bar"><span>ⓒ</span><span class="dot"></span></div><img src="img/install-4-progress.png" width="1280" height="800" alt="설치 진행 화면" loading="lazy"></div>
 
-  <h2 data-i18n="inst.s5h">로그인과 인수인계</h2>
-  <p data-i18n="inst.s5">브라우저에 구독 계정의 로그인 페이지가 한 번 열립니다. 끝나면 IRIS 창이 열리고, 비서가 나머지 세팅을 이어받습니다.</p>
-  <div class="win"><div class="win-bar"><span>ⓔ</span><span class="dot"></span></div><img src="img/install-5-done.png" width="1280" height="800" alt="설치 완료 화면" loading="lazy"></div>
+  <h2 data-i18n="inst.s5h">⑥ 로그인</h2>
+  <p data-i18n="inst.s5">브라우저에 고른 구독 계정의 로그인 페이지가 열립니다. 둘 다 골랐다면 Claude, ChatGPT 순서로 한 번씩 열립니다. 로그인 창이 늦게 뜨거나 안 보여도 몇 번이고 다시 눌러도 안전합니다.</p>
+
+  <h2 data-i18n="inst.s6h">⑦ 완료</h2>
+  <p data-i18n="inst.s6">설치 결과 요약을 보여준 뒤 「IRIS 열기」를 누르면 IRIS 창이 뜨고 비서가 첫 인사를 먼저 건넵니다. 모듈 서랍이 열리며 메신저 로그인 안내가 한 번 뜨는데, 지금 건너뛰어도 나중에 설정에서 다시 할 수 있습니다.</p>
+  <div class="win"><div class="win-bar"><span>ⓓ</span><span class="dot"></span></div><img src="img/install-5-done.png" width="1280" height="800" alt="설치 완료 화면" loading="lazy"></div>
 
   <h2 data-i18n="inst.updh">업데이트</h2>
   <p data-i18n="inst.upd">설치가 끝난 뒤 새 판이 나오면 IRIS 창의 설정 → 업데이트에 표시됩니다. 판이 있으면 그 절 위쪽의 「업데이트」 단추를 누르세요 — 내려받기와 검사가 끝나면 확인 카드가 뜹니다. 확인하면 열려 있던 세션이 모두 끝나고 새 판이 적용된 뒤, 창이 다시 열리며 그 세션들이 자동으로 이어집니다.</p>
+  <p id="upd1x" data-i18n="inst.upd1x">1.x를 쓰고 계셨다면: 2.0은 설치 방식이 바뀌어 새로 설치합니다. 기존 자료는 그대로 두고 설치기를 실행하면 됩니다. 위 「업데이트」 단추 대신 홈의 내려받기로 새 zip을 받아 이 페이지의 순서(①~⑦)를 그대로 따르세요.</p>
 
   <h2 data-i18n="inst.stuckh">막혔을 때</h2>
-  <h3 id="sac" data-i18n="inst.k1h">「스마트 앱 컨트롤이 안전하지 않을 수 있는 파일을 차단했습니다」가 뜹니다</h3>
-  <p data-i18n="inst.k1">윈도우 11의 스마트 앱 컨트롤은 인터넷에서 받은 표식이 붙은 <code>.cmd</code> 파일의 두 번 클릭을 막습니다(표식은 zip에서 풀린 모든 파일에 번집니다). 파일이 나쁜 것이 아니라 출처 표식 때문이며, 「실행」 단추는 없습니다. 해결법은 둘 중 하나입니다. <strong>① 빠른 길:</strong> 풀린 폴더를 연 상태에서 위쪽 주소창을 클릭해 <code>cmd</code>를 입력하고 Enter, 검은 창에 <code>IRIS-설치.cmd</code>를 입력하고 Enter. <strong>② 깨끗한 길:</strong> zip 파일을 오른쪽 클릭 → 속성 → 「차단 해제」 체크 → 확인 → 압축을 다시 풀고 두 번 클릭. 스마트 앱 컨트롤 자체를 끄지는 마세요 — 끄면 다시 켜기 어렵습니다. 설치기는 실행되면 동봉 부품의 표식을 스스로 지우므로 이후 단계에서는 이 문제가 다시 나오지 않습니다.</p>
+  <h3 id="sac" data-i18n="inst.sach">설치가 안 되면</h3>
+  <div data-i18n="inst.sacbody">
+<!-- notice:begin -->
+  <p>IRIS-설치.cmd 를 두 번 눌렀는데 아무 일도 일어나지 않거나 &quot;이 앱은 보호를 위해 차단되었습니다&quot; 같은 창이 뜨는 경우입니다. 원인은 윈도의 스마트 앱 컨트롤(Smart App Control)입니다. 인터넷에서 받은 파일에 &quot;웹에서 왔음&quot; 표식이 붙는데, 이 기능이 켜져 있으면 그 표식이 붙은 실행 파일을 실행 단추도 없이 막습니다. 컴퓨터나 IRIS가 고장 난 것이 아닙니다. 아래 둘 중 하나만 하면 됩니다.</p>
+  <h4>[방법 ㉮] 차단 해제하고 다시 풀기 (권장)</h4>
+  <ol>
+    <li>내려받은 zip 파일을 마우스 오른쪽 단추로 누릅니다.</li>
+    <li>맨 아래 &quot;속성&quot;을 누릅니다.</li>
+    <li>창 아래쪽 &quot;보안: 이 파일은 다른 컴퓨터에서 왔으며...&quot; 옆 「차단 해제」 네모 칸을 체크합니다. (이 문구가 안 보이면 이미 해제된 것입니다. 방법 ㉯로 가세요.)</li>
+    <li>&quot;확인&quot;을 누릅니다.</li>
+    <li>먼저 풀어 둔 폴더는 지우고, zip을 다시 풉니다.</li>
+    <li>IRIS-설치.cmd 를 다시 두 번 누릅니다.</li>
+  </ol>
+  <h4>[방법 ㉯] 탐색기 주소창에서 실행하기</h4>
+  <ol>
+    <li>zip을 푼 폴더를 탐색기에서 엽니다.</li>
+    <li>위쪽 주소창(폴더 경로가 적힌 칸)을 한 번 누릅니다. 경로 글자가 파랗게 선택됩니다.</li>
+    <li>그 자리에 아래를 그대로 쳐 넣고 Enter 를 누릅니다.<br><code>cmd /c IRIS-설치.cmd</code></li>
+    <li>검은 창이 뜨고 설치가 시작됩니다.</li>
+  </ol>
+  <p>설치기가 만드는 파일에는 이 표식이 붙지 않습니다. 그래서 한 번만 넘어가면 그 다음 단계부터는 이 문제가 다시 생기지 않습니다.</p>
+  <h4>그래도 안 될 때</h4>
+  <ul>
+    <li>설치 기록(로그)이 아래에 남아 있습니다. 파일 탐색기 주소창에 아래를 붙여 넣으면 폴더가 열립니다.<br><code>%LOCALAPPDATA%\IRIS-Installer\bootstrap.log</code></li>
+    <li>그림과 함께 설명한 안내는 홈페이지에 있습니다.<br><a href="https://iris-workspace.com/install.html#sac">https://iris-workspace.com/install.html#sac</a></li>
+    <li>도움을 요청할 때 위 로그 파일을 함께 보내 주시면 어디서 막혔는지 바로 알 수 있습니다.</li>
+  </ul>
+  <!-- notice:end -->
+  </div>
   <h3 data-i18n="inst.k1bh">윈도우가 알 수 없는 앱이라고 경고합니다 (SmartScreen)</h3>
   <p data-i18n="inst.k1b">스마트 앱 컨트롤이 꺼진 PC에서는 대신 SmartScreen 경고가 뜰 수 있습니다. 「추가 정보」 → 「실행」을 누르세요. 이 스크립트는 동봉된 Node.js를 시작할 뿐입니다.</p>
   <h3 data-i18n="inst.k2h">로그인 창이 뜨지 않습니다</h3>

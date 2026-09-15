@@ -134,11 +134,11 @@
       <ol class="steps">
         <li><span data-i18n="dl.step1">zip 을 내려받은 뒤 <strong>압축을 풀기 전에</strong> zip 파일을 오른쪽 클릭 → 속성 → 아래쪽 「차단 해제」에 체크 → 확인. 그다음 압축을 풉니다.</span></li>
         <li><span data-i18n="dl.step2">풀린 폴더 안의 <code>IRIS-설치.cmd</code> 를 두 번 클릭합니다. "스마트 앱 컨트롤이 차단했습니다"가 뜨면 1단계를 건너뛴 것입니다 — <a href="/install#sac">설치 안내</a>의 두 가지 해결법을 보세요.</span></li>
-        <li><span data-i18n="dl.step3">브라우저에 열리는 설치 화면을 따라갑니다. 사람이 직접 하는 일은 구독 계정 로그인 하나입니다.</span></li>
+        <li><span data-i18n="dl.step3">브라우저에 열리는 설치 화면을 따라갑니다. 자동 확인이 끝나면 질문 두 가지(구독·작업 폴더)에 답하고, 그다음부터 사람이 직접 하는 일은 구독 계정 로그인 하나입니다.</span></li>
       </ol>
       <p class="note"><span data-i18n="dl.note">압축이 안 풀리면 먼저 파일의 속성 창에서 크기를 보세요. 위의 바이트 수와 다르면 내려받기가 중간에 끊긴 것이니 다시 내려받으면 됩니다. 파일 자체를 확인하려면 PowerShell에서 아래 명령의 결과를 SHA-256 값과 비교하세요.</span></p>
       <pre><code id="dl-hashcmd">Get-FileHash .\IRIS-Setup_v1.2.0_2026-09-13.zip -Algorithm SHA256</code></pre>
-      <p class="note" data-i18n="dl.update">이미 설치했다면 IRIS 창의 설정 → 업데이트에서 한 번에 갱신됩니다.</p>
+      <p class="note" data-i18n="dl.update">이미 설치했다면 대부분 IRIS 창의 설정 → 업데이트에서 한 번에 갱신됩니다. 1.x를 쓰고 계셨다면 예외입니다 — 2.0은 새로 설치합니다(기존 자료는 그대로 둡니다). <a href="install.html#upd1x">자세히</a></p>
       <p class="note" data-i18n="dl.more"><a href="/install">설치 안내</a>에 화면별 설명과 막혔을 때의 대처가 있습니다.</p>
     </div>
   </section>
@@ -182,7 +182,7 @@
     <details><summary data-i18n="faq.3q">지우고 싶으면요?</summary><p data-i18n="faq.3a">C:\IRIS 폴더와 바탕화면 바로가기를 지우면 끝입니다. 레지스트리나 시스템 폴더에는 아무것도 쓰지 않습니다.</p></details>
     <details><summary data-i18n="faq.4q">맥이나 리눅스에서도 되나요?</summary><p data-i18n="faq.4a">지금은 윈도우 10/11 64비트만 지원합니다. 다른 운영체제는 계획에 있지만 날짜는 정해지지 않았습니다.</p></details>
     <details><summary data-i18n="faq.5q">이미 Claude Code가 설치되어 있으면 충돌하나요?</summary><p data-i18n="faq.5a">아니요. IRIS는 자기 폴더 안의 별도 사본을 쓰고, 기존 설치본과 설정에는 손대지 않습니다.</p></details>
-    <details><summary data-i18n="faq.6q">새 판이 나오면 다시 설치해야 하나요?</summary><p data-i18n="faq.6a">아니요. 이미 설치했다면 IRIS 창의 설정 → 업데이트에서 한 번에 갱신됩니다.</p></details>
+    <details><summary data-i18n="faq.6q">새 판이 나오면 다시 설치해야 하나요?</summary><p data-i18n="faq.6a">이미 설치했다면 대부분 IRIS 창의 설정 → 업데이트에서 한 번에 갱신됩니다. 다만 1.x에서 2.0으로 넘어올 때는 예외입니다 — 설치 방식이 바뀌어 새로 설치합니다(기존 자료는 그대로 둡니다).</p></details>
   </section>
 </main>
 
