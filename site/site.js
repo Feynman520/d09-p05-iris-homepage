@@ -14,13 +14,13 @@
     fallback: {
       face: { version: 'v2.65.0' },
       messenger: { version: 'v0.3.2' },
-      installer: { version: 'v1.4.5', bytes: 250406830, date: '2026-09-14', asset: 'IRIS-Setup_v1.4.5_2026-09-14.zip',
+      installer: { version: 'v2.0.0', bytes: 383125590, date: '2026-09-15', asset: 'IRIS-Setup_v2.0.0_2026-09-15.zip',
         url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/latest',
-        sha: '40430d794d9f52990fd607fd1b1725e5b741a2267d22862c327fb8b1095d363c' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
+        sha: '49974483cf74c78dd5d0bfff5f7aabd90bfa8b14c2f10ad8f4c0e25ab09b0c79' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
-    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: ['IRIS-Setup_v1.4.5_2026-09-14.zip'] },
+    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: [] }, // v2.0.0(383MB)은 R2 REST PUT 300MB 한도 초과 → 미러 보류(멀티파트/S3 키 필요). GitHub 막힌 네트워크는 아직 미대응.
   };
 
   // ---- ② 언어 ----
