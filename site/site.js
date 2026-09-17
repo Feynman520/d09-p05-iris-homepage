@@ -15,7 +15,8 @@
       face: { version: 'v2.65.0' },
       messenger: { version: 'v0.3.2' },
       installer: { version: 'v2.0.1', bytes: 383132591, date: '2026-09-16', asset: 'IRIS-Setup_v2.0.1_2026-09-16.zip',
-        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/latest',
+        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.1/IRIS-Setup_v2.0.1_2026-09-16.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
+        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.1', // 릴리스 노트 쪽
         sha: 'e3c208db5663fd4088f4ad72319d9726b659f2142aea5994f67d9fe28fa3f317' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
@@ -40,6 +41,21 @@
       'what.1h': 'Folder system', 'what.1p': 'Role → domain → project → step. The assistant knows where it is working from the folder it is in.',
       'what.2h': 'Rule files', 'what.2p': 'Each folder\'s AGENTS.md is the rule for that place. Rules from parent folders carry down automatically.',
       'what.3h': 'Agents and the window', 'what.3p': 'Claude Code and Codex are the hands. The IRIS window steers several of their sessions from one screen.',
+      // 3열 비교
+      'cmp.h': 'Terminal, desktop app, and IRIS',
+      'cmp.lead': 'Even with the same Claude Code, where and how you use it makes a difference. Of the three, IRIS is the only route that also installs the place your work lives in, and its rules.',
+      'cmp.c1': 'CLI in a terminal', 'cmp.c2': 'Claude Code desktop app',
+      'cmp.r1': 'First setup', 'cmp.r1a': 'Install and configure Node, Git, Python, the CLI and MCPs one by one (and sort out non-ASCII paths and PATH yourself)', 'cmp.r1b': 'One app install. Document tools and other agents are separate', 'cmp.r1c': '<b>One zip, double-click.</b> Runtime (Node · Python · Git), Claude Code, Codex, document-automation tools and the dashboard install into one folder, <code>C:\\IRIS</code>. System folders and the registry are never touched',
+      'cmp.r2': 'Where work lives', 'cmp.r2a': 'Folders are up to you', 'cmp.r2b': 'You pick a project folder', 'cmp.r2c': 'A ready-made <b>role → domain → project → step folder system</b> (7 presets: teacher, researcher, business, developer, office, student, author)',
+      'cmp.r3': 'Rules (instruction files)', 'cmp.r3a': 'Write and manage them yourself', 'cmp.r3b': 'Write them yourself', 'cmp.r3c': '<b>An <code>AGENTS.md</code> rule in every folder, parent rules inherited automatically.</b> Whichever folder you open, the assistant already knows “here, we do it this way”',
+      'cmp.r4': 'Agents', 'cmp.r4a': 'One at a time', 'cmp.r4b': 'Claude only', 'cmp.r4c': '<b>Both Claude Code and Codex.</b> Continue the same request with another model, or hand the conversation context from Claude to Codex and back',
+      'cmp.r5': 'Screen', 'cmp.r5a': 'A stream of text. One session per window', 'cmp.r5b': 'A clean chat window', 'cmp.r5c': 'A clean chat window <b>plus several sessions steered from one screen</b> (cards). Closing the window keeps sessions alive; stop them all at once from the tray',
+      'cmp.r6': 'Document work', 'cmp.r6a': 'Find and install MCPs yourself', 'cmp.r6b': 'Separate install', 'cmp.r6c': '<b>Bundled automation tools for HWP (Hangul), Excel, PowerPoint, Word and PDF</b> — active right away if Hancom or Office is present, otherwise parked as “pending” and switched on once installed',
+      'cmp.r7': 'Without internet', 'cmp.r7a': 'Installation itself is hard', 'cmp.r7b': 'Cannot install', 'cmp.r7c': 'Even offline, installation completes through stage ③ (folders, rules, tools); only login and downloads are written into the handover document as “remaining work”',
+      'cmp.r8': 'Transparency and undo', 'cmp.r8a': '—', 'cmp.r8b': 'App settings are scattered', 'cmp.r8c': 'Everything is inside <code>C:\\IRIS</code>. <b>Delete one folder and it is gone.</b> An install report and receipt (what went where) are kept',
+      'cmp.r9': 'Cost', 'cmp.r9a': 'Subscription only', 'cmp.r9b': 'Subscription only', 'cmp.r9c': '<b>Subscription only. IRIS itself is free and open (MIT)</b>',
+      'cmp.r10': 'Limits (honestly)', 'cmp.r10a': 'Lightest and most flexible', 'cmp.r10b': 'Simplest', 'cmp.r10c': 'Windows 10/11 64-bit only. The first install zip is 383 MB. No code signing yet, so a Windows warning has to be passed once on first run',
+      'cmp.sum': 'The terminal is the hands, the desktop app is the window, IRIS installs hands, window and workshop at once.',
       'how.h': 'How it works',
       'how.lead': 'The IRIS window does not hide the terminal — it uses it. Your existing CLI runs inside a hidden virtual terminal, and its own transcript is rendered as a clean conversation.',
       'how.1b': 'Choose', 'how.1s': 'Pick a folder, Claude or Codex, a model and a thinking depth, then type the request.',
@@ -65,11 +81,15 @@
       'dl.req3': 'Internet access (to fetch Claude Code and to log in)',
       'dl.req4': 'A paid Claude (claude.ai) or ChatGPT (chatgpt.com) subscription — the agent CLI works under that account',
       'dl.stepsh': 'Install in three steps',
-      'dl.step1': 'Download the zip, then <strong>before extracting</strong> right-click it → Properties → tick “Unblock” at the bottom → OK. Now extract it.', 'dl.step2': 'Double-click <code>IRIS-설치.cmd</code> inside the extracted folder. If Windows says “Smart App Control blocked this file”, step 1 was skipped — see the two fixes in the <a href="/install?lang=en#sac">install guide</a>.',
+      'dl.step1': 'Download the zip, then <strong>before extracting</strong> right-click it → Properties → tick “Unblock” at the bottom → OK. Now extract it.', 'dl.step2': 'Double-click <code>IRIS-설치.cmd</code> inside the extracted folder. A blue warning window, or “Smart App Control blocked this file”, means the file is not code-signed yet — follow the steps under “When Windows blocks it” in the <a href="/install?lang=en#blocked">install guide</a>, from the top.',
       'dl.step3': 'Follow the installer screen that opens in your browser. Once the readiness check finishes, answer two questions (subscription and work folder) — after that, the only manual step is logging in to your subscription.',
+      'dl.twoh': 'One install, two ways to use it',
+      'dl.two1': '<b>Use everything right away</b> — when installation finishes, continue straight into login (⑥ in the install guide).',
+      'dl.two2': '<b>Window, folders and dashboard first</b> — you may skip the login and download steps and try the IRIS window first. What remains is listed in order in <code>C:\\IRIS\\_agent\\setup\\설치보고-*.md</code>, and “Continue setup” in the IRIS window finishes it whenever you like.',
       'dl.note': 'If extraction fails, first check the file size in its Properties window: a different number of bytes means the download was cut short — download it again. To verify the file itself, compare the output of this PowerShell command with the SHA-256 value.',
       'dl.bytes': 'exact size',
       'dl.via': 'The download button serves the file from Cloudflare.', 'dl.github': 'Download directly from GitHub instead',
+      'dl.viagh': 'The download button serves the file from the GitHub release attachment.', 'dl.relpage': 'Release notes for this version',
       'dl.update': 'Already installed? Settings → Update in the IRIS window brings everything up to date in one step, in most cases. Coming from 1.x is the exception — 2.0 installs fresh (your existing data is left untouched). <a href="install.html#upd1x">Details</a>',
       'dl.more': 'The <a href="/install?lang=en">install guide</a> explains each screen and what to do if you get stuck.',
       'in.h': 'What is inside',
@@ -86,6 +106,7 @@
       'comp.th1': 'Part', 'comp.th2': 'Version', 'comp.th3': 'Date', 'comp.th4': 'One line',
       'comp.face': 'IRIS window', 'comp.messenger': 'Messenger', 'comp.installer': 'Installer package',
       'comp.none': 'No release notes yet.', 'comp.nover': 'No release yet',
+      'comp.hotfix': '<b>Installer 2.0.1 (2026-09-16, hotfix)</b> — fixes the install stalling at 44% on PCs without Hancom Office (if you installed 2.0.0, reinstalling with 2.0.1 is recommended). Also 12 other fixes: first-run check failing after the Claude Code download, the final check timing out on slow PCs, a Smart App Control notice, and more. Full text in the <a href="https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.1" rel="noopener">release notes</a>.',
       'faq.h': 'Questions',
       'faq.1q': 'Do I need a paid subscription?', 'faq.1a': 'Yes. IRIS does not ship an AI of its own; it runs Claude Code and Codex CLI under the Claude or ChatGPT subscription you already have. IRIS itself is free.',
       'faq.2q': 'Where do my files and conversations go?', 'faq.2a': 'They stay on your PC. The IRIS window, relay and installer send nothing off your machine. What the agent CLIs exchange with the AI vendors follows each CLI\'s own policy.',
@@ -97,8 +118,20 @@
       // 설치 안내 쪽
       'inst.title': 'IRIS — Install guide', 'crumb.home': 'IRIS', 'inst.h': 'Install guide',
       'inst.lead': 'What each installer screen does, in order, and what to do when something stops.',
-      'inst.s0h': '① Download and extract', 'inst.s0': 'Download the zip from the home page. <strong>Before extracting</strong>, right-click it → Properties → tick “Unblock” at the bottom → OK (this removes the mark Windows puts on files from the internet; skip it and Smart App Control on Windows 11 blocks the next step — if it does, see <a href="#sac">If you get stuck</a> below). Then extract it anywhere.',
+      'inst.s0h': '① Download and extract', 'inst.s0': 'Download the zip from the home page. <strong>Before extracting</strong>, right-click it → Properties → tick “Unblock” at the bottom → OK (this removes the mark Windows puts on files from the internet; skip it and Smart App Control on Windows 11 blocks the next step — if it does, see <a href="#blocked">When Windows blocks it</a> just below). Then extract it anywhere.',
       'inst.s1h': '② Double-click IRIS-설치.cmd', 'inst.s1': 'In the extracted folder, double-click <code>IRIS-설치.cmd</code>. A console window flashes briefly and the installer screen opens in your browser (127.0.0.1:3460). From here almost everything runs on its own — the only manual part left is answering two questions.',
+      // 「윈도우가 막을 때」
+      'inst.blkh': 'When Windows blocks it because the file is unsigned',
+      'inst.blkwhy': 'The IRIS installer has no code signature yet (a developer certificate that proves to Windows who made the file). So Windows may treat it as an “unknown app” and block it once. The file itself is built from source published on GitHub, and the SHA-256 value below lets you check that what you downloaded is identical to the original.',
+      'inst.blkorderh': 'If it is blocked — try from the top, and stop when it works',
+      'inst.blk1b': 'Blue window “Windows protected your PC” (SmartScreen)', 'inst.blk1s': 'Click “More info” and a “Run anyway” button appears → run it. The script only starts the bundled Node.js.<em class="next">If no window appears at all, or it says “Smart App Control blocked this file” ↓</em>',
+      'inst.blk2b': 'Turn off Smart App Control (SAC) — on a new PC it is usually on (or in evaluation mode)', 'inst.blk2s': 'Settings › Privacy &amp; security › Windows Security › App &amp; browser control › Smart App Control settings › “Off”. <span class="warn">Once off, it cannot be turned back on — short of reinstalling Windows.</span> While it is on, most unsigned programs are blocked. Then double-click <code>IRIS-설치.cmd</code> again.<em class="next">If still nothing happens ↓</em>',
+      'inst.blk3b': 'Run it from a command window', 'inst.blk3s': '<ol class="sub"><li>Open the extracted folder.</li><li>Click the address bar (the box showing the folder path), type <code>cmd</code> and press Enter → a black window (Command Prompt) opens in that folder.</li><li>Paste this one line into the black window and press Enter:<br><code>IRIS-설치.cmd</code></li><li>If your browser opens with the installer screen a few seconds later, it worked. The black window closes by itself.</li></ol><em class="next">If the black window prints an error ↓</em>',
+      'inst.blk4b': 'Ask for help', 'inst.blk4s': 'Take a photo of that screen (or copy the text) and get in touch. The same guidance is in “설치가 안 되면.txt” at the root of the zip.',
+      'inst.blkhashh': 'Check that the file is the original (optional)',
+      'inst.blkhash': 'Open PowerShell in the folder that holds the zip and run the command below. If the value it prints matches the one under it, the file is identical.',
+      'inst.blksach': 'If Smart App Control is on during installation (from 2.0.1)',
+      'inst.blksac': 'The installer’s readiness check warns in advance: “Smart App Control is on”. Installation usually still completes, but the bundled Python tools may be blocked and setup can stall at the venv (Python environment) stage. If so, turn it off as in ② above and press “Retry”.',
       'inst.s2h': '③ Readiness check', 'inst.s2': 'Windows version, free space on drive C and internet access are checked automatically. IRIS always installs to <code>C:\\IRIS</code> and never asks for a location — if it already exists, the installer switches to update mode and never overwrites your files. Anything missing is named, with what to do.',
       'inst.s3h': '④ Two questions', 'inst.s3': 'Shows the subscriptions you have: Claude, ChatGPT, or both (with both, Claude Code leads the first setup). Next, choose how to lay out your work folder — pick one of the ready-made layouts; English names can be left blank. Finally a summary with a folder tree is shown, and pressing “Start install” moves on.',
       'inst.s4h': '⑤ Installing', 'inst.s4': 'Bundled runtime and the IRIS window are unpacked, Claude Code is fetched from npm. A progress bar shows the current step; if something fails, an error code and log path are shown right there. “Retry” resumes from that step without deleting files already created. About 1 GB, a few minutes.',
@@ -108,7 +141,8 @@
       'inst.upd': 'Once installed, new versions show up under Settings → Update in the IRIS window. When one is available, press the “Update” button at the top of that section — after the download and its checks finish, a confirmation card appears. Confirm it and every open session ends, the new version is applied, and the window reopens with those sessions resumed automatically.',
       'inst.upd1x': 'Coming from 1.x: 2.0 changes how installation works, so it installs fresh. Your existing data is left untouched — just run the installer. Instead of the “Update” button above, download the new zip from the home page and follow the steps (①–⑦) on this page.',
       'inst.stuckh': 'If you get stuck',
-      'inst.sach': 'If installation does not go through',
+      'inst.sach': 'If installation does not go through — the detailed fix when “Unblock” was skipped',
+      'inst.sacnote': 'For the step-by-step order, start with <a href="#blocked">“When Windows blocks it because the file is unsigned”</a> above. What follows is the same text as “설치가 안 되면.txt” inside the zip.',
       'inst.sacbody': '<p>Double-clicking <code>IRIS-설치.cmd</code> (IRIS-Setup.cmd) does nothing, or a window says something like “This app was blocked for your protection.” The cause is Windows Smart App Control: it marks files downloaded from the internet, and when it is on, it blocks a marked executable with no “Run anyway” button at all. Nothing is wrong with your PC or with IRIS — either fix below is enough.</p>'
         + '<h4>[Method A] Unblock, then extract again (recommended)</h4>'
         + '<ol><li>Right-click the downloaded zip file.</li>'
@@ -127,7 +161,6 @@
         + '<ul><li>An install log is kept at the path below. Paste it into Explorer’s address bar to open the folder.<br><code>%LOCALAPPDATA%\\IRIS-Installer\\bootstrap.log</code></li>'
         + '<li>A version of this guide with screenshots is on the home page.<br><a href="https://iris-workspace.com/install.html#sac">https://iris-workspace.com/install.html#sac</a></li>'
         + '<li>When you ask for help, attach the log file above — it tells us right away where things stopped.</li></ul>',
-      'inst.k1bh': 'Windows warns about an unknown app (SmartScreen)', 'inst.k1b': 'On PCs where Smart App Control is off, SmartScreen may warn instead. Choose “More info” → “Run anyway”. The script only starts the bundled Node.js.',
       'inst.k2h': 'The login window does not appear', 'inst.k2': 'Look for a browser tab in the background. If nothing appears within a minute, press “Retry” on the installer screen; the login step can be repeated safely.',
       'inst.k3h': 'Something else failed', 'inst.k3': 'The log is at <code>C:\\IRIS\\_agent\\shared\\package-install.log</code>. Open an issue on GitHub with the last lines of that file — it contains no secrets.',
       'inst.rmh': 'Uninstall', 'inst.rm': 'Stop IRIS from the tray, then delete C:\\IRIS and the desktop shortcut. That is all.',
@@ -157,19 +190,24 @@
   }
 
   // ---- ③ 최신 릴리스 3곳 → 다운로드 단추 + 「구성 요소와 새 소식」 절 ----
-  const mb = (bytes) => `${Math.round(bytes / 1048576)} MB`;
+  const mb = (bytes) => `${(bytes / 1e6).toFixed(1)} MB`; // 십진 MB(383,132,591 B → 383.1 MB). 정확한 바이트 수는 따로 보인다
   function paint(r) {
     const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.textContent = v; };
     set('chip-ver', r.version); set('chip-size', mb(r.bytes)); set('dl-ver', r.version); set('dl-size', mb(r.bytes)); set('dl-date', r.date); set('foot-ver', r.version);
     if (r.bytes) set('dl-bytes', `${Number(r.bytes).toLocaleString('en-US')} bytes`); // 정확한 바이트 수 — 내려받기가 중간에 끊긴 파일을 사용자가 속성 창에서 바로 알아보게
     // 내려받기 단추 = 미러(Cloudflare) 우선(2026-09-15). GitHub 첨부 서버가 막힌 네트워크가 실재하고, 브라우저 쪽 자동 감지(no-cors 탐침)는
-    // 막힘 방식(재설정/지연)에 따라 놓칠 수 있어 사용자가 두 번 헛걸음했다. 미러에 있는 판이면 무조건 미러, 아니면(막 나온 판) GitHub.
-    const primary = mirrorFor(r.asset) || r.url;
+    // 막힘 방식(재설정/지연)에 따라 놓칠 수 있어 사용자가 두 번 헛걸음했다. 미러에 있는 판이면 무조건 미러, 아니면(막 나온 판·미러 한도 초과 판) GitHub 첨부.
+    const mirror = mirrorFor(r.asset);
+    const primary = mirror || r.url;
     for (const id of ['dock-dl', 'dl-btn']) { const a = document.getElementById(id); if (a) a.href = primary; }
     const gh = document.getElementById('dl-github'); if (gh) gh.href = r.url;
-    const cmd = document.getElementById('dl-hashcmd'); if (cmd) cmd.textContent = `Get-FileHash .\\${r.asset} -Algorithm SHA256`;
+    const rp = document.getElementById('dl-relpage'); if (rp && r.page) rp.href = r.page;
+    // "어디서 받나" 한 줄은 두 벌(미러/GitHub) 중 실제 단추가 가리키는 쪽만 보인다
+    const viaM = document.getElementById('dl-via-mirror'), viaG = document.getElementById('dl-via-github');
+    if (viaM) viaM.hidden = !mirror; if (viaG) viaG.hidden = !!mirror;
+    for (const id of ['dl-hashcmd', 'inst-hashcmd']) { const cmd = document.getElementById(id); if (cmd) cmd.textContent = `Get-FileHash .\\${r.asset} -Algorithm SHA256`; }
     if (r.shaUrl) { const l = document.getElementById('dl-shalink'); if (l) l.href = r.shaUrl; }
-    if (r.sha) { const s = document.getElementById('dl-sha'); if (s) { s.textContent = r.sha; s.hidden = false; } }
+    for (const id of ['dl-sha', 'inst-sha']) { const s = document.getElementById(id); if (s) { if (r.sha) { s.textContent = r.sha; s.hidden = false; } else if (id === 'dl-sha') s.hidden = true; } }
   }
   const mirrorFor = (asset) => (CONFIG.mirror && asset && CONFIG.mirror.assets.includes(asset)) ? `${CONFIG.mirror.base}/${asset}` : null;
 
@@ -210,9 +248,9 @@
   for (const b of $$('.lang button')) b.addEventListener('click', () => setLang(b.dataset.lang));
   setLang(initialLang()); // 여기서 renderAllComponents() 도 한 번 불려 fallback 이 먼저 그려진다
 
+  paint(CONFIG.fallback.installer); // 어느 쪽이든 아는 판으로 먼저 그린다(설치 안내의 해시 명령·값 포함) — 없는 요소는 건너뜀
   const onIndex = !!document.getElementById('dl-btn');
   if (onIndex) {
-    paint(CONFIG.fallback.installer);
     async function fetchRelease(key) {
       try {
         const res = await fetch(`https://api.github.com/repos/${CONFIG.repos[key]}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
@@ -231,7 +269,7 @@
           const zip = (rel.assets || []).find(a => /\.zip$/i.test(a.name));
           if (zip) {
             const shaAsset = (rel.assets || []).find(a => /\.sha256$/i.test(a.name));
-            paint({ version, bytes: zip.size, date: compData.installer.date, asset: zip.name, url: zip.browser_download_url, shaUrl: shaAsset?.browser_download_url,
+            paint({ version, bytes: zip.size, date: compData.installer.date, asset: zip.name, url: zip.browser_download_url, page: rel.html_url, shaUrl: shaAsset?.browser_download_url,
               sha: version === CONFIG.fallback.installer.version ? CONFIG.fallback.installer.sha : null }); // 새 판이 나왔는데 이 파일이 아직 옛 값이면 값 대신 링크만
           }
         }

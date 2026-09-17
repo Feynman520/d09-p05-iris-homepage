@@ -43,11 +43,11 @@
     <div class="dock">
       <div class="chips">
         <span class="chip on">Windows 10 / 11</span>
-        <span class="chip" id="chip-ver">v1.2.0</span>
-        <span class="chip" id="chip-size">239 MB</span>
+        <span class="chip" id="chip-ver">v2.0.1</span>
+        <span class="chip" id="chip-size">383.1 MB</span>
         <span class="chip" data-i18n="chip.free">무료 · MIT</span>
       </div>
-      <a class="dock-bar" id="dock-dl" href="https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev/IRIS-Setup_v1.4.5_2026-09-14.zip">
+      <a class="dock-bar" id="dock-dl" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.1/IRIS-Setup_v2.0.1_2026-09-16.zip">
         <span class="dock-text"><b data-i18n="dock.title">IRIS 내려받기</b><small data-i18n="dock.sub">압축을 풀고 IRIS-설치.cmd 를 두 번 클릭하면 끝납니다</small></span>
         <span class="send" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v13M6 11l6 6 6-6"/></svg></span>
       </a>
@@ -66,6 +66,27 @@
       <div><h3 data-i18n="what.2h">규칙 파일</h3><p data-i18n="what.2p">각 폴더의 AGENTS.md가 그 자리의 규칙입니다. 상위 폴더의 규칙은 하위에 자동으로 이어집니다.</p></div>
       <div><h3 data-i18n="what.3h">에이전트와 창</h3><p data-i18n="what.3p">Claude Code와 Codex가 실제 손입니다. IRIS 창은 그 세션 여러 개를 한 화면에서 지휘합니다.</p></div>
     </div>
+  </section>
+
+  <section class="sec" id="compare">
+    <h2 data-i18n="cmp.h">터미널, 데스크탑 앱, 그리고 IRIS</h2>
+    <p class="lead" data-i18n="cmp.lead">같은 Claude Code를 쓰더라도, 어디에서 어떻게 쓰느냐가 다릅니다. IRIS는 셋 중 "일이 놓일 자리와 규칙까지 함께 설치하는" 유일한 길입니다.</p>
+    <div class="tbl-wrap"><table class="cmp">
+      <thead><tr><th></th><th data-i18n="cmp.c1">터미널에서 CLI 직접</th><th data-i18n="cmp.c2">Claude Code 데스크탑 앱</th><th class="is-iris">IRIS</th></tr></thead>
+      <tbody>
+        <tr><th data-i18n="cmp.r1">처음 세팅</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r1a">Node·Git·Python·CLI·MCP를 하나씩 직접 설치·설정(한글 경로·PATH 문제를 스스로 해결)</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r1b">앱 설치 한 번. 단 문서 도구·다른 에이전트는 별도</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r1c"><b>zip 하나 두 번 클릭.</b> 런타임(Node·Python·Git)·Claude Code·Codex·문서 자동화 도구·대시보드를 <code>C:\IRIS</code> 한 폴더에 자동 설치. 시스템 폴더·레지스트리 무접촉</td></tr>
+        <tr><th data-i18n="cmp.r2">일이 놓일 자리</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r2a">폴더는 사용자가 알아서</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r2b">프로젝트 폴더를 고름</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r2c"><b>역할 → 분야 → 프로젝트 → 단계 폴더 체계</b>를 미리 세워 줌(교사·연구자·사업자·개발자·사무직·학생·저자 프리셋 7종)</td></tr>
+        <tr><th data-i18n="cmp.r3">규칙(지시 파일)</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r3a">직접 작성·관리</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r3b">직접 작성</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r3c"><b>폴더마다 <code>AGENTS.md</code> 규칙, 상위 규칙 자동 상속.</b> 어느 폴더에서 열든 비서가 "여기서는 이렇게"를 이미 앎</td></tr>
+        <tr><th data-i18n="cmp.r4">에이전트</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r4a">한 번에 하나</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r4b">Claude만</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r4c"><b>Claude Code와 Codex 둘 다.</b> 같은 요청을 다른 모델로 이어 가거나, 대화 맥락을 Claude ↔ Codex로 넘김</td></tr>
+        <tr><th data-i18n="cmp.r5">화면</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r5a">검은 글자 흐름. 한 창에 한 세션</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r5b">깔끔한 대화 창</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r5c">깔끔한 대화 창 <b>+ 세션 여러 개를 한 화면에서 지휘</b>(카드). 창을 닫아도 세션은 살아 있고, 트레이에서 한 번에 종료</td></tr>
+        <tr><th data-i18n="cmp.r6">문서 작업</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r6a">MCP를 직접 찾아 설치</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r6b">별도 설치</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r6c"><b>HWP(한글)·엑셀·파워포인트·워드·PDF 자동화 도구 동봉</b> — 한컴·오피스가 있으면 바로, 없으면 "대기"로 두었다가 깔면 켜짐</td></tr>
+        <tr><th data-i18n="cmp.r7">인터넷이 없을 때</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r7a">설치 자체가 어려움</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r7b">설치 불가</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r7c">오프라인에서도 ③단계(폴더·규칙·도구)까지 설치되고, 로그인·내려받기만 "남은 일"로 인수 문서에 적어 줌</td></tr>
+        <tr><th data-i18n="cmp.r8">투명성·되돌리기</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r8a">—</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r8b">앱 설정 위치가 흩어짐</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r8c">전부 <code>C:\IRIS</code> 안. <b>폴더 하나 지우면 끝.</b> 설치 보고서·영수증(무엇을 어디 놓았는지)을 남김</td></tr>
+        <tr><th data-i18n="cmp.r9">비용</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r9a">구독만</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r9b">구독만</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r9c"><b>구독만. IRIS 자체는 무료·공개(MIT)</b></td></tr>
+        <tr><th data-i18n="cmp.r10">한계(정직하게)</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r10a">가장 가볍고 유연</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r10b">가장 단순</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r10c">윈도우 10/11 64비트 전용. 첫 설치 zip이 383MB. 코드 서명이 아직 없어 첫 실행 때 윈도우 경고를 한 번 넘겨야 함</td></tr>
+      </tbody>
+    </table></div>
+    <p class="cmp-sum" data-i18n="cmp.sum">터미널은 손, 데스크탑 앱은 창, IRIS는 손·창·작업실을 한 번에 설치합니다.</p>
   </section>
 
   <section class="sec" id="how">
@@ -115,12 +136,15 @@
     <h2 data-i18n="dl.h">내려받기</h2>
     <div class="dl">
       <div class="dl-head">
-        <a class="btn" id="dl-btn" href="https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev/IRIS-Setup_v1.4.5_2026-09-14.zip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v13M6 11l6 6 6-6M4 20h16"/></svg><span data-i18n="dl.btn">IRIS 내려받기</span></a>
+        <a class="btn" id="dl-btn" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.1/IRIS-Setup_v2.0.1_2026-09-16.zip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v13M6 11l6 6 6-6M4 20h16"/></svg><span data-i18n="dl.btn">IRIS 내려받기</span></a>
         <div class="dl-meta">
-          <div><span id="dl-ver">v1.2.0</span> · <span id="dl-size">239 MB</span> · <span id="dl-date">2026-09-13</span> · Windows 10 / 11 64-bit</div>
-          <div><a href="https://github.com/Feynman520/d09-p03-iris-installer/releases" rel="noopener" data-i18n="dl.all">모든 판 보기</a> · <a id="dl-shalink" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/latest" rel="noopener">SHA-256</a> · <span data-i18n="dl.bytes">정확한 크기</span> <span class="sha" id="dl-bytes">250,406,830 bytes</span></div>
-          <div class="sha" id="dl-sha" hidden></div>
-          <div><span data-i18n="dl.via">내려받기 단추는 Cloudflare 서버에서 받습니다.</span> <a id="dl-github" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/latest" rel="noopener" data-i18n="dl.github">GitHub에서 직접 내려받기</a></div>
+          <div><span id="dl-ver">v2.0.1</span> · <span id="dl-size">383.1 MB</span> · <span id="dl-date">2026-09-16</span> · Windows 10 / 11 64-bit</div>
+          <div><a href="https://github.com/Feynman520/d09-p03-iris-installer/releases" rel="noopener" data-i18n="dl.all">모든 판 보기</a> · <a id="dl-shalink" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.1/IRIS-Setup_v2.0.1_2026-09-16.zip.sha256" rel="noopener">SHA-256</a> · <span data-i18n="dl.bytes">정확한 크기</span> <span class="sha" id="dl-bytes">383,132,591 bytes</span></div>
+          <div class="sha" id="dl-sha">e3c208db5663fd4088f4ad72319d9726b659f2142aea5994f67d9fe28fa3f317</div>
+          <div>
+            <span id="dl-via-mirror" hidden><span data-i18n="dl.via">내려받기 단추는 Cloudflare 서버에서 받습니다.</span> <a id="dl-github" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/latest" rel="noopener" data-i18n="dl.github">GitHub에서 직접 내려받기</a></span>
+            <span id="dl-via-github"><span data-i18n="dl.viagh">내려받기 단추는 GitHub 릴리스 첨부에서 받습니다.</span> <a id="dl-relpage" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.1" rel="noopener" data-i18n="dl.relpage">이 판의 릴리스 노트</a></span>
+          </div>
         </div>
       </div>
       <h3 data-i18n="dl.reqh">필요한 것</h3>
@@ -133,11 +157,16 @@
       <h3 data-i18n="dl.stepsh">설치 3단계</h3>
       <ol class="steps">
         <li><span data-i18n="dl.step1">zip 을 내려받은 뒤 <strong>압축을 풀기 전에</strong> zip 파일을 오른쪽 클릭 → 속성 → 아래쪽 「차단 해제」에 체크 → 확인. 그다음 압축을 풉니다.</span></li>
-        <li><span data-i18n="dl.step2">풀린 폴더 안의 <code>IRIS-설치.cmd</code> 를 두 번 클릭합니다. "스마트 앱 컨트롤이 차단했습니다"가 뜨면 1단계를 건너뛴 것입니다 — <a href="/install#sac">설치 안내</a>의 두 가지 해결법을 보세요.</span></li>
+        <li><span data-i18n="dl.step2">풀린 폴더 안의 <code>IRIS-설치.cmd</code> 를 두 번 클릭합니다. 파란 경고 창이 뜨거나 "스마트 앱 컨트롤이 차단했습니다"라고 나오면 파일에 아직 코드 서명이 없어서입니다 — <a href="/install#blocked">설치 안내</a>의 「윈도우가 막을 때」 순서를 위에서부터 따라가면 됩니다.</span></li>
         <li><span data-i18n="dl.step3">브라우저에 열리는 설치 화면을 따라갑니다. 자동 확인이 끝나면 질문 두 가지(구독·작업 폴더)에 답하고, 그다음부터 사람이 직접 하는 일은 구독 계정 로그인 하나입니다.</span></li>
       </ol>
+      <h3 data-i18n="dl.twoh">설치는 하나, 쓰는 길은 둘</h3>
+      <ul class="two">
+        <li data-i18n="dl.two1"><b>바로 전부 쓰기</b> — 설치가 끝나면 로그인까지 이어서 진행합니다(설치 안내의 ⑥).</li>
+        <li data-i18n="dl.two2"><b>일단 창·폴더·대시보드만</b> — 로그인·내려받기 단계는 건너뛰고 IRIS 창을 먼저 써 봐도 됩니다. 남은 일은 <code>C:\IRIS\_agent\setup\설치보고-*.md</code>에 순서대로 적혀 있고, IRIS 창의 「설치 이어 하기」로 언제든 마저 합니다.</li>
+      </ul>
       <p class="note"><span data-i18n="dl.note">압축이 안 풀리면 먼저 파일의 속성 창에서 크기를 보세요. 위의 바이트 수와 다르면 내려받기가 중간에 끊긴 것이니 다시 내려받으면 됩니다. 파일 자체를 확인하려면 PowerShell에서 아래 명령의 결과를 SHA-256 값과 비교하세요.</span></p>
-      <pre><code id="dl-hashcmd">Get-FileHash .\IRIS-Setup_v1.2.0_2026-09-13.zip -Algorithm SHA256</code></pre>
+      <pre><code id="dl-hashcmd">Get-FileHash .\IRIS-Setup_v2.0.1_2026-09-16.zip -Algorithm SHA256</code></pre>
       <p class="note" data-i18n="dl.update">이미 설치했다면 대부분 IRIS 창의 설정 → 업데이트에서 한 번에 갱신됩니다. 1.x를 쓰고 계셨다면 예외입니다 — 2.0은 새로 설치합니다(기존 자료는 그대로 둡니다). <a href="install.html#upd1x">자세히</a></p>
       <p class="note" data-i18n="dl.more"><a href="/install">설치 안내</a>에 화면별 설명과 막혔을 때의 대처가 있습니다.</p>
     </div>
@@ -165,14 +194,16 @@
     <div class="tbl-wrap"><table>
       <thead><tr><th data-i18n="comp.th1">부품</th><th data-i18n="comp.th2">판</th><th data-i18n="comp.th3">날짜</th><th data-i18n="comp.th4">한 줄</th></tr></thead>
       <tbody>
-        <tr><td data-i18n="comp.face">IRIS 창</td><td id="comp-face-ver">v2.57.1</td><td id="comp-face-date">—</td><td id="comp-face-note">—</td></tr>
+        <tr><td data-i18n="comp.face">IRIS 창</td><td id="comp-face-ver">v2.65.0</td><td id="comp-face-date">—</td><td id="comp-face-note">—</td></tr>
         <tr><td data-i18n="comp.messenger">메신저</td><td id="comp-messenger-ver">v0.3.2</td><td id="comp-messenger-date">—</td><td id="comp-messenger-note">—</td></tr>
-        <tr><td data-i18n="comp.installer">설치 패키지</td><td id="comp-installer-ver">v1.2.0</td><td id="comp-installer-date">—</td><td id="comp-installer-note">—</td></tr>
+        <tr><td data-i18n="comp.installer">설치 패키지</td><td id="comp-installer-ver">v2.0.1</td><td id="comp-installer-date">—</td><td id="comp-installer-note">—</td></tr>
       </tbody>
     </table></div>
-    <details><summary id="comp-face-summary">v2.57.1 변경 내용</summary><p id="comp-face-body"></p></details>
+    <!-- 판마다 손으로 갱신하는 짧은 새 소식(위 표는 GitHub 에서 자동, 이 문단은 사람이 쓴 요지). 다음 판이 나오면 바꿔 쓴다. -->
+    <p class="note" id="comp-hotfix" data-i18n="comp.hotfix"><b>설치 패키지 2.0.1(2026-09-16, 핫픽스)</b> — 한컴오피스가 없는 PC에서 설치가 44%에서 멈추던 결함을 고쳤습니다(2.0.0으로 설치하셨다면 2.0.1로 다시 설치하기를 권합니다). 그 밖에 Claude Code 내려받기 뒤 첫 실행 확인 실패, 느린 PC에서 마지막 검사 시간 초과, 스마트 앱 컨트롤 안내 등 12건. 전문은 <a href="https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.1" rel="noopener">릴리스 노트</a>에 있습니다.</p>
+    <details><summary id="comp-face-summary">v2.65.0 변경 내용</summary><p id="comp-face-body"></p></details>
     <details><summary id="comp-messenger-summary">v0.3.2 변경 내용</summary><p id="comp-messenger-body"></p></details>
-    <details><summary id="comp-installer-summary">v1.2.0 변경 내용</summary><p id="comp-installer-body"></p></details>
+    <details><summary id="comp-installer-summary">v2.0.1 변경 내용</summary><p id="comp-installer-body"></p></details>
   </section>
 
   <section class="sec" id="faq">
@@ -195,7 +226,7 @@
     <a href="https://github.com/Feynman520/d06-p02-iris-face" rel="noopener" data-i18n="foot.face">IRIS 창</a>
     <a href="https://github.com/Feynman520/d06-p04-iris-messenger" rel="noopener" data-i18n="foot.messenger">메신저</a>
     <a href="/privacy" data-i18n="foot.privacy">처리방침</a>
-    <span class="ver"><span id="foot-ver">v1.2.0</span> · 함세준 · MIT</span>
+    <span class="ver"><span id="foot-ver">v2.0.1</span> · 함세준 · MIT</span>
   </div>
 </footer>
 

@@ -97,11 +97,11 @@ main { display: block; }
 .three p { color: var(--ink-2); font-size: 13.5px; }
 /* 흐름(순서가 있는 5단계) — Face README 의 세로 ↓ 흐름을 그대로 */
 .flow { list-style: none; margin: 0; padding: 0; counter-reset: step; }
-.flow li { position: relative; display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; padding: 0 0 22px; }
-.flow li::before { counter-increment: step; content: counter(step); width: 26px; height: 26px; border-radius: 50%; background: var(--raised); border: 1px solid var(--line-2); color: var(--iris); font-size: 12.5px; font-weight: 600; display: grid; place-items: center; margin-left: 4px; font-variant-numeric: tabular-nums; }
-.flow li:not(:last-child)::after { content: ''; position: absolute; left: 16.5px; top: 30px; bottom: 4px; width: 1px; background: var(--line-2); }
-.flow b { grid-column: 2; display: block; font-weight: 600; margin-top: 2px; }
-.flow span { grid-column: 2; display: block; color: var(--ink-2); font-size: 14px; }
+.flow > li { position: relative; display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; padding: 0 0 22px; }
+.flow > li::before { counter-increment: step; content: counter(step); width: 26px; height: 26px; border-radius: 50%; background: var(--raised); border: 1px solid var(--line-2); color: var(--iris); font-size: 12.5px; font-weight: 600; display: grid; place-items: center; margin-left: 4px; font-variant-numeric: tabular-nums; }
+.flow > li:not(:last-child)::after { content: ''; position: absolute; left: 16.5px; top: 30px; bottom: 4px; width: 1px; background: var(--line-2); }
+.flow > li > b { grid-column: 2; display: block; font-weight: 600; margin-top: 2px; }
+.flow > li > span { grid-column: 2; display: block; color: var(--ink-2); font-size: 14px; }
 /* 기능 행 = Face 설정의 켜고 끄는 행 모양(제목+한 줄 설명 | 오른쪽 아이콘) */
 .rows { border-top: 1px solid var(--line); }
 .row { display: grid; grid-template-columns: 1fr 30px; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
@@ -141,6 +141,25 @@ td:first-child { color: var(--ink); }
 .tbl-wrap { overflow-x: auto; }
 #components td:nth-child(2), #components td:nth-child(3),
 #components th:nth-child(2), #components th:nth-child(3) { white-space: nowrap; }
+#comp-hotfix { margin-bottom: 22px; }
+#comp-hotfix b { color: var(--ink-2); font-weight: 600; }
+/* 3열 비교(터미널 · 데스크탑 앱 · IRIS) — IRIS 열만 홍채색으로 살짝 띄운다 */
+.cmp { font-size: 13.5px; table-layout: fixed; }
+.cmp th, .cmp td { padding: 10px 12px 10px 0; vertical-align: top; white-space: normal; font-weight: 400; }
+.cmp thead th { font-size: 12.5px; color: var(--ink-2); font-weight: 600; padding-bottom: 8px; }
+.cmp thead th:first-child { width: 18%; }
+.cmp tbody th { color: var(--ink); font-weight: 600; font-size: 13px; }
+.cmp td { color: var(--ink-2); }
+.cmp td b { color: var(--ink); font-weight: 600; }
+.cmp td code { font-size: .9em; padding: 0 4px; }
+.cmp .is-iris { background: var(--iris-soft); color: var(--ink); padding-left: 12px; padding-right: 12px; }
+.cmp thead .is-iris { color: var(--iris); }
+.cmp tbody tr:last-child .is-iris { border-bottom-left-radius: var(--r); border-bottom-right-radius: var(--r); }
+.cmp thead .is-iris { border-top-left-radius: var(--r); border-top-right-radius: var(--r); }
+.cmp-sum { margin-top: 22px; font-family: var(--pen); font-size: clamp(22px, 2.6vw, 28px); line-height: 1.3; color: var(--ink-2); text-wrap: balance; }
+/* 내려받기 절 「쓰는 길은 둘」 */
+.dl .two b { color: var(--ink); font-weight: 600; }
+.dl .two li { margin: 6px 0; }
 /* 자주 묻는 질문 */
 details { border-bottom: 1px solid var(--line); }
 details:first-of-type { border-top: 1px solid var(--line); }
@@ -167,6 +186,18 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; }
 .page .win { margin-top: 12px; }
 .crumb { font-size: 13px; color: var(--ink-3); margin-bottom: 18px; }
 .crumb a { color: var(--ink-2); }
+/* 설치 안내 「윈도우가 막을 때」 — 한 상자 안에 순서 흐름(index 의 .flow 재사용) */
+.blocked { margin-top: 28px; padding: 20px 22px 22px; border: 1px solid var(--line-2); border-radius: 14px; background: var(--surface); }
+.blocked > h2 { margin: 0 0 10px; }
+.blocked > h3 { margin-top: 24px; }
+.blocked > h3:first-of-type { margin-top: 18px; }
+.page .flow { padding: 0; margin: 12px 0 0; }
+.flow .flow-body { grid-column: 2; color: var(--ink-2); font-size: 14px; }
+.flow .flow-body .sub { list-style: decimal; margin: 6px 0 0; padding-left: 20px; }
+.flow .flow-body .sub li { margin: 3px 0; }
+.flow .next { display: block; margin-top: 8px; font-style: normal; font-size: 12.5px; color: var(--ink-3); }
+.flow .warn { color: var(--warn); }
+.blocked .sha { font-family: var(--mono); font-size: 11.5px; word-break: break-all; color: var(--ink-3); margin-top: -4px; }
 
 @media (max-width: 720px) {
   .nav { display: none; }
@@ -178,6 +209,17 @@ footer { border-top: 1px solid var(--line); margin-top: 48px; }
   .dock { margin-top: 32px; }
   .dock-text small { white-space: normal; }
   .foot-in .ver { margin-left: 0; width: 100%; }
+  /* 비교 표 → 행마다 카드: 행 제목 아래 세 칸이 세로로, 각 칸 앞에 열 이름 */
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; }
+  .cmp thead { display: none; }
+  .cmp tr { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .cmp tbody th { border: 0; padding: 0 0 6px; font-size: 14px; }
+  .cmp td { border: 0; padding: 4px 0 4px 0; }
+  .cmp td::before { content: attr(data-c); display: block; font-size: 11.5px; color: var(--ink-3); letter-spacing: .04em; margin-bottom: 1px; }
+  html[lang="en"] .cmp td::before { content: attr(data-c-en); }
+  .cmp .is-iris { border-radius: var(--r); padding: 8px 12px; margin-top: 6px; }
+  .cmp .is-iris::before { color: var(--iris); }
+  .blocked { padding: 16px 14px 18px; }
 }
 @media (max-width: 440px) {
   .top-dl { display: none; }
