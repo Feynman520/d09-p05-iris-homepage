@@ -144,15 +144,17 @@ td:first-child { color: var(--ink); }
 #comp-hotfix { margin-bottom: 22px; }
 #comp-hotfix b { color: var(--ink-2); font-weight: 600; }
 /* 3열 비교(터미널 · 데스크탑 앱 · IRIS) — IRIS 열만 홍채색으로 살짝 띄운다 */
-.cmp { font-size: 13.5px; table-layout: fixed; }
-.cmp th, .cmp td { padding: 10px 12px 10px 0; vertical-align: top; white-space: normal; font-weight: 400; }
-.cmp thead th { font-size: 12.5px; color: var(--ink-2); font-weight: 600; padding-bottom: 8px; }
-.cmp thead th:first-child { width: 18%; }
-.cmp tbody th { color: var(--ink); font-weight: 600; font-size: 13px; }
+.cmp { font-size: 14.5px; table-layout: fixed; line-height: 1.5; }
+.cmp th, .cmp td { padding: 16px 16px 16px 0; vertical-align: top; white-space: normal; font-weight: 400; }
+.cmp thead th { font-size: 12.5px; color: var(--ink-3); font-weight: 600; padding-top: 0; padding-bottom: 10px; letter-spacing: .02em; }
+.cmp thead th:first-child { width: 15%; }
+.cmp thead th:nth-child(2), .cmp thead th:nth-child(3) { width: 21%; }
+.cmp tbody th { color: var(--ink-3); font-weight: 500; font-size: 13px; }
 .cmp td { color: var(--ink-2); }
-.cmp td b { color: var(--ink); font-weight: 600; }
-.cmp td code { font-size: .9em; padding: 0 4px; }
-.cmp .is-iris { background: var(--iris-soft); color: var(--ink); padding-left: 12px; padding-right: 12px; }
+.cmp td b { display: block; color: var(--ink); font-weight: 600; }
+.cmp td small { display: block; margin-top: 3px; font-size: 13px; color: var(--ink-3); }
+.cmp td code { font-size: .92em; padding: 0 4px; }
+.cmp .is-iris { background: var(--iris-soft); color: var(--ink); padding-left: 16px; padding-right: 16px; }
 .cmp thead .is-iris { color: var(--iris); }
 .cmp tbody tr:last-child .is-iris { border-bottom-left-radius: var(--r); border-bottom-right-radius: var(--r); }
 .cmp thead .is-iris { border-top-left-radius: var(--r); border-top-right-radius: var(--r); }
