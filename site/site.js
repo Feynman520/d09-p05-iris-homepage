@@ -21,7 +21,9 @@
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
-    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: [] }, // v2.0.0(383MB)은 R2 REST PUT 300MB 한도 초과 → 미러 보류(멀티파트/S3 키 필요). GitHub 막힌 네트워크는 아직 미대응.
+    // 2026-09-17: 300MB 한도는 S3 멀티파트(P03 build/mirror-upload.mjs)로 넘겼다. 새 판을 낼 때마다 zip+.sha256 을 R2 에 올리고 여기 이름을 더한다 —
+    // 여기 있는 판은 내려받기 단추가 **미러를 1순위**로 가리킨다(GitHub 첨부 서버가 막힌 학교·회사 망 실측 4회).
+    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: ['IRIS-Setup_v2.0.8_2026-09-17.zip'] },
   };
 
   // ---- ② 언어 ----
