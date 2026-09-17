@@ -48,7 +48,7 @@
         <span class="chip" data-i18n="chip.free">무료 · MIT</span>
       </div>
       <a class="dock-bar" id="dock-dl" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.1/IRIS-Setup_v2.0.1_2026-09-16.zip">
-        <span class="dock-text"><b data-i18n="dock.title">IRIS 내려받기</b><small data-i18n="dock.sub">압축을 풀고 IRIS-설치.cmd 를 두 번 클릭하면 끝납니다</small></span>
+        <span class="dock-text"><b data-i18n="dock.title">IRIS 내려받기</b><small data-i18n="dock.sub">압축을 풀고 폴더 안의 IRIS-설치.cmd 파일을 마우스로 더블클릭하면 설치가 시작됩니다 (명령 창을 열 필요 없음)</small></span>
         <span class="send" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v13M6 11l6 6 6-6"/></svg></span>
       </a>
     </div>
@@ -79,6 +79,7 @@
         <tr><th data-i18n="cmp.r3">규칙(지시 파일)</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r3a">직접 작성·관리</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r3b">직접 작성</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r3c"><b>폴더마다 <code>AGENTS.md</code> 규칙, 상위 규칙 자동 상속.</b> 어느 폴더에서 열든 비서가 "여기서는 이렇게"를 이미 앎</td></tr>
         <tr><th data-i18n="cmp.r4">에이전트</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r4a">한 번에 하나</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r4b">Claude만</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r4c"><b>Claude Code와 Codex 둘 다.</b> 같은 요청을 다른 모델로 이어 가거나, 대화 맥락을 Claude ↔ Codex로 넘김</td></tr>
         <tr><th data-i18n="cmp.r5">화면</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r5a">검은 글자 흐름. 한 창에 한 세션</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r5b">깔끔한 대화 창</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r5c">깔끔한 대화 창 <b>+ 세션 여러 개를 한 화면에서 지휘</b>(카드). 창을 닫아도 세션은 살아 있고, 트레이에서 한 번에 종료</td></tr>
+        <tr><th data-i18n="cmp.r11">동시에 여러 작업</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r11a">창을 여러 개 띄워 직접 오가며 관리. 어느 창이 끝났는지는 일일이 봐야 함</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r11b">세션을 여러 개 열 수 있음</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r11c"><b>세션 카드 여러 개를 동시에 돌리고 한 화면에서 지휘.</b> 끝나면 알림, 허락을 물으면 확인 카드가 떠 어느 세션이 손을 기다리는지 바로 보임. 에이전트가 띄운 보조 작업도 칩으로 보임</td></tr>
         <tr><th data-i18n="cmp.r6">문서 작업</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r6a">MCP를 직접 찾아 설치</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r6b">별도 설치</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r6c"><b>HWP(한글)·엑셀·파워포인트·워드·PDF 자동화 도구 동봉</b> — 한컴·오피스가 있으면 바로, 없으면 "대기"로 두었다가 깔면 켜짐</td></tr>
         <tr><th data-i18n="cmp.r7">인터넷이 없을 때</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r7a">설치 자체가 어려움</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r7b">설치 불가</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r7c">오프라인에서도 ③단계(폴더·규칙·도구)까지 설치되고, 로그인·내려받기만 "남은 일"로 인수 문서에 적어 줌</td></tr>
         <tr><th data-i18n="cmp.r8">투명성·되돌리기</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r8a">—</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r8b">앱 설정 위치가 흩어짐</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r8c">전부 <code>C:\IRIS</code> 안. <b>폴더 하나 지우면 끝.</b> 설치 보고서·영수증(무엇을 어디 놓았는지)을 남김</td></tr>
@@ -86,7 +87,6 @@
         <tr><th data-i18n="cmp.r10">한계(정직하게)</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r10a">가장 가볍고 유연</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r10b">가장 단순</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r10c">윈도우 10/11 64비트 전용. 첫 설치 zip이 383MB. 코드 서명이 아직 없어 첫 실행 때 윈도우 경고를 한 번 넘겨야 함</td></tr>
       </tbody>
     </table></div>
-    <p class="cmp-sum" data-i18n="cmp.sum">터미널은 손, 데스크탑 앱은 창, IRIS는 손·창·작업실을 한 번에 설치합니다.</p>
   </section>
 
   <section class="sec" id="how">
@@ -157,7 +157,7 @@
       <h3 data-i18n="dl.stepsh">설치 3단계</h3>
       <ol class="steps">
         <li><span data-i18n="dl.step1">zip 을 내려받은 뒤 <strong>압축을 풀기 전에</strong> zip 파일을 오른쪽 클릭 → 속성 → 아래쪽 「차단 해제」에 체크 → 확인. 그다음 압축을 풉니다.</span></li>
-        <li><span data-i18n="dl.step2">풀린 폴더 안의 <code>IRIS-설치.cmd</code> 를 두 번 클릭합니다. 파란 경고 창이 뜨거나 "스마트 앱 컨트롤이 차단했습니다"라고 나오면 파일에 아직 코드 서명이 없어서입니다 — <a href="/install#blocked">설치 안내</a>의 「윈도우가 막을 때」 순서를 위에서부터 따라가면 됩니다.</span></li>
+        <li><span data-i18n="dl.step2">풀린 폴더 안의 <code>IRIS-설치.cmd</code> 파일을 마우스로 더블클릭합니다(명령 창을 열 필요는 없습니다). 파란 경고 창이 뜨거나 "스마트 앱 컨트롤이 차단했습니다"라고 나오면 파일에 아직 코드 서명이 없어서입니다 — <a href="/install#blocked">설치 안내</a>의 「윈도우가 막을 때」 순서를 위에서부터 따라가면 됩니다.</span></li>
         <li><span data-i18n="dl.step3">브라우저에 열리는 설치 화면을 따라갑니다. 자동 확인이 끝나면 질문 두 가지(구독·작업 폴더)에 답하고, 그다음부터 사람이 직접 하는 일은 구독 계정 로그인 하나입니다.</span></li>
       </ol>
       <h3 data-i18n="dl.twoh">설치는 하나, 쓰는 길은 둘</h3>
