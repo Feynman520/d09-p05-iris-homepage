@@ -14,16 +14,16 @@
     fallback: {
       face: { version: 'v2.65.0' },
       messenger: { version: 'v0.3.2' },
-      installer: { version: 'v2.0.16', bytes: 383152140, date: '2026-09-18', asset: 'IRIS-Setup_v2.0.16_2026-09-18.zip',
-        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.16/IRIS-Setup_v2.0.16_2026-09-18.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
-        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.16', // 릴리스 노트 쪽
-        sha: 'ffcd9acb650485f75096182289c7cb56f11738ab0a896b8dda76e3975e463a0e' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
+      installer: { version: 'v2.0.17', bytes: 383158670, date: '2026-09-18', asset: 'IRIS-Setup_v2.0.17_2026-09-18.zip',
+        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.17/IRIS-Setup_v2.0.17_2026-09-18.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
+        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.17', // 릴리스 노트 쪽
+        sha: '3edb643ce6bbeb695e3d128d358e50266eb36378868d5662f9fd89ddec149827' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
     // 2026-09-17: 300MB 한도는 S3 멀티파트(P03 build/mirror-upload.mjs)로 넘겼다. 새 판을 낼 때마다 zip+.sha256 을 R2 에 올리고 여기 이름을 더한다 —
     // 여기 있는 판은 내려받기 단추가 **미러를 1순위**로 가리킨다(GitHub 첨부 서버가 막힌 학교·회사 망 실측 4회).
-    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: ['IRIS-Setup_v2.0.16_2026-09-18.zip'] },
+    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: ['IRIS-Setup_v2.0.17_2026-09-18.zip'] },
   };
 
   // ---- ② 언어 ----
@@ -108,7 +108,7 @@
       'comp.th1': 'Part', 'comp.th2': 'Version', 'comp.th3': 'Date', 'comp.th4': 'One line',
       'comp.face': 'IRIS window', 'comp.messenger': 'Messenger', 'comp.installer': 'Installer package',
       'comp.none': 'No release notes yet.', 'comp.nover': 'No release yet',
-      'comp.hotfix': '<b>Installer 2.0.1 (2026-09-16, hotfix)</b> — fixes the install stalling at 44% on PCs without Hancom Office (if you installed 2.0.0, reinstalling with 2.0.1 is recommended). Also 12 other fixes: first-run check failing after the Claude Code download, the final check timing out on slow PCs, a Smart App Control notice, and more. Full text in the <a href="https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.16" rel="noopener">release notes</a>.',
+      'comp.hotfix': '<b>Installer 2.0.1 (2026-09-16, hotfix)</b> — fixes the install stalling at 44% on PCs without Hancom Office (if you installed 2.0.0, reinstalling with 2.0.1 is recommended). Also 12 other fixes: first-run check failing after the Claude Code download, the final check timing out on slow PCs, a Smart App Control notice, and more. Full text in the <a href="https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.17" rel="noopener">release notes</a>.',
       'faq.h': 'Questions',
       'faq.1q': 'Do I need a paid subscription?', 'faq.1a': 'Yes. IRIS does not ship an AI of its own; it runs Claude Code and Codex CLI under the Claude or ChatGPT subscription you already have. IRIS itself is free.',
       'faq.2q': 'Where do my files and conversations go?', 'faq.2a': 'They stay on your PC. The IRIS window, relay and installer send nothing off your machine. What the agent CLIs exchange with the AI vendors follows each CLI\'s own policy.',
