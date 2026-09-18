@@ -14,7 +14,7 @@
     fallback: {
       face: { version: 'v2.65.0' },
       messenger: { version: 'v0.3.2' },
-      installer: { version: 'v2.0.16', bytes: 383152140, date: '2026-09-17', asset: 'IRIS-Setup_v2.0.16_2026-09-18.zip',
+      installer: { version: 'v2.0.16', bytes: 383152140, date: '2026-09-18', asset: 'IRIS-Setup_v2.0.16_2026-09-18.zip',
         url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.16/IRIS-Setup_v2.0.16_2026-09-18.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
         page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.16', // 릴리스 노트 쪽
         sha: 'ffcd9acb650485f75096182289c7cb56f11738ab0a896b8dda76e3975e463a0e' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
