@@ -115,10 +115,25 @@
   <h3 data-i18n="inst.k2h">로그인 창이 뜨지 않습니다</h3>
   <p data-i18n="inst.k2">뒤에 열린 브라우저 탭이 있는지 보세요. 1분이 지나도 없으면 설치 화면의 「다시 시도」를 누릅니다. 로그인 단계는 몇 번을 반복해도 안전합니다.</p>
   <h3 data-i18n="inst.k3h">다른 문제가 생겼습니다</h3>
-  <p data-i18n="inst.k3">기록은 <code>C:\IRIS\_agent\shared\package-install.log</code>에 있습니다. 그 파일의 마지막 줄들을 GitHub 이슈에 붙여 주세요. 비밀 정보는 들어 있지 않습니다.</p>
+  <p data-i18n="inst.k3">설치기가 멈춘 화면(⑥ 설치 중·⑦ 계정 연결·업데이트·완료)에는 「개발자에게 신고하기」 단추가 있습니다. 누르면 멈춘 단계·오류 코드·진단·로그 끝부분이 윈도 계정 이름을 가린 채 개발자에게 전달됩니다(2.0.20부터). 기록 파일은 <code>C:\IRIS\_agent\setup\installer.log</code>와 <code>%LOCALAPPDATA%\IRIS-Installer\server.log</code>에 있습니다. 그래도 안 되면 아래 <a href="#clean">깨끗이 지우고 새로 설치</a>를 보세요.</p>
+
+  <h2 id="clean" data-i18n="inst.cleanh">그래도 안 되면 — 깨끗이 지우고 새로 설치</h2>
+  <p data-i18n="inst.clean0">업데이트도, 위 방법도 안 될 때의 마지막 방법입니다. <strong>2.0.x가 이미 설치된 PC는 보통 이 단계가 필요 없습니다</strong> — 새 zip을 실행하면 「업데이트 시작」 단추가 나오고 자료·설정·로그인은 그대로 남습니다. 아래는 그것마저 막힐 때, 그리고 1.x에서 올라올 때의 순서입니다. <span class="warn">C:\IRIS 안에 만든 문서가 있으면 먼저 다른 곳에 옮겨 두세요 — ③에서 폴더째 지워집니다.</span></p>
+  <ol class="flow">
+    <li><b data-i18n="inst.clean1b">① PC를 다시 시작합니다</b><div class="flow-body" data-i18n="inst.clean1s">뒤에 남아 있는 IRIS 창·설치기·중계기가 전부 꺼집니다. 이 단계를 건너뛰면 지우기가 「접근이 거부되었습니다」로 막히거나, 새 설치기가 옛 설치기 화면을 열어 줍니다.</div></li>
+    <li><b data-i18n="inst.clean2b">② PowerShell을 관리자 권한으로 엽니다</b><div class="flow-body" data-i18n="inst.clean2s">시작 단추를 오른쪽 클릭 → 「터미널(관리자)」 또는 「Windows PowerShell(관리자)」 → 파란(또는 검은) 창이 뜹니다.</div></li>
+    <li><b data-i18n="inst.clean3b">③ 아래 네 줄을 통째로 복사해 붙여 넣고 Enter</b><div class="flow-body" data-i18n="inst.clean3s">IRIS 폴더, 설치기 기록 폴더, 바탕화면 바로가기를 지웁니다. 없는 항목은 조용히 건너뜁니다. 마지막 줄이 <code>False</code> <code>False</code>로 나오면 다 지워진 것입니다. <code>True</code>가 나오면 ①을 다시 하세요(무언가 아직 실행 중).</div>
+<pre><code>Remove-Item -LiteralPath 'C:\IRIS' -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath "$env:LOCALAPPDATA\IRIS-Installer" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath ([Environment]::GetFolderPath('Desktop') + '\IRIS.lnk') -Force -ErrorAction SilentlyContinue
+Test-Path 'C:\IRIS'; Test-Path "$env:LOCALAPPDATA\IRIS-Installer"</code></pre></li>
+    <li><b data-i18n="inst.clean4b">④ (선택) IRIS를 완전히 떠날 때만 — 환경변수 지우기</b><div class="flow-body" data-i18n="inst.clean4s">다시 설치할 계획이면 이 줄은 필요 없습니다(새 설치기가 덮어씁니다). IRIS를 완전히 지우는 경우에만 붙여 넣으세요. 설치기가 등록해 둔 사용자 환경변수 4개를 지웁니다.</div>
+<pre><code>foreach ($n in 'CLAUDE_CONFIG_DIR','CODEX_HOME','ANTHROPIC_BASE_URL','TEAMCLAUDE_CONFIG') { [Environment]::SetEnvironmentVariable($n, $null, 'User') }</code></pre></li>
+    <li><b data-i18n="inst.clean5b">⑤ 홈에서 최신 zip을 받아 처음부터 설치</b><div class="flow-body" data-i18n="inst.clean5s">이 페이지 ①~⑦ 순서 그대로입니다. 구독 로그인을 한 번 다시 합니다. 설치기 화면 오른쪽 위의 판 표시가 홈의 최신 판과 같은지 확인하세요 — 다르면 ①(다시 시작)부터 다시.</div></li>
+  </ol>
 
   <h2 data-i18n="inst.rmh">지우기</h2>
-  <p data-i18n="inst.rm">트레이에서 IRIS를 끄고 C:\IRIS 폴더와 바탕화면 바로가기를 지우면 끝입니다.</p>
+  <p data-i18n="inst.rm">트레이에서 IRIS를 끄고 위 「깨끗이 지우고 새로 설치」의 ①~④(⑤는 빼고)를 따르면 됩니다. C:\IRIS 폴더와 바탕화면 바로가기, 환경변수까지 지워집니다.</p>
 </main>
 
 <footer>

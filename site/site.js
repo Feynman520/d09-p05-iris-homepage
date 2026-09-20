@@ -12,18 +12,18 @@
       installer: 'Feynman520/d09-p03-iris-installer',
     },
     fallback: {
-      face: { version: 'v2.70.0' },
+      face: { version: 'v2.71.0' },
       messenger: { version: 'v0.4.3' },
-      installer: { version: 'v2.0.29', bytes: 540964278, date: '2026-09-20', asset: 'IRIS-Setup_v2.0.29_2026-09-20.zip',
-        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.29/IRIS-Setup_v2.0.29_2026-09-20.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
-        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.29', // 릴리스 노트 쪽
-        sha: 'b40747e6f4d2a9651cc652b47e30d5c86e1134b5e82f94ee85806114c2d06573' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
+      installer: { version: 'v2.0.30', bytes: 540966186, date: '2026-09-20', asset: 'IRIS-Setup_v2.0.30_2026-09-20.zip',
+        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.30/IRIS-Setup_v2.0.30_2026-09-20.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
+        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.30', // 릴리스 노트 쪽
+        sha: '750f4b2b5b820b634223a942fc222f0b256c94294673070218bb4cabda95ccf4' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
     // 2026-09-17: 300MB 한도는 S3 멀티파트(P03 build/mirror-upload.mjs)로 넘겼다. 새 판을 낼 때마다 zip+.sha256 을 R2 에 올리고 여기 이름을 더한다 —
     // 여기 있는 판은 내려받기 단추가 **미러를 1순위**로 가리킨다(GitHub 첨부 서버가 막힌 학교·회사 망 실측 4회).
-    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: ['IRIS-Setup_v2.0.19_2026-09-18.zip', 'IRIS-Setup_v2.0.20_2026-09-18.zip', 'IRIS-Setup_v2.0.21_2026-09-19.zip', 'IRIS-Setup_v2.0.22_2026-09-19.zip', 'IRIS-Setup_v2.0.23_2026-09-19.zip', 'IRIS-Setup_v2.0.24_2026-09-19.zip', 'IRIS-Setup_v2.0.25_2026-09-19.zip', 'IRIS-Setup_v2.0.26_2026-09-19.zip', 'IRIS-Setup_v2.0.27_2026-09-19.zip', 'IRIS-Setup_v2.0.28_2026-09-20.zip', 'IRIS-Setup_v2.0.29_2026-09-20.zip'] },
+    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: ['IRIS-Setup_v2.0.19_2026-09-18.zip', 'IRIS-Setup_v2.0.20_2026-09-18.zip', 'IRIS-Setup_v2.0.21_2026-09-19.zip', 'IRIS-Setup_v2.0.22_2026-09-19.zip', 'IRIS-Setup_v2.0.23_2026-09-19.zip', 'IRIS-Setup_v2.0.24_2026-09-19.zip', 'IRIS-Setup_v2.0.25_2026-09-19.zip', 'IRIS-Setup_v2.0.26_2026-09-19.zip', 'IRIS-Setup_v2.0.27_2026-09-19.zip', 'IRIS-Setup_v2.0.28_2026-09-20.zip', 'IRIS-Setup_v2.0.29_2026-09-20.zip', 'IRIS-Setup_v2.0.30_2026-09-20.zip'] },
   };
 
   // ---- ② 언어 ----
@@ -164,8 +164,15 @@
         + '<li>A version of this guide with screenshots is on the home page.<br><a href="https://iris-workspace.com/install.html#sac">https://iris-workspace.com/install.html#sac</a></li>'
         + '<li>When you ask for help, attach the log file above — it tells us right away where things stopped.</li></ul>',
       'inst.k2h': 'The login window does not appear', 'inst.k2': 'Look for a browser tab in the background. If nothing appears within a minute, press “Retry” on the installer screen; the login step can be repeated safely.',
-      'inst.k3h': 'Something else failed', 'inst.k3': 'The log is at <code>C:\\IRIS\\_agent\\shared\\package-install.log</code>. Open an issue on GitHub with the last lines of that file — it contains no secrets.',
-      'inst.rmh': 'Uninstall', 'inst.rm': 'Stop IRIS from the tray, then delete C:\\IRIS and the desktop shortcut. That is all.',
+      'inst.k3h': 'Something else failed', 'inst.k3': 'Every screen where the installer can stop (⑥ installing, ⑦ account link, update, done) has a “Report to the developer” button. It sends the failed step, error code, diagnostics and the tail of the logs with your Windows user name masked (since 2.0.20). The log files are <code>C:\\IRIS\\_agent\\setup\\installer.log</code> and <code>%LOCALAPPDATA%\\IRIS-Installer\\server.log</code>. If nothing helps, see <a href="#clean">wipe and reinstall</a> below.',
+      'inst.cleanh': 'If nothing else works — wipe and reinstall',
+      'inst.clean0': 'The last resort when neither the update nor the steps above work. <strong>A PC that already has 2.0.x usually does not need this</strong> — running a new zip shows an “Start update” button and keeps your files, settings and logins. The steps below are for when even that is stuck, and for coming up from 1.x. <span class="warn">If you created documents inside C:\\IRIS, move them elsewhere first — step ③ deletes the whole folder.</span>',
+      'inst.clean1b': '① Restart the PC', 'inst.clean1s': 'Every leftover IRIS window, installer and relay stops. Skip this and the deletion fails with “access denied”, or a new installer opens the old installer’s screen.',
+      'inst.clean2b': '② Open PowerShell as administrator', 'inst.clean2s': 'Right-click the Start button → “Terminal (Admin)” or “Windows PowerShell (Admin)”. A blue (or black) window opens.',
+      'inst.clean3b': '③ Paste these four lines as a block and press Enter', 'inst.clean3s': 'Deletes the IRIS folder, the installer’s record folder and the desktop shortcut; items that do not exist are skipped quietly. When the last line prints <code>False</code> <code>False</code>, everything is gone. If it prints <code>True</code>, go back to ① (something is still running).',
+      'inst.clean4b': '④ (Optional) Only when leaving IRIS for good — clear the environment variables', 'inst.clean4s': 'Not needed if you plan to reinstall (the new installer overwrites them). Paste this only when removing IRIS completely; it clears the four user environment variables the installer registered.',
+      'inst.clean5b': '⑤ Download the latest zip from the home page and install from scratch', 'inst.clean5s': 'Exactly the ①~⑦ order on this page. You log in to your subscription once more. Check that the version shown at the top right of the installer matches the latest on the home page — if not, start again from ① (restart).',
+      'inst.rmh': 'Uninstall', 'inst.rm': 'Stop IRIS from the tray, then follow ①~④ of “wipe and reinstall” above (skip ⑤). That removes C:\\IRIS, the desktop shortcut and the environment variables.',
       // 처리방침 쪽
       'priv.title': 'IRIS — Privacy', 'priv.h': 'IRIS Messenger privacy policy',
     },
