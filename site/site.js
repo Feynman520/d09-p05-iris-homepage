@@ -14,16 +14,16 @@
     fallback: {
       face: { version: 'v2.71.0' },
       messenger: { version: 'v0.4.3' },
-      installer: { version: 'v2.0.30', bytes: 540966186, date: '2026-09-20', asset: 'IRIS-Setup_v2.0.30_2026-09-20.zip',
-        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.30/IRIS-Setup_v2.0.30_2026-09-20.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
-        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.30', // 릴리스 노트 쪽
-        sha: '750f4b2b5b820b634223a942fc222f0b256c94294673070218bb4cabda95ccf4' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
+      installer: { version: 'v2.0.31', bytes: 540968476, date: '2026-09-20', asset: 'IRIS-Setup_v2.0.31_2026-09-20.zip',
+        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.31/IRIS-Setup_v2.0.31_2026-09-20.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
+        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.31', // 릴리스 노트 쪽
+        sha: 'f0b006d0ba9db28859a2f02934b9270a9432e91c4b5472329d4aa318fce3464e' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
     // 2026-09-17: 300MB 한도는 S3 멀티파트(P03 build/mirror-upload.mjs)로 넘겼다. 새 판을 낼 때마다 zip+.sha256 을 R2 에 올리고 여기 이름을 더한다 —
     // 여기 있는 판은 내려받기 단추가 **미러를 1순위**로 가리킨다(GitHub 첨부 서버가 막힌 학교·회사 망 실측 4회).
-    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: ['IRIS-Setup_v2.0.19_2026-09-18.zip', 'IRIS-Setup_v2.0.20_2026-09-18.zip', 'IRIS-Setup_v2.0.21_2026-09-19.zip', 'IRIS-Setup_v2.0.22_2026-09-19.zip', 'IRIS-Setup_v2.0.23_2026-09-19.zip', 'IRIS-Setup_v2.0.24_2026-09-19.zip', 'IRIS-Setup_v2.0.25_2026-09-19.zip', 'IRIS-Setup_v2.0.26_2026-09-19.zip', 'IRIS-Setup_v2.0.27_2026-09-19.zip', 'IRIS-Setup_v2.0.28_2026-09-20.zip', 'IRIS-Setup_v2.0.29_2026-09-20.zip', 'IRIS-Setup_v2.0.30_2026-09-20.zip'] },
+    mirror: { base: 'https://pub-6bb549660d7d4bd79ed07a7b6523f5c5.r2.dev', assets: ['IRIS-Setup_v2.0.19_2026-09-18.zip', 'IRIS-Setup_v2.0.20_2026-09-18.zip', 'IRIS-Setup_v2.0.21_2026-09-19.zip', 'IRIS-Setup_v2.0.22_2026-09-19.zip', 'IRIS-Setup_v2.0.23_2026-09-19.zip', 'IRIS-Setup_v2.0.24_2026-09-19.zip', 'IRIS-Setup_v2.0.25_2026-09-19.zip', 'IRIS-Setup_v2.0.26_2026-09-19.zip', 'IRIS-Setup_v2.0.27_2026-09-19.zip', 'IRIS-Setup_v2.0.28_2026-09-20.zip', 'IRIS-Setup_v2.0.29_2026-09-20.zip', 'IRIS-Setup_v2.0.30_2026-09-20.zip', 'IRIS-Setup_v2.0.31_2026-09-20.zip'] },
   };
 
   // ---- ② 언어 ----
