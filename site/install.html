@@ -52,8 +52,8 @@
     </ol>
     <h3 data-i18n="inst.blkhashh">받은 파일이 원본인지 확인 (선택)</h3>
     <p data-i18n="inst.blkhash">PowerShell을 열고 zip이 있는 폴더에서 아래 명령을 실행합니다. 나온 값이 그 아래 값과 같으면 같은 파일입니다.</p>
-    <pre><code id="inst-hashcmd">Get-FileHash .\IRIS-Setup_v2.0.37_2026-09-23.zip -Algorithm SHA256</code></pre>
-    <p class="sha" id="inst-sha">0c6f7dd29445e70fb3ab21b8d711749c22c48bdc1afb09036824d1d8e1f5eefb</p>
+    <pre><code id="inst-hashcmd">Get-FileHash .\IRIS-Setup_v2.0.38_2026-09-23.zip -Algorithm SHA256</code></pre>
+    <p class="sha" id="inst-sha">1328a9c9f4ff5f94d38a8136a1296112631b18d1ab42844420c426f19b943b27</p>
     <h3 data-i18n="inst.blksach">설치 중 스마트 앱 컨트롤이 켜져 있으면 (2.0.1부터)</h3>
     <p data-i18n="inst.blksac">설치기의 사전 점검이 「스마트 앱 컨트롤이 켜져 있습니다」라고 미리 알립니다. 그 상태로도 대개 설치는 되지만, 동봉한 파이썬 도구가 차단돼 세팅이 venv(파이썬 환경) 단계에서 멈출 수 있습니다. 그러면 위 ②대로 끄고 「다시 시도」를 누르면 됩니다.</p>
   </section>
@@ -69,7 +69,7 @@
   <p data-i18n="inst.s3">IRIS는 항상 <code>C:\IRIS</code>에 설치되며 위치를 묻지 않습니다 — 그 자리를 쓸 수 있는지만 확인하고 「다음」을 누릅니다. 이미 IRIS가 설치된 PC라면 이 자리에 「새 판으로 업데이트」 화면이 대신 나오고, 「업데이트 시작」을 누르면 자료·설정·로그인을 그대로 둔 채 바뀐 부품만 갈아 끼웁니다.</p>
 
   <h3 data-i18n="inst.s4h">③ 구독 고르기</h3>
-  <p data-i18n="inst.s4">가진 유료 구독을 모두 표시합니다: Claude, ChatGPT, 또는 둘 다. 둘 다면 Claude Code가 앞장서고 그 뒤로는 둘 다 씁니다. ChatGPT만 골랐다면 Codex가 앞장서며 Claude Code는 내려받지 않습니다.</p>
+  <p data-i18n="inst.s4">가진 유료 구독을 모두 표시합니다: Claude, ChatGPT, 또는 둘 다. 둘 다면 Claude Code가 앞장서고 그 뒤로는 둘 다 씁니다. ChatGPT만 골랐다면 Codex가 앞장섭니다. 어느 쪽을 고르든 두 비서를 모두 설치하므로, 나중에 다른 구독 계정을 더하면 바로 연결됩니다.</p>
   <div class="win"><div class="win-bar"><span>③</span><span class="dot"></span></div><img src="img/install-2-subscription.png" width="1100" height="900" alt="구독 고르기 화면" loading="lazy"></div>
 
   <h3 data-i18n="inst.s5h">④ 작업 폴더 구성</h3>
@@ -84,7 +84,7 @@
   <div class="win"><div class="win-bar"><span>⑥</span><span class="dot"></span></div><img src="img/install-4-progress.png" width="1100" height="900" alt="설치 중 화면 — 아홉 단계 진행 막대" loading="lazy"></div>
 
   <h3 data-i18n="inst.s8h">⑦ 계정 연결</h3>
-  <p data-i18n="inst.s8">여기부터 인터넷을 씁니다. 먼저 연결을 확인하고(막힌 주소가 있으면 이름을 알려 주고 멈춥니다 — 인터넷이 되는 곳에서 다시 열면 여기서부터 이어집니다), Claude 구독을 골랐다면 Claude Code를 내려받습니다. 그다음 고른 구독마다 「로그인」 단추를 누르면 브라우저에 그 계정의 로그인 페이지가 열립니다 — 둘 다면 Claude, ChatGPT 순서입니다. 로그인 창이 늦게 뜨거나 안 보여도 몇 번이고 다시 눌러도 안전합니다. 로그인이 끝나면 계정 중계기가 켜지고 계정이 연결됩니다.</p>
+  <p data-i18n="inst.s8">여기부터 인터넷을 씁니다. 먼저 연결을 확인하고(막힌 주소가 있으면 이름을 알려 주고 멈춥니다 — 인터넷이 되는 곳에서 다시 열면 여기서부터 이어집니다), Claude Code를 내려받습니다(무엇을 골랐든 두 비서를 모두 설치합니다 — 고르지 않은 쪽에서 받기가 실패하면 경고만 하고 넘어갑니다). 그다음 고른 구독마다 「로그인」 단추를 누르면 브라우저에 그 계정의 로그인 페이지가 열립니다 — 둘 다면 Claude, ChatGPT 순서입니다. 로그인 창이 늦게 뜨거나 안 보여도 몇 번이고 다시 눌러도 안전합니다. 로그인이 끝나면 계정 중계기가 켜지고 계정이 연결됩니다.</p>
 
   <h3 data-i18n="inst.s9h">⑧ 완료</h3>
   <p data-i18n="inst.s9">하려던 일, 기존 자료의 안전, 결과, 남은 일의 뜻, 이제 할 일 — 다섯 항목의 보고를 보여 줍니다(같은 내용이 <code>C:\IRIS\_agent\setup\설치보고-*.md</code>에도 남습니다). 「IRIS 열기」를 누르면 IRIS 창이 뜨고 비서가 인수 문서를 읽고 먼저 인사합니다. 메신저 로그인 안내 카드가 한 번 뜨는데, 「메신저 열기」로 지금 하거나 「나중에」로 넘겨도 됩니다.</p>
