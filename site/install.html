@@ -52,8 +52,8 @@
     </ol>
     <h3 data-i18n="inst.blkhashh">받은 파일이 원본인지 확인 (선택)</h3>
     <p data-i18n="inst.blkhash">PowerShell을 열고 zip이 있는 폴더에서 아래 명령을 실행합니다. 나온 값이 그 아래 값과 같으면 같은 파일입니다.</p>
-    <pre><code id="inst-hashcmd">Get-FileHash .\IRIS-Setup_v2.0.38_2026-09-23.zip -Algorithm SHA256</code></pre>
-    <p class="sha" id="inst-sha">1328a9c9f4ff5f94d38a8136a1296112631b18d1ab42844420c426f19b943b27</p>
+    <pre><code id="inst-hashcmd">Get-FileHash .\IRIS-Setup_v2.0.39_2026-09-28.zip -Algorithm SHA256</code></pre>
+    <p class="sha" id="inst-sha">641de3235ceb358c1b2111529731ece51540ec1fa1f0940ada298c6ec3d2cc04</p>
     <h3 data-i18n="inst.blksach">설치 중 스마트 앱 컨트롤이 켜져 있으면 (2.0.1부터)</h3>
     <p data-i18n="inst.blksac">설치기의 사전 점검이 「스마트 앱 컨트롤이 켜져 있습니다」라고 미리 알립니다. 그 상태로도 대개 설치는 되지만, 동봉한 파이썬 도구가 차단돼 세팅이 venv(파이썬 환경) 단계에서 멈출 수 있습니다. 그러면 위 ②대로 끄고 「다시 시도」를 누르면 됩니다.</p>
   </section>
@@ -146,7 +146,7 @@ Test-Path 'C:\IRIS'; Test-Path "$env:LOCALAPPDATA\IRIS-Installer"</code></pre></
   </ol>
 
   <h2 data-i18n="inst.rmh">지우기</h2>
-  <p data-i18n="inst.rm">트레이에서 IRIS를 끄고 위 「깨끗이 지우고 새로 설치」의 ①~④(⑤는 빼고)를 따르면 됩니다. C:\IRIS 폴더와 바탕화면 바로가기, 환경변수까지 지워집니다.</p>
+  <p data-i18n="inst.rm">받은 zip을 푼 폴더의 <code>IRIS-삭제.cmd</code>를 두 번 클릭하면 됩니다(2.0.39부터 — 옛 판으로 설치한 PC도 최신 zip의 이 파일로 지울 수 있습니다. 2.0.39 이상으로 설치하거나 업데이트한 PC에는 <code>C:\IRIS\_agent\setup\installer\installer</code>에도 있습니다). 켜져 있는 IRIS를 스스로 끄고, 무엇을 지우고 무엇을 남기는지 먼저 보여 준 뒤 지웁니다. 기본값 「내 작업은 남기기」는 직접 만든 폴더·파일을 <code>C:\IRIS-보관-날짜</code>로 옮겨 두고, 「전부 지우기」는 한 번 더 확인합니다. 환경변수·PATH·로그온 자동 시작·바탕화면 바로가기도 함께 정리하며, 설치 전에 쓰던 환경변수 값은 되돌립니다. 구독 해지는 claude.ai·chatgpt.com에서 따로 하세요. 이 파일이 막히면 위 「깨끗이 지우고 새로 설치」의 ①~④(⑤는 빼고)를 따르면 됩니다.</p>
 </main>
 
 <footer>
