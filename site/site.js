@@ -12,7 +12,7 @@
       installer: 'Feynman520/d09-p03-iris-installer',
     },
     fallback: {
-      face: { version: 'v2.76.0' },
+      face: { version: 'v2.77.0' },
       messenger: { version: 'v0.4.3' },
       installer: { version: 'v2.0.39', bytes: 541021818, date: '2026-09-28', asset: 'IRIS-Setup_v2.0.39_2026-09-28.zip',
         url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.39/IRIS-Setup_v2.0.39_2026-09-28.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
