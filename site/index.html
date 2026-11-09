@@ -138,13 +138,23 @@
       <div class="dl-head">
         <a class="btn" id="dl-btn" href="https://iris-workspace-dl.pages.dev/IRIS-Setup_v2.0.55_2026-11-09.zip"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v13M6 11l6 6 6-6M4 20h16"/></svg><span data-i18n="dl.btn">IRIS 내려받기</span></a>
         <div class="dl-meta">
-          <div><span id="dl-ver">v2.0.55</span> · <span id="dl-size">556.0 MB</span> · <span id="dl-date">2026-11-09</span> · Windows 10 / 11 64-bit</div>
-          <div><a href="https://github.com/Feynman520/d09-p03-iris-installer/releases" rel="noopener" data-i18n="dl.all">모든 판 보기</a> · <a id="dl-shalink" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.55/IRIS-Setup_v2.0.55_2026-11-09.zip.sha256" rel="noopener">SHA-256</a> · <span data-i18n="dl.bytes">정확한 크기</span> <span class="sha" id="dl-bytes">541,021,818 bytes</span></div>
+          <div><span class="dl-tag" data-i18n="dl.stable">안정판 · 권장</span> <span id="dl-ver">v2.0.55</span> · <span id="dl-size">556.0 MB</span> · <span id="dl-date">2026-11-09</span> · Windows 10 / 11 64-bit</div>
+          <div><a href="https://github.com/Feynman520/d09-p03-iris-installer/releases" rel="noopener" data-i18n="dl.all">모든 판 보기</a> · <a id="dl-shalink" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.55/IRIS-Setup_v2.0.55_2026-11-09.zip.sha256" rel="noopener">SHA-256</a> · <span data-i18n="dl.bytes">정확한 크기</span> <span class="sha" id="dl-bytes">556,005,697 bytes</span></div>
           <div class="sha" id="dl-sha">e8f9e229955360dede07e416b2cfddb852993a5f1cf7fd2b7b06ec024034a831</div>
           <div>
             <span id="dl-via-mirror" hidden><span data-i18n="dl.via">내려받기 단추는 Cloudflare 서버에서 받습니다.</span> <a id="dl-github" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/latest" rel="noopener" data-i18n="dl.github">GitHub에서 직접 내려받기</a></span>
             <span id="dl-via-github"><span data-i18n="dl.viagh">내려받기 단추는 GitHub 릴리스 첨부에서 받습니다.</span> <a id="dl-relpage" href="https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.55" rel="noopener" data-i18n="dl.relpage">이 판의 릴리스 노트</a></span>
           </div>
+        </div>
+      </div>
+      <!-- 최신판(2026-11-09 두 갈래 배포): site.js CONFIG.preview.installer 가 있고 안정판보다 높을 때만 보인다. IRIS 안 업데이트는 안정판만 받는다. -->
+      <div class="dl-head dl-pre" id="dl-pre" hidden>
+        <a class="btn btn-ghost" id="dl-pre-btn" href="https://github.com/Feynman520/d09-p03-iris-installer/releases"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v13M6 11l6 6 6-6M4 20h16"/></svg><span data-i18n="dl.prebtn">최신판 내려받기</span></a>
+        <div class="dl-meta">
+          <div><span class="dl-tag pre" data-i18n="dl.pretag">최신판 · 시험 중</span> <span id="dl-pre-ver"></span> · <span id="dl-pre-size"></span> · <span id="dl-pre-date"></span></div>
+          <div data-i18n="dl.prenote">새 기능을 먼저 써 보는 판입니다. IRIS 안의 「업데이트」로는 오지 않고, 시험을 마치면 안정판으로 올라갑니다. 문제가 생기면 IRIS를 삭제(「내 작업 보관」)한 뒤 위의 안정판을 새로 설치하세요.</div>
+          <div><a id="dl-pre-relpage" href="https://github.com/Feynman520/d09-p03-iris-installer/releases" rel="noopener" data-i18n="dl.relpage">이 판의 릴리스 노트</a> · <span data-i18n="dl.bytes">정확한 크기</span> <span class="sha" id="dl-pre-bytes"></span></div>
+          <div class="sha" id="dl-pre-sha"></div>
         </div>
       </div>
       <h3 data-i18n="dl.reqh">필요한 것</h3>

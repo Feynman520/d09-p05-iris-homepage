@@ -124,6 +124,12 @@ main { display: block; }
 .dl-meta { color: var(--ink-3); font-size: 13px; line-height: 1.5; }
 .dl-meta a { color: var(--ink-2); }
 .dl-meta .sha { font-family: var(--mono); font-size: 11.5px; word-break: break-all; color: var(--ink-3); }
+/* 두 갈래 배포(2026-11-09): 안정판 = 채운 단추, 최신판 = 테두리 단추 + 경고색 꼬리표 */
+.dl-tag { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; color: var(--ok); background: color-mix(in srgb, var(--ok) 14%, transparent); }
+.dl-tag.pre { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent); }
+.dl-pre { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.btn-ghost { background: transparent; color: var(--iris); box-shadow: inset 0 0 0 1px var(--iris); }
+.btn-ghost:hover { background: var(--iris-soft); }
 .dl h3 { font-size: 14.5px; margin: 22px 0 8px; color: var(--ink); }
 .dl ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14px; }
 .dl li { margin: 3px 0; }

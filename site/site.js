@@ -19,6 +19,14 @@
         page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.55', // 릴리스 노트 쪽
         sha: 'e8f9e229955360dede07e416b2cfddb852993a5f1cf7fd2b7b06ec024034a831' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
+    // 최신판(2026-11-09 두 갈래 배포, P03 docs\설계-배포채널-2026-11-09.md): 위 fallback = 안정판, 여기 = 사전 공개(prerelease)로 낸 최신판.
+    // 릴리스 도구(iris-release.mjs)가 최신판을 낼 때 채우고, promote 로 안정판에 올리면 비운다(null). GitHub API 로 찾지 않는다 —
+    // 학교망 공유 IP 의 익명 호출 한도를 더 쓰지 않고, 사람이 시험 단계로 고른 판만 보이게(코덱스 검토 10).
+    // installer 가 null 이거나 판이 안정판보다 높지 않으면 최신판 상자는 숨는다.
+    preview: {
+      installer: null,
+      face: null,
+    },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
     // 2026-09-17: 300MB 한도는 S3 멀티파트(P03 build/mirror-upload.mjs)로 넘겼다. 새 판을 낼 때마다 zip+.sha256 을 R2 에 올리고 여기 이름을 더한다 —
@@ -94,6 +102,8 @@
       'dl.bytes': 'exact size',
       'dl.via': 'The download button serves the file from Cloudflare.', 'dl.github': 'Download directly from GitHub instead',
       'dl.viagh': 'The download button serves the file from the GitHub release attachment.', 'dl.relpage': 'Release notes for this version',
+      'dl.stable': 'Stable · recommended', 'dl.prebtn': 'Download the latest build', 'dl.pretag': 'Latest · in testing',
+      'dl.prenote': 'An early build with the newest changes. The “Update” button inside IRIS does not install it; it becomes the stable version once testing is done. If something goes wrong, uninstall IRIS (choose “Keep my work”) and install the stable version above from scratch.',
       'dl.update': 'Already installed? Settings → Update in the IRIS window brings everything up to date in one step, and running a freshly downloaded zip offers a “Start update” button as well — your files, settings and logins stay. Coming from 1.x is the exception — 2.0 installs fresh (your existing data is left untouched). <a href="install.html#upd1x">Details</a>',
       'dl.more': 'The <a href="/install?lang=en">install guide</a> explains each screen and what to do if you get stuck.',
       'in.h': 'What is inside',
@@ -229,6 +239,23 @@
   }
   const mirrorFor = (asset) => (CONFIG.mirror && asset && CONFIG.mirror.assets.includes(asset)) ? `${CONFIG.mirror.base}/${asset}` : null;
 
+  // 판 비교: 'v2.0.56' 같은 X.Y.Z 세 정수만(사전 공개 꼬리표 -rc 등은 쓰지 않는다). 형식이 아니면 null.
+  const semver = (v) => { const m = /^v?(\d+)\.(\d+)\.(\d+)$/.exec(String(v || '').trim()); return m ? [+m[1], +m[2], +m[3]] : null; };
+  const cmpVer = (a, b) => { const x = semver(a), y = semver(b); if (!x || !y) return null; for (let i = 0; i < 3; i++) if (x[i] !== y[i]) return x[i] < y[i] ? -1 : 1; return 0; };
+  /** 최신판 상자: CONFIG.preview.installer 가 안정판(stableVersion)보다 높을 때만 그린다. 아니면 숨긴다. */
+  function paintPreview(stableVersion) {
+    const box = document.getElementById('dl-pre'); if (!box) return;
+    const p = CONFIG.preview && CONFIG.preview.installer;
+    const show = !!(p && p.asset && p.url && cmpVer(p.version, stableVersion) === 1);
+    box.hidden = !show; if (!show) return;
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v == null ? '' : v; };
+    set('dl-pre-ver', p.version); set('dl-pre-size', p.bytes ? mb(p.bytes) : ''); set('dl-pre-date', p.date || '');
+    set('dl-pre-bytes', p.bytes ? `${Number(p.bytes).toLocaleString('en-US')} bytes` : '');
+    set('dl-pre-sha', p.sha || ''); // 이 판(asset)의 값만 — 모르면 비운다
+    const btn = document.getElementById('dl-pre-btn'); if (btn) btn.href = mirrorFor(p.asset) || p.url;
+    const rp = document.getElementById('dl-pre-relpage'); if (rp && p.page) rp.href = p.page;
+  }
+
   const PARTS = ['face', 'messenger', 'installer'];
   const compData = {}; // 부품별 { version, date, note(한 줄), notes(전문) } — fallback 으로 시작, 성공한 fetch 로만 덮어씀
   for (const key of PARTS) compData[key] = { version: CONFIG.fallback[key].version || null, date: null, note: null, notes: null };
@@ -267,6 +294,7 @@
   setLang(initialLang()); // 여기서 renderAllComponents() 도 한 번 불려 fallback 이 먼저 그려진다
 
   paint(CONFIG.fallback.installer); // 어느 쪽이든 아는 판으로 먼저 그린다(설치 안내의 해시 명령·값 포함) — 없는 요소는 건너뜀
+  paintPreview(CONFIG.fallback.installer.version); // 최신판 상자(안정판보다 높을 때만)
   const onIndex = !!document.getElementById('dl-btn');
   if (onIndex) {
     async function fetchRelease(key) {
@@ -288,7 +316,8 @@
           if (zip) {
             const shaAsset = (rel.assets || []).find(a => /\.sha256$/i.test(a.name));
             paint({ version, bytes: zip.size, date: compData.installer.date, asset: zip.name, url: zip.browser_download_url, page: rel.html_url, shaUrl: shaAsset?.browser_download_url,
-              sha: version === CONFIG.fallback.installer.version ? CONFIG.fallback.installer.sha : null }); // 새 판이 나왔는데 이 파일이 아직 옛 값이면 값 대신 링크만
+              sha: version === CONFIG.fallback.installer.version && zip.name === CONFIG.fallback.installer.asset ? CONFIG.fallback.installer.sha : null }); // 같은 판·같은 첨부일 때만 값, 아니면 링크만
+            paintPreview(version); // 안정판이 더 새로 올라왔으면(최신판이 승격됨) 최신판 상자를 다시 판정
           }
         }
       });
