@@ -14,10 +14,10 @@
     fallback: {
       face: { version: 'v2.99.0' },
       messenger: { version: 'v0.4.3' },
-      installer: { version: 'v2.0.54', bytes: 556000442, date: '2026-11-04', asset: 'IRIS-Setup_v2.0.54_2026-11-04.zip',
-        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.54/IRIS-Setup_v2.0.54_2026-11-04.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
-        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.54', // 릴리스 노트 쪽
-        sha: '0d30099c22c383cb84e96d09d74e2fe1551204207c521ae888ddd1f0e51662bf' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
+      installer: { version: 'v2.0.55', bytes: 556005697, date: '2026-11-09', asset: 'IRIS-Setup_v2.0.55_2026-11-09.zip',
+        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.55/IRIS-Setup_v2.0.55_2026-11-09.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
+        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.55', // 릴리스 노트 쪽
+        sha: 'e8f9e229955360dede07e416b2cfddb852993a5f1cf7fd2b7b06ec024034a831' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
@@ -25,7 +25,7 @@
     // 여기 있는 판은 내려받기 단추가 **미러를 1순위**로 가리킨다(GitHub 첨부 서버가 막힌 학교·회사 망 실측 4회).
     // 2026-11-09: base 를 r2.dev → 같은 버킷의 빠른 창구 iris-workspace-dl.pages.dev(P03 mirror-worker)로 바꿨다 — 학교 유선 실측
     // r2.dev 초당 60~80KB(미국 LA, 556MB 에 2시간+) / pages.dev 초당 30~43MB(서울, 약 15초). r2.dev 는 옛 IRIS 창용으로 살아 있다.
-    mirror: { base: 'https://iris-workspace-dl.pages.dev', assets: ['IRIS-Setup_v2.0.19_2026-09-18.zip', 'IRIS-Setup_v2.0.20_2026-09-18.zip', 'IRIS-Setup_v2.0.21_2026-09-19.zip', 'IRIS-Setup_v2.0.22_2026-09-19.zip', 'IRIS-Setup_v2.0.23_2026-09-19.zip', 'IRIS-Setup_v2.0.24_2026-09-19.zip', 'IRIS-Setup_v2.0.25_2026-09-19.zip', 'IRIS-Setup_v2.0.26_2026-09-19.zip', 'IRIS-Setup_v2.0.27_2026-09-19.zip', 'IRIS-Setup_v2.0.28_2026-09-20.zip', 'IRIS-Setup_v2.0.29_2026-09-20.zip', 'IRIS-Setup_v2.0.30_2026-09-20.zip', 'IRIS-Setup_v2.0.31_2026-09-20.zip', 'IRIS-Setup_v2.0.32_2026-09-20.zip', 'IRIS-Setup_v2.0.33_2026-09-21.zip', 'IRIS-Setup_v2.0.34_2026-09-21.zip', 'IRIS-Setup_v2.0.35_2026-09-21.zip', 'IRIS-Setup_v2.0.36_2026-09-23.zip', 'IRIS-Setup_v2.0.37_2026-09-23.zip', 'IRIS-Setup_v2.0.38_2026-09-23.zip', 'IRIS-Setup_v2.0.39_2026-09-28.zip', 'IRIS-Setup_v2.0.40_2026-10-02.zip', 'IRIS-Setup_v2.0.41_2026-10-03.zip', 'IRIS-Setup_v2.0.42_2026-10-12.zip', 'IRIS-Setup_v2.0.43_2026-10-12.zip', 'IRIS-Setup_v2.0.44_2026-10-16.zip', 'IRIS-Setup_v2.0.45_2026-10-16.zip', 'IRIS-Setup_v2.0.46_2026-10-21.zip', 'IRIS-Setup_v2.0.47_2026-10-22.zip', 'IRIS-Setup_v2.0.48_2026-10-23.zip', 'IRIS-Setup_v2.0.49_2026-10-27.zip', 'IRIS-Setup_v2.0.50_2026-10-27.zip', 'IRIS-Setup_v2.0.51_2026-10-28.zip', 'IRIS-Setup_v2.0.52_2026-10-28.zip', 'IRIS-Setup_v2.0.53_2026-11-02.zip', 'IRIS-Setup_v2.0.54_2026-11-04.zip'] },
+    mirror: { base: 'https://iris-workspace-dl.pages.dev', assets: ['IRIS-Setup_v2.0.19_2026-09-18.zip', 'IRIS-Setup_v2.0.20_2026-09-18.zip', 'IRIS-Setup_v2.0.21_2026-09-19.zip', 'IRIS-Setup_v2.0.22_2026-09-19.zip', 'IRIS-Setup_v2.0.23_2026-09-19.zip', 'IRIS-Setup_v2.0.24_2026-09-19.zip', 'IRIS-Setup_v2.0.25_2026-09-19.zip', 'IRIS-Setup_v2.0.26_2026-09-19.zip', 'IRIS-Setup_v2.0.27_2026-09-19.zip', 'IRIS-Setup_v2.0.28_2026-09-20.zip', 'IRIS-Setup_v2.0.29_2026-09-20.zip', 'IRIS-Setup_v2.0.30_2026-09-20.zip', 'IRIS-Setup_v2.0.31_2026-09-20.zip', 'IRIS-Setup_v2.0.32_2026-09-20.zip', 'IRIS-Setup_v2.0.33_2026-09-21.zip', 'IRIS-Setup_v2.0.34_2026-09-21.zip', 'IRIS-Setup_v2.0.35_2026-09-21.zip', 'IRIS-Setup_v2.0.36_2026-09-23.zip', 'IRIS-Setup_v2.0.37_2026-09-23.zip', 'IRIS-Setup_v2.0.38_2026-09-23.zip', 'IRIS-Setup_v2.0.39_2026-09-28.zip', 'IRIS-Setup_v2.0.40_2026-10-02.zip', 'IRIS-Setup_v2.0.41_2026-10-03.zip', 'IRIS-Setup_v2.0.42_2026-10-12.zip', 'IRIS-Setup_v2.0.43_2026-10-12.zip', 'IRIS-Setup_v2.0.44_2026-10-16.zip', 'IRIS-Setup_v2.0.45_2026-10-16.zip', 'IRIS-Setup_v2.0.46_2026-10-21.zip', 'IRIS-Setup_v2.0.47_2026-10-22.zip', 'IRIS-Setup_v2.0.48_2026-10-23.zip', 'IRIS-Setup_v2.0.49_2026-10-27.zip', 'IRIS-Setup_v2.0.50_2026-10-27.zip', 'IRIS-Setup_v2.0.51_2026-10-28.zip', 'IRIS-Setup_v2.0.52_2026-10-28.zip', 'IRIS-Setup_v2.0.53_2026-11-02.zip', 'IRIS-Setup_v2.0.54_2026-11-04.zip', 'IRIS-Setup_v2.0.55_2026-11-09.zip'] },
   };
 
   // ---- ② 언어 ----
