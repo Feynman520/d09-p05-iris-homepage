@@ -25,7 +25,7 @@
     // installer 가 null 이거나 판이 안정판보다 높지 않으면 최신판 상자는 숨는다.
     preview: {
       installer: null,
-      face: null,
+      face: { version: 'v2.100.0' },
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
