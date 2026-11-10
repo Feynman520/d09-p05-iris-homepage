@@ -28,7 +28,7 @@
         url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.57/IRIS-Setup_v2.0.57_2026-11-09.zip',
         page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.57',
         sha: 'ae13f821f078f568460f9f8f7da105d5269bd8aa714ee1e9346a279e33e5eab7' },
-      face: { version: 'v2.101.0' },
+      face: { version: 'v2.102.0' },
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
