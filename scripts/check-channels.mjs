@@ -20,7 +20,10 @@ if (!pw) { console.log('SKIP: playwright 없음'); process.exit(0); }
 const siteJs = fs.readFileSync(path.join(SITE, 'site.js'), 'utf8');
 const stable = /installer: \{ version: '(v[\d.]+)'/.exec(siteJs)[1];
 const stableAsset = /asset: '(IRIS-Setup_[^']+)'/.exec(siteJs)[1];
-ok(/preview:\s*\{\s*installer: null,\s*face: null,\s*\}/.test(siteJs), 'site.js: 배포된 기본값 = 최신판 없음(preview.installer null)');
+// 2026-11-10: 최신판을 낼 때마다 릴리스 도구가 preview.installer 를 채우므로 "기본값 null" 이 아니라 "null 또는 판 객체" 를 본다
+// (예전엔 null 만 맞다고 보아, 2.0.57 이후 실제 배포본에서 이 검사 전체가 바꿔 끼우기에 실패했다).
+const PREVIEW_RE = /preview:\s*\{\s*installer:\s*(null|\{[^{}]*\}),/;
+ok(PREVIEW_RE.test(siteJs) && /installer:\s*(null|\{ version: 'v\d+\.\d+\.\d+')/.test(siteJs.match(PREVIEW_RE)[0]), 'site.js: preview.installer = null 또는 X.Y.Z 판 객체(릴리스 도구 형식)');
 
 let previewLiteral = 'null';   // 경우마다 바꿔 끼울 CONFIG.preview.installer
 let mirrorExtra = [];          // 미러 목록에 덧붙일 이름
@@ -30,7 +33,7 @@ const server = http.createServer((q, s) => {
   if (!f.startsWith(SITE) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { s.writeHead(404); return s.end(); }
   let body = fs.readFileSync(f);
   if (u === '/site.js') {
-    let t = body.toString('utf8').replace(/preview:\s*\{\s*installer: null,/, `preview: {\n      installer: ${previewLiteral},`);
+    let t = body.toString('utf8').replace(PREVIEW_RE, `preview: {\n      installer: ${previewLiteral},`);
     if (mirrorExtra.length) t = t.replace(/(assets: \[)/, `$1${mirrorExtra.map((n) => `'${n}', `).join('')}`);
     body = Buffer.from(t, 'utf8');
   }
