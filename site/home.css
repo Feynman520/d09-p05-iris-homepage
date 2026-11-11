@@ -47,6 +47,8 @@ code { font-family: var(--mono); font-size: .88em; }
 .mark .a1 { transform-origin: 12px 12px; animation: mk-spin 8s linear infinite; }
 @keyframes mk-spin { to { transform: rotate(360deg); } }
 .wordmark { font-family: var(--pen); font-weight: 700; font-size: 18px; letter-spacing: .06em; line-height: 1; transform: translateY(1px); user-select: none; }
+/* 손글씨 IRIS 그림(2026-11-11 사용자 결정: 로고 시안 19, 바깥 투명 PNG) */
+img.wordmark { display: block; height: 30px; width: auto; transform: translateY(-1px); -webkit-user-drag: none; }
 .nav { display: flex; gap: 30px; font-size: 13px; letter-spacing: .02em; }
 .nav a, .lang button, .top-dl { opacity: .85; transition: opacity .3s; }
 .nav a { position: relative; }

@@ -47,6 +47,7 @@ html[lang="en"] .lang-ko { display: none; }
 @keyframes mk-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .mark .a1 { animation: none; } }
 .wordmark { font-family: "Segoe Script", var(--pen); font-weight: 700; font-size: 17px; letter-spacing: .06em; line-height: 1; transform: translateY(1px); user-select: none; }
+img.wordmark { display: block; height: 28px; width: auto; transform: translateY(-1px); -webkit-user-drag: none; } /* 손글씨 IRIS 그림(2026-11-11 사용자 결정) */
 .top-right { display: flex; align-items: center; gap: 4px; }
 .nav a { color: var(--ink-2); font-size: 13px; padding: 5px 10px; border-radius: 7px; }
 .nav a:hover { background: var(--raised); color: var(--ink); text-decoration: none; }
