@@ -69,7 +69,7 @@
 <section class="blk" id="what">
   <div class="label mono">N° 02 — WHAT IT IS</div>
   <h2 data-i18n="what.h">IRIS란</h2>
-  <p class="define" data-i18n="what.define">일이 놓일 자리와 규칙을 정해 두면, 에이전트가 그대로 일합니다.</p>
+  <p class="define" data-i18n="what.define">IRIS는 내 PC에서 내 일이 놓일 자리와 규칙을 보고, Claude Code·Codex로 직접 일하는 <b>AI 에이전트 비서</b>입니다.</p>
   <p class="lead" data-i18n="what.lead">비서에게 일을 맡기려면 세 가지가 필요합니다. 일이 놓일 자리, 일하는 규칙, 실제로 일하는 손. IRIS는 이 셋을 C:\IRIS 한 폴더에 함께 설치합니다.</p>
   <div class="three">
     <div><span class="no mono">01</span><h3 data-i18n="what.1h">폴더 체계</h3><p data-i18n="what.1p">역할 → 분야 → 프로젝트 → 단계 순서로 자리를 잡습니다. 비서는 지금 어느 폴더에 있는지로 무슨 일인지 압니다.</p></div>
@@ -154,6 +154,7 @@
     </div>
   </div>
 
+  <!-- 안내 세 묶음: 왼쪽 제목 + 오른쪽 넓은 내용(2026-11-11 사용자: 3열이면 줄바꿈이 많아 불편) -->
   <div class="dl-guide">
     <div>
       <h3 data-i18n="dl.reqh">필요한 것</h3>
@@ -208,22 +209,26 @@
 <section class="blk" id="components">
   <div class="label mono">N° 07 — RELEASES</div>
   <h2 data-i18n="comp.h">구성 요소와 새 소식</h2>
-  <p class="lead" data-i18n="comp.lead">방문할 때마다 GitHub에서 세 부품의 지금 판과 변경 내용을 새로 읽어 옵니다.</p>
-  <div class="tbl-wrap"><table class="list comp">
-    <thead><tr><th data-i18n="comp.th1">부품</th><th data-i18n="comp.th2">판</th><th data-i18n="comp.th3">날짜</th><th data-i18n="comp.th4">한 줄</th></tr></thead>
-    <tbody>
-      <tr><td data-i18n="comp.face">IRIS 창</td><td class="mono-n" id="comp-face-ver">v2.102.0</td><td class="mono-n" id="comp-face-date">—</td><td id="comp-face-note">—</td></tr>
-      <tr><td data-i18n="comp.messenger">메신저</td><td class="mono-n" id="comp-messenger-ver">v0.4.3</td><td class="mono-n" id="comp-messenger-date">—</td><td id="comp-messenger-note">—</td></tr>
-      <tr><td data-i18n="comp.installer">설치 패키지</td><td class="mono-n" id="comp-installer-ver">v2.0.59</td><td class="mono-n" id="comp-installer-date">—</td><td id="comp-installer-note">—</td></tr>
-    </tbody>
-  </table></div>
-  <!-- 판마다 손으로 갱신하는 짧은 새 소식(위 표는 GitHub 에서 자동, 이 문단은 사람이 쓴 요지). 다음 안정판이 나오면 바꿔 쓴다. -->
-  <p class="news" id="comp-hotfix" data-i18n="comp.hotfix"><b>안정판 2.0.59 · IRIS 창 2.102.0 (2026-11-11)</b> — 도구 화면을 Skill·MCP·Plugin으로 나누고, 엄선한 도구를 단추 하나로 설치·제거합니다. 모델 선택 이름이 실제로 쓰는 모델과 늘 같도록 고쳤고, 같은 이메일의 Claude·Codex 계정을 둘 다 더할 수 있습니다. 2.0.55에서 바로 업데이트해도 자료·설정·로그인은 그대로입니다.</p>
-  <div class="acc">
-    <details><summary id="comp-face-summary">v2.102.0 변경 내용</summary><p id="comp-face-body"></p></details>
-    <details><summary id="comp-messenger-summary">v0.4.3 변경 내용</summary><p id="comp-messenger-body"></p></details>
-    <details><summary id="comp-installer-summary">v2.0.59 변경 내용</summary><p id="comp-installer-body"></p></details>
+  <p class="lead" data-i18n="comp.lead">세 부품의 지금 판은 방문할 때마다 GitHub에서 새로 읽어 옵니다. 그 아래는 IRIS가 지금까지 걸어온 길입니다(최근 것이 위).</p>
+  <!-- 지금 판(GitHub 에서 자동): site.js renderComponent 가 comp-*-ver·comp-*-date 를 채운다 -->
+  <div class="now">
+    <span class="now-lab mono" data-i18n="comp.now">지금</span>
+    <div class="part"><span data-i18n="comp.face">IRIS 창</span><b class="mono-n" id="comp-face-ver">v2.102.0</b><small class="mono-n" id="comp-face-date">2026-11-10</small></div>
+    <div class="part"><span data-i18n="comp.messenger">메신저</span><b class="mono-n" id="comp-messenger-ver">v0.4.3</b><small class="mono-n" id="comp-messenger-date">2026-09-18</small></div>
+    <div class="part"><span data-i18n="comp.installer">설치 패키지</span><b class="mono-n" id="comp-installer-ver">v2.0.59</b><small class="mono-n" id="comp-installer-date">2026-11-10</small></div>
   </div>
+  <!-- 연대표(사람이 쓴 요지, 최근 것이 위). 안정판을 올리면 맨 위에 한 칸을 더하고 .cur 를 옮긴다(한국어 + site.js 영어 사전 둘 다). -->
+  <ol class="tl">
+    <li class="cur"><time class="mono-n">2026-11-11</time><div class="tl-b"><span class="tl-v"><span data-i18n="comp.t1v">안정판 2.0.59 · 창 2.102.0</span> <em data-i18n="comp.cur">지금 안정판</em></span><b data-i18n="comp.t1h">도구 화면 새 단장</b><p id="comp-hotfix" data-i18n="comp.hotfix">도구를 Skill·MCP·Plugin으로 나누고, 엄선한 도구를 단추 하나로 설치·제거합니다. 모델 선택 이름이 실제로 쓰는 모델과 늘 같고, 같은 이메일의 Claude·Codex 계정을 둘 다 더할 수 있습니다.</p></div></li>
+    <li><time class="mono-n">2026-11-09</time><div class="tl-b"><span class="tl-v" data-i18n="comp.t2v">2.0.55 · 창 2.99.0</span><b data-i18n="comp.t2h">첫 안정판 — 두 갈래 배포</b><p data-i18n="comp.t2p">새 판은 최신판으로 먼저 시험하고, 확인한 판만 안정판으로 올립니다. 새 PC에서 Claude 첫 실행 안내창이 대화를 가로막던 문제를 고쳤습니다.</p></div></li>
+    <li><time class="mono-n">2026-11-02</time><div class="tl-b"><span class="tl-v">2.0.53</span><b data-i18n="comp.t3h">로그인 열쇠 만료 미리 알림</b><p data-i18n="comp.t3p">열쇠마다 만료일과 남은 날을 보여 주고, 만료 3일 전부터 알려 주며, 단추 하나로 갱신합니다.</p></div></li>
+    <li><time class="mono-n">2026-10-29</time><div class="tl-b"><span class="tl-v">2.0.52</span><b data-i18n="comp.t4h">MCP 중계기</b><p data-i18n="comp.t4p">세션은 도구 목록만 먼저 받고, 실제 MCP는 그 도구를 처음 쓸 때 그 세션에만 켭니다. 쓰는 것만 켜서 메모리를 아낍니다.</p></div></li>
+    <li><time class="mono-n">2026-10-21</time><div class="tl-b"><span class="tl-v" data-i18n="comp.t5v">2.0.46 · 창 2.92.1</span><b data-i18n="comp.t5h">첫 실행 튜토리얼</b><p data-i18n="comp.t5p">처음 설치한 PC에서 내 폴더 만들기부터 안내하고, 내 일의 지도를 역할 캐릭터와 폴더 나무로 보여 줍니다.</p></div></li>
+    <li><time class="mono-n">2026-10-16</time><div class="tl-b"><span class="tl-v">2.0.45</span><b data-i18n="comp.t6h">에이전트가 스스로 최신 판으로</b><p data-i18n="comp.t6p">Claude Code·Codex가 스스로 최신 판으로 올라갑니다.</p></div></li>
+    <li><time class="mono-n">2026-09-16</time><div class="tl-b"><span class="tl-v">2.0.0</span><b data-i18n="comp.t8h">zip 하나로 전부 설치</b><p data-i18n="comp.t8p">아무것도 깔려 있지 않은 새 윈도우 PC에서 zip 하나를 두 번 클릭하면 IRIS 체계 전체가 끝까지 설치됩니다.</p></div></li>
+    <li class="first"><time class="mono-n">2026-09-12</time><div class="tl-b"><span class="tl-v" data-i18n="comp.t7v">메신저 0.1</span><b data-i18n="comp.t7h">첫 확장 모듈, IRIS 메신저</b><p data-i18n="comp.t7p">사람끼리 글과 파일을 종단 간 암호화로 주고받습니다. IRIS 창 안에서 바로 씁니다.</p></div></li>
+  </ol>
+  <p class="tl-more"><a href="https://github.com/Feynman520/d09-p03-iris-installer/releases" rel="noopener" data-i18n="comp.all">모든 판과 변경 내용 보기 (GitHub)</a></p>
 </section>
 
 <section class="blk" id="faq">

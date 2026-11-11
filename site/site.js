@@ -48,7 +48,7 @@
       'dock.title': 'Download IRIS',
       // IRIS란
       'what.h': 'What IRIS is',
-      'what.define': 'Define where your work lives and how it is done, and the agents work exactly that way.',
+      'what.define': 'IRIS is an <b>AI agent assistant</b> on your PC that sees where your work belongs and the rules it follows, and does the work itself with Claude Code and Codex.',
       'what.lead': 'To hand work to an assistant you need three things: a place where the work lives, rules for how it is done, and hands that actually do it. IRIS installs all three into one folder, C:\\IRIS.',
       'what.1h': 'Folder system', 'what.1p': 'Places are laid out as role → domain → project → step. The assistant knows what the work is from the folder it is in.',
       'what.2h': 'Rule files', 'what.2p': 'The AGENTS.md in each folder is the rule for that place. Rules from the folders above carry down on their own.',
@@ -111,11 +111,28 @@
       'in.lic': 'All source is published under the MIT license. Licenses of bundled parts are listed in <code>payload/licenses/NOTICES.md</code> inside the zip.',
       // 구성 요소와 새 소식
       'comp.h': 'Components and news',
-      'comp.lead': 'On every visit, the current version and changes of all three parts are read fresh from GitHub.',
-      'comp.th1': 'Part', 'comp.th2': 'Version', 'comp.th3': 'Date', 'comp.th4': 'One line',
+      'comp.lead': 'The current version of each part is read fresh from GitHub on every visit. Below is the road IRIS has taken so far, newest first.',
+      'comp.now': 'Now',
       'comp.face': 'IRIS window', 'comp.messenger': 'Messenger', 'comp.installer': 'Installer package',
       'comp.none': 'No release notes yet.', 'comp.nover': 'No release yet',
-      'comp.hotfix': '<b>Stable 2.0.59 · IRIS window 2.102.0 (2026-11-11)</b> — the tools screen is split into Skill, MCP and Plugin, and hand-picked tools install or uninstall with one button. The model name you pick now always matches the model actually used, and a Claude and a Codex account with the same email can both be added. Updating straight from 2.0.55 keeps your files, settings and logins.',
+      'comp.cur': 'Current stable',
+      'comp.t1v': 'Stable 2.0.59 · window 2.102.0', 'comp.t1h': 'A new tools screen',
+      'comp.hotfix': 'Tools are split into Skill, MCP and Plugin, and hand-picked tools install or uninstall with one button. The model name you pick always matches the model actually used, and a Claude and a Codex account with the same email can both be added.',
+      'comp.t2v': '2.0.55 · window 2.99.0', 'comp.t2h': 'First stable — two release channels',
+      'comp.t2p': 'New versions are tried first as the latest build; only checked ones become stable. Fixed Claude\'s first-run prompts blocking the chat on a new PC.',
+      'comp.t3h': 'Login keys: warned before they expire',
+      'comp.t3p': 'Each key shows its expiry date and days left, warns three days ahead, and renews with one button.',
+      'comp.t4h': 'MCP relay',
+      'comp.t4p': 'A session first gets only the tool list; a real MCP starts for that session when its tool is first used. Only what you use runs, so memory is saved.',
+      'comp.t5v': '2.0.46 · window 2.92.1', 'comp.t5h': 'First-run tutorial',
+      'comp.t5p': 'A new PC starts by making your own folders, and the map of your work appears as role characters and a folder tree.',
+      'comp.t6h': 'Agents keep themselves up to date',
+      'comp.t6p': 'Claude Code and Codex update themselves to the newest version.',
+      'comp.t7v': 'Messenger 0.1', 'comp.t7h': 'First module: IRIS Messenger',
+      'comp.t7p': 'People exchange messages and files with end-to-end encryption, right inside the IRIS window.',
+      'comp.t8h': 'One zip installs everything',
+      'comp.t8p': 'Double-click one zip on a fresh Windows PC with nothing installed, and the whole IRIS system installs to the end.',
+      'comp.all': 'All versions and change notes (GitHub)',
       // 자주 묻는 질문
       'faq.h': 'Questions',
       'faq.1q': 'Do I need a paid subscription?', 'faq.1a': 'Yes. IRIS does not make an AI of its own; it runs Claude Code and Codex with the Claude or ChatGPT subscription you already have. IRIS itself is free.',
@@ -225,7 +242,7 @@
   const mb = (bytes) => `${(bytes / 1e6).toFixed(1)} MB`; // 십진 MB(383,132,591 B → 383.1 MB). 정확한 바이트 수는 따로 보인다
   function paint(r) {
     const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.textContent = v; };
-    set('chip-ver', r.version); set('chip-size', mb(r.bytes)); set('cmp-size', mb(r.bytes)); // cmp-size = 비교표 「한계」 줄의 크기(옛 고정값 541 MB 대신 늘 지금 안정판) set('dl-ver', r.version); set('dl-size', mb(r.bytes)); set('dl-date', r.date); set('foot-ver', r.version);
+    set('chip-ver', r.version); set('chip-size', mb(r.bytes)); set('cmp-size', mb(r.bytes)); /* cmp-size = 비교표 「한계」 줄의 크기(옛 고정값 541 MB 대신 늘 지금 안정판) */ set('dl-ver', r.version); set('dl-size', mb(r.bytes)); set('dl-date', r.date); set('foot-ver', r.version);
     if (r.bytes) set('dl-bytes', `${Number(r.bytes).toLocaleString('en-US')} bytes`); // 정확한 바이트 수 — 내려받기가 중간에 끊긴 파일을 사용자가 속성 창에서 바로 알아보게
     // 내려받기 단추 = 미러(Cloudflare) 우선(2026-09-15). GitHub 첨부 서버가 막힌 네트워크가 실재하고, 브라우저 쪽 자동 감지(no-cors 탐침)는
     // 막힘 방식(재설정/지연)에 따라 놓칠 수 있어 사용자가 두 번 헛걸음했다. 미러에 있는 판이면 무조건 미러, 아니면(막 나온 판·미러 한도 초과 판) GitHub 첨부.
@@ -288,7 +305,7 @@
     const d = compData[key]; if (!d) return;
     const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
     set(`comp-${key}-ver`, d.version || t(I18N.en['comp.nover'], '아직 판이 없습니다'));
-    set(`comp-${key}-date`, d.date || '—');
+    if (d.date) set(`comp-${key}-date`, d.date); // 못 읽었으면 HTML 에 적어 둔 날짜를 그대로 둔다
     set(`comp-${key}-note`, d.note || (d.version ? '—' : t(I18N.en['comp.none'], '변경 내용 없음')));
     const sum = document.getElementById(`comp-${key}-summary`);
     if (sum) sum.textContent = d.version ? t(`What's new in ${d.version}`, `${d.version} 변경 내용`) : t(I18N.en['comp.none'], '변경 내용 없음');
