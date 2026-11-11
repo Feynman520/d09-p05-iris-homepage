@@ -12,23 +12,20 @@
       installer: 'Feynman520/d09-p03-iris-installer',
     },
     fallback: {
-      face: { version: 'v2.99.0' },
+      face: { version: 'v2.102.0' },
       messenger: { version: 'v0.4.3' },
-      installer: { version: 'v2.0.55', bytes: 556005697, date: '2026-11-09', asset: 'IRIS-Setup_v2.0.55_2026-11-09.zip',
-        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.55/IRIS-Setup_v2.0.55_2026-11-09.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
-        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.55', // 릴리스 노트 쪽
-        sha: 'e8f9e229955360dede07e416b2cfddb852993a5f1cf7fd2b7b06ec024034a831' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
+      installer: { version: 'v2.0.59', bytes: 593563124, date: '2026-11-11', asset: 'IRIS-Setup_v2.0.59_2026-11-10.zip',
+        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.59/IRIS-Setup_v2.0.59_2026-11-10.zip', // 첨부 직접 주소(단추를 누르면 바로 내려받기)
+        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.59', // 릴리스 노트 쪽
+        sha: 'b115b0368d0097e94b3bfd045bb24b40470d8bcd70a3ba365afc0bb043b1dc15' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
     // 최신판(2026-11-09 두 갈래 배포, P03 docs\설계-배포채널-2026-11-09.md): 위 fallback = 안정판, 여기 = 사전 공개(prerelease)로 낸 최신판.
     // 릴리스 도구(iris-release.mjs)가 최신판을 낼 때 채우고, promote 로 안정판에 올리면 비운다(null). GitHub API 로 찾지 않는다 —
     // 학교망 공유 IP 의 익명 호출 한도를 더 쓰지 않고, 사람이 시험 단계로 고른 판만 보이게(코덱스 검토 10).
     // installer 가 null 이거나 판이 안정판보다 높지 않으면 최신판 상자는 숨는다.
     preview: {
-      installer: { version: 'v2.0.59', bytes: 593563124, date: '2026-11-10', asset: 'IRIS-Setup_v2.0.59_2026-11-10.zip',
-        url: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/download/iris-installer--v2.0.59/IRIS-Setup_v2.0.59_2026-11-10.zip',
-        page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.59',
-        sha: 'b115b0368d0097e94b3bfd045bb24b40470d8bcd70a3ba365afc0bb043b1dc15' },
-      face: { version: 'v2.102.0' },
+      installer: null,
+      face: null,
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
