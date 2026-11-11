@@ -159,7 +159,8 @@ td { color: var(--dim); }
 .row p { margin: 0; font-size: 14.5px; line-height: 1.75; color: var(--dim); }
 
 /* 내려받기 */
-.dl-cards { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: clamp(16px, 2.4vw, 28px); width: 100%; margin-top: 8px; }
+/* 순서(2026-11-11 사용자): 안내 세 묶음 → 내려받기 카드 → 참고 */
+.dl-cards { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: clamp(16px, 2.4vw, 28px); width: 100%; margin-top: clamp(40px, 6vh, 56px); }
 .card { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; padding: 26px 22px 18px; border-radius: 22px; background: rgba(238,236,243,.025); border: 1px solid var(--hair); text-align: center; }
 .card.stable { border-color: rgba(238,236,243,.3); }
 /* 최신판 카드: 시험 중인 판이 없으면 비활성(흐리게·단추 꺼짐·안내 한 줄) */
@@ -185,7 +186,7 @@ summary::-webkit-details-marker { display: none; }
 .det pre { margin: 0; padding: 10px 12px; border-radius: 10px; background: rgba(238,236,243,.06); overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
 .det pre code { font-size: 11px; color: var(--paper); }
 /* 안내: 묶음마다 한 줄 — 왼쪽 제목, 오른쪽 넓은 내용(3열의 잦은 줄바꿈을 없앰) */
-.dl-guide { margin-top: clamp(56px, 8vh, 80px); border-bottom: 1px solid var(--hair); }
+.dl-guide { margin-top: 8px; border-bottom: 1px solid var(--hair); }
 .dl-guide > div { display: grid; grid-template-columns: 210px 1fr; gap: 0 clamp(24px, 3vw, 44px); border-top: 1px solid var(--hair); padding: 24px 0 14px; }
 .dl-guide h3 { margin-top: 2px; }
 .plain, .steps { list-style: none; margin: 0; padding: 0; }

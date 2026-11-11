@@ -48,8 +48,8 @@
       'dock.title': 'Download IRIS',
       // IRIS란
       'what.h': 'What IRIS is',
-      'what.define': 'IRIS is an <b>AI agent assistant</b> on your PC that sees where your work belongs and the rules it follows, and does the work itself with Claude Code and Codex.',
-      'what.lead': 'To hand work to an assistant you need three things: a place where the work lives, rules for how it is done, and hands that actually do it. IRIS installs all three into one folder, C:\\IRIS.',
+      'what.define': 'IRIS is an <b>AI agent workspace</b>: it sets up the place, the rules and the tools for your work on your PC, so AI agents know your work and get it done.',
+      'what.lead': 'To hand work to an AI assistant, you need an office: desks for the work (folders), a manual for how it is done (rule files), office tools (document tools), and a control room that shows every job at once (the IRIS window). IRIS sets up that office in one folder, C:\\IRIS, and Claude Code and Codex work inside it.',
       'what.1h': 'Folder system', 'what.1p': 'Places are laid out as role → domain → project → step. The assistant knows what the work is from the folder it is in.',
       'what.2h': 'Rule files', 'what.2p': 'The AGENTS.md in each folder is the rule for that place. Rules from the folders above carry down on their own.',
       'what.3h': 'Agents and the window', 'what.3p': 'Claude Code and Codex are the hands that do the work. The IRIS window steers several of their sessions from one screen.',

@@ -69,8 +69,8 @@
 <section class="blk" id="what">
   <div class="label mono">N° 02 — WHAT IT IS</div>
   <h2 data-i18n="what.h">IRIS란</h2>
-  <p class="define" data-i18n="what.define">IRIS는 내 PC에서 내 일이 놓일 자리와 규칙을 보고, Claude Code·Codex로 직접 일하는 <b>AI 에이전트 비서</b>입니다.</p>
-  <p class="lead" data-i18n="what.lead">비서에게 일을 맡기려면 세 가지가 필요합니다. 일이 놓일 자리, 일하는 규칙, 실제로 일하는 손. IRIS는 이 셋을 C:\IRIS 한 폴더에 함께 설치합니다.</p>
+  <p class="define" data-i18n="what.define">IRIS는 AI 에이전트가 내 일을 알고 일하도록, 일의 자리와 규칙과 도구를 내 PC에 갖춰 주는 <b>AI 에이전트 워크스페이스</b>입니다.</p>
+  <p class="lead" data-i18n="what.lead">AI 비서에게 일을 맡기려면 사무실이 필요합니다. 일이 놓일 책상(폴더), 일하는 매뉴얼(규칙 파일), 손에 쥘 사무 도구(문서 도구), 여러 일을 한눈에 보는 지휘실(IRIS 창). IRIS는 이 사무실을 C:\IRIS 한 폴더에 꾸려 주고, 그 안에서 Claude Code·Codex가 일합니다.</p>
   <div class="three">
     <div><span class="no mono">01</span><h3 data-i18n="what.1h">폴더 체계</h3><p data-i18n="what.1p">역할 → 분야 → 프로젝트 → 단계 순서로 자리를 잡습니다. 비서는 지금 어느 폴더에 있는지로 무슨 일인지 압니다.</p></div>
     <div><span class="no mono">02</span><h3 data-i18n="what.2h">규칙 파일</h3><p data-i18n="what.2p">폴더마다 있는 AGENTS.md가 그 자리의 규칙입니다. 위 폴더의 규칙은 아래 폴더로 저절로 이어집니다.</p></div>
@@ -116,6 +116,33 @@
 <section class="blk" id="download">
   <div class="label mono">N° 05 — DOWNLOAD · FREE · MIT</div>
   <h2 data-i18n="dl.h">내려받기</h2>
+  <!-- 안내 세 묶음: 왼쪽 제목 + 오른쪽 넓은 내용(2026-11-11 사용자: 3열이면 줄바꿈이 많아 불편) -->
+  <div class="dl-guide">
+    <div>
+      <h3 data-i18n="dl.reqh">필요한 것</h3>
+      <ul class="plain">
+        <li data-i18n="dl.req1">윈도우 10(1809) 이상, 64비트</li>
+        <li data-i18n="dl.req2">C 드라이브 여유 3 GB 이상</li>
+        <li data-i18n="dl.req3">인터넷 — 마지막 「계정 연결」 단계에서만 씁니다. 그 앞 단계는 인터넷 없이 됩니다.</li>
+        <li data-i18n="dl.req4">Claude 또는 ChatGPT 유료 구독 — 에이전트가 그 계정으로 일합니다</li>
+      </ul>
+    </div>
+    <div>
+      <h3 data-i18n="dl.stepsh">설치 3단계</h3>
+      <ol class="steps">
+        <li data-i18n="dl.step1">zip을 받은 뒤 <strong>압축을 풀기 전에</strong> 파일을 오른쪽 클릭 → 속성 → 아래쪽 「차단 해제」에 체크 → 확인. 그다음 압축을 풉니다.</li>
+        <li data-i18n="dl.step2">풀린 폴더의 <code>IRIS-설치.cmd</code>를 더블클릭합니다. 파란 경고 창이나 「스마트 앱 컨트롤」 차단이 뜨면 코드 서명이 없어서입니다 — <a href="/install#blocked">설치 안내</a>의 「윈도우가 막을 때」를 따라 하세요.</li>
+        <li data-i18n="dl.step3">브라우저에 열리는 설치 화면(여덟 화면)을 따라갑니다. 정할 것은 구독과 작업 폴더 둘, 직접 할 일은 계정 로그인 하나뿐입니다.</li>
+      </ol>
+    </div>
+    <div>
+      <h3 data-i18n="dl.twoh">설치는 하나, 쓰는 길은 둘</h3>
+      <ul class="plain">
+        <li data-i18n="dl.two1"><b>바로 전부 쓰기</b> — 설치가 끝나면 로그인까지 이어서 합니다.</li>
+        <li data-i18n="dl.two2"><b>창·폴더·대시보드만 먼저</b> — 로그인은 건너뛰고 IRIS 창부터 써 봅니다. 남은 일은 IRIS 창의 「설치 이어 하기」로 언제든 마저 합니다.</li>
+      </ul>
+    </div>
+  </div>
   <div class="dl-cards">
     <!-- 안정판(채운 단추, 권장) -->
     <div class="card stable">
@@ -154,33 +181,6 @@
     </div>
   </div>
 
-  <!-- 안내 세 묶음: 왼쪽 제목 + 오른쪽 넓은 내용(2026-11-11 사용자: 3열이면 줄바꿈이 많아 불편) -->
-  <div class="dl-guide">
-    <div>
-      <h3 data-i18n="dl.reqh">필요한 것</h3>
-      <ul class="plain">
-        <li data-i18n="dl.req1">윈도우 10(1809) 이상, 64비트</li>
-        <li data-i18n="dl.req2">C 드라이브 여유 3 GB 이상</li>
-        <li data-i18n="dl.req3">인터넷 — 마지막 「계정 연결」 단계에서만 씁니다. 그 앞 단계는 인터넷 없이 됩니다.</li>
-        <li data-i18n="dl.req4">Claude 또는 ChatGPT 유료 구독 — 에이전트가 그 계정으로 일합니다</li>
-      </ul>
-    </div>
-    <div>
-      <h3 data-i18n="dl.stepsh">설치 3단계</h3>
-      <ol class="steps">
-        <li data-i18n="dl.step1">zip을 받은 뒤 <strong>압축을 풀기 전에</strong> 파일을 오른쪽 클릭 → 속성 → 아래쪽 「차단 해제」에 체크 → 확인. 그다음 압축을 풉니다.</li>
-        <li data-i18n="dl.step2">풀린 폴더의 <code>IRIS-설치.cmd</code>를 더블클릭합니다. 파란 경고 창이나 「스마트 앱 컨트롤」 차단이 뜨면 코드 서명이 없어서입니다 — <a href="/install#blocked">설치 안내</a>의 「윈도우가 막을 때」를 따라 하세요.</li>
-        <li data-i18n="dl.step3">브라우저에 열리는 설치 화면(여덟 화면)을 따라갑니다. 정할 것은 구독과 작업 폴더 둘, 직접 할 일은 계정 로그인 하나뿐입니다.</li>
-      </ol>
-    </div>
-    <div>
-      <h3 data-i18n="dl.twoh">설치는 하나, 쓰는 길은 둘</h3>
-      <ul class="plain">
-        <li data-i18n="dl.two1"><b>바로 전부 쓰기</b> — 설치가 끝나면 로그인까지 이어서 합니다.</li>
-        <li data-i18n="dl.two2"><b>창·폴더·대시보드만 먼저</b> — 로그인은 건너뛰고 IRIS 창부터 써 봅니다. 남은 일은 IRIS 창의 「설치 이어 하기」로 언제든 마저 합니다.</li>
-      </ul>
-    </div>
-  </div>
   <div class="notes">
     <p data-i18n="dl.note">압축이 안 풀리면 파일 속성 창의 크기를 위 「자세한 정보」의 바이트 수와 견주어 보세요. 다르면 내려받기가 중간에 끊긴 것이니 다시 받으면 됩니다.</p>
     <p data-i18n="dl.update">이미 설치했다면 IRIS 창의 설정 → 업데이트에서 한 번에 갱신됩니다. 새 zip을 실행해도 「업데이트 시작」이 나오고, 자료·설정·로그인은 그대로 둡니다. 1.x에서 2.0으로 넘어올 때만 새로 설치합니다(기존 자료는 그대로).</p>
