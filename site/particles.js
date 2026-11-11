@@ -284,8 +284,9 @@ const SHAPES = {
   finale() {
     const sh = blank(), s = SMALL();
     const smp = sample((c) => fitText(c, 'IRIS', W * (s ? .86 : .62), H * (s ? .17 : .3), W / 2, s ? 116 + H * .17 : 140 + H * .19, 900, -.045));
-    place(sh, smp, 0, Math.floor(nA * .92), { z: 16, delay: () => .42 + rnd() * .16 });
-    sh.k = .15; sh.damp = .78; sh.flow = .05; sh.pre = .02; sh.fade = .16; sh.bright = 1.45;
+    // 2026-11-11 사용자: 마지막 장 IRIS 가 너무 밝음 → 작은 글자에 입자가 몰려 겹쳐 빛나므로 입자 수(.92→.42)와 밝기(1.45→.9)를 함께 낮춘다
+    place(sh, smp, 0, Math.floor(nA * .42), { z: 16, delay: () => .42 + rnd() * .16 });
+    sh.k = .15; sh.damp = .78; sh.flow = .05; sh.pre = .02; sh.fade = .16; sh.bright = .9;
     return sh;
   }
 };
@@ -387,10 +388,10 @@ try {
         c+=g*.95;
         c=1.-exp(-c*1.2);
         vec2 b=(uv-vec2(.6,.64));b.x*=uRes.x/uRes.y;
-        vec3 bg=mix(vec3(.088,.084,.112),vec3(.022,.022,.028),smoothstep(0.,.8,length(b)));
+        vec3 bg=vec3(0.); // 2026-11-11 사용자: 뒷배경 완전 까맣게(옛 보랏빛 번짐 없앰)
         vec3 col=bg+c*(1.-bg);
         col+=uFlash*(.14+c*.85)*vec3(.95,.94,1.);
-        col+=(hash(gl_FragCoord.xy+fract(uT))-.5)/255.;
+        col+=max(hash(gl_FragCoord.xy+fract(uT))-.5,0.)*c.g/255.; // 띠 줄이기 잡음은 입자 위에만(검은 바탕은 0 그대로)
         gl_FragColor=vec4(col,1.);
       }`,
     depthTest: false, depthWrite: false

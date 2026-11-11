@@ -205,6 +205,7 @@
       'p.agh': 'Many agents, one map',
       'p.ag': 'Claude Code and Codex read the same map and the same rules. <b>Agents may change, but your definition of the work stays — the next agent plugs into the same place.</b>',
       'p.gearh': 'Gear',
+      'dl.prenone': 'No preview build is being tested right now — the stable build is the newest.',
       'p.g1': 'Document tools — work directly with Hangul, Excel, PowerPoint, Word and PDF',
       'p.g2': 'Self-improvement — one “from now on, do it this way” becomes a rule',
       'p.g3': 'Account relay — with several subscriptions, it switches to the next account when one hits its limit',
@@ -263,12 +264,15 @@
   // 판 비교: 'v2.0.56' 같은 X.Y.Z 세 정수만(사전 공개 꼬리표 -rc 등은 쓰지 않는다). 형식이 아니면 null.
   const semver = (v) => { const m = /^v?(\d+)\.(\d+)\.(\d+)$/.exec(String(v || '').trim()); return m ? [+m[1], +m[2], +m[3]] : null; };
   const cmpVer = (a, b) => { const x = semver(a), y = semver(b); if (!x || !y) return null; for (let i = 0; i < 3; i++) if (x[i] !== y[i]) return x[i] < y[i] ? -1 : 1; return 0; };
-  /** 최신판 상자: CONFIG.preview.installer 가 안정판(stableVersion)보다 높을 때만 그린다. 아니면 숨긴다. */
+  /** 최신판 카드: 늘 보인다. CONFIG.preview.installer 가 안정판(stableVersion)보다 높을 때만 켜고, 아니면 비활성(.off — 단추 주소 없음)으로 둔다. */
   function paintPreview(stableVersion) {
     const box = document.getElementById('dl-pre'); if (!box) return;
     const p = CONFIG.preview && CONFIG.preview.installer;
     const show = !!(p && p.asset && p.url && cmpVer(p.version, stableVersion) === 1);
-    box.hidden = !show; if (!show) return;
+    box.hidden = false; box.classList.toggle('off', !show);
+    const btn0 = document.getElementById('dl-pre-btn');
+    if (!show) { if (btn0) { btn0.removeAttribute('href'); btn0.setAttribute('aria-disabled', 'true'); } return; }
+    if (btn0) btn0.removeAttribute('aria-disabled');
     const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v == null ? '' : v; };
     set('dl-pre-ver', p.version); set('dl-pre-size', p.bytes ? mb(p.bytes) : ''); set('dl-pre-date', p.date || '');
     set('dl-pre-bytes', p.bytes ? `${Number(p.bytes).toLocaleString('en-US')} bytes` : '');

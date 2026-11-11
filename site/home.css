@@ -3,7 +3,7 @@
          그 밖(html.nogl 또는 html.rm) = 평범한 세로 문서 — 글·단추가 모두 그대로 읽힌다. */
 @font-face { font-family: "Pretendard Variable"; src: url("fonts/PretendardVariable.woff2") format("woff2-variations"); font-weight: 45 920; font-display: swap; }
 :root {
-  --ink: #060608;
+  --ink: #000;  /* 2026-11-11 사용자: 뒷배경 완전 까맣게 */
   --paper: #d8d6de;  /* 2026-11-11 톤: 흰 글씨를 살짝 회색으로 (② 한 상자는 아래 .decl 에서 원래 값) */
   --dim: rgba(216, 214, 222, .58);
   --faint: rgba(238, 236, 243, .34);
@@ -28,17 +28,17 @@ a { color: inherit; text-decoration: none; }
 code { font-family: var(--mono); font-size: .9em; }
 
 /* ---------- 고정 무대 ---------- */
-#gl { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; display: block; z-index: 0; background: radial-gradient(120% 90% at 60% 35%, #1b1a22 0%, #060608 62%); }
+#gl { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; display: block; z-index: 0; background: #000; }
 .nogl #gl { display: none; }
 .grain { position: fixed; inset: -50%; z-index: 1; pointer-events: none; opacity: 0; mix-blend-mode: overlay; transition: opacity .8s; }
 body[data-s="1"] .grain { opacity: .08; } /* 잡티는 ② 한 상자에서만 */
 .vig { position: fixed; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(130% 100% at 50% 45%, transparent 56%, rgba(0,0,0,.6) 100%); }
-.nogl body, html.nogl { background: radial-gradient(120% 70% at 60% 0%, #1b1a22 0%, #060608 60%) fixed; }
+.nogl body, html.nogl { background: #000; }
 
 /* ---------- 머리·구석 ---------- */
 .mono { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
 .top { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px var(--gut) 0; }
-.top::before { content: ""; position: absolute; inset: 0 0 -40px; z-index: -1; pointer-events: none; background: linear-gradient(rgba(6,6,8,.72), rgba(6,6,8,0)); }
+.top::before { content: ""; position: absolute; inset: 0 0 -40px; z-index: -1; pointer-events: none; background: linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,0)); }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; letter-spacing: .32em; }
 .brand svg { width: 20px; height: 20px; }
 .nav { display: flex; gap: 30px; font-size: 13px; letter-spacing: .02em; }
@@ -172,6 +172,12 @@ html:not(.motion) .dl-space { height: 40px; min-height: 0; }
 .dl-cards { display: flex; justify-content: center; align-items: flex-start; gap: clamp(16px, 3vw, 40px); flex-wrap: wrap; width: 100%; }
 .card { display: flex; flex-direction: column; align-items: center; gap: 14px; width: min(100%, 360px); padding: 24px 20px 18px; border-radius: 22px; background: rgba(6,6,8,.55); border: 1px solid var(--hair); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 .card.stable { border-color: rgba(238,236,243,.3); }
+/* 최신판 카드: 시험 중인 판이 없으면 비활성(흐리게·단추 꺼짐·안내 한 줄) */
+.card .pnone { display: none; }
+.card.off { opacity: .5; }
+.card.off .btn { pointer-events: none; cursor: default; filter: grayscale(1); }
+.card.off .pm, .card.off details { display: none; }
+.card.off .pnone { display: block; max-width: 22em; line-height: 1.6; }
 .tag2 { color: var(--paper); font-family: var(--sans); font-size: 12.5px; letter-spacing: .04em; font-weight: 600; }
 .tag2.v { color: var(--violet); }
 .meta { margin: 0; color: var(--dim); font-size: 13px; }

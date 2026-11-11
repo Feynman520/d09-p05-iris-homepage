@@ -66,6 +66,7 @@ async function open({ api = 'blocked', stableApi = null } = {}) {
 }
 const state = (page) => page.evaluate(() => ({
   hidden: document.getElementById('dl-pre').hidden,
+  off: document.getElementById('dl-pre').classList.contains('off'), // 2026-11-11: 최신판 카드는 늘 보이고, 없으면 비활성(.off)
   preHref: document.getElementById('dl-pre-btn').getAttribute('href'),
   preVer: document.getElementById('dl-pre-ver').textContent,
   preSha: document.getElementById('dl-pre-sha').textContent,
@@ -78,7 +79,7 @@ try {
   // ① 최신판 없음
   previewLiteral = 'null'; mirrorExtra = [];
   let p = await open(); let s = await state(p);
-  ok(s.hidden === true, '① 최신판 없음 → 최신판 상자 숨김');
+  ok(s.hidden === false && s.off === true && s.preHref === null, '① 최신판 없음 → 최신판 카드는 보이되 비활성(단추 주소 없음)');
   ok(s.stableHref.endsWith(stableAsset) && s.dockHref === s.stableHref, '① 안정판 단추(본문·아래 띠) = 안정판 미러 주소');
   ok(/^[\d,]+ bytes$/.test(s.bytes) && !s.bytes.includes('541,021,818'), '① 정확한 크기 = 안정판 값(옛 541,021,818 아님)');
   await p.close();
@@ -86,7 +87,7 @@ try {
   // ② 최신판 있음 + 미러에 있음
   previewLiteral = PRE(NV, NA); mirrorExtra = [NA];
   p = await open(); s = await state(p);
-  ok(s.hidden === false && s.preVer === NV, '② 최신판(안정판보다 높음) → 상자 보임 · 판 표시');
+  ok(s.hidden === false && s.off === false && s.preVer === NV, '② 최신판(안정판보다 높음) → 상자 보임 · 판 표시');
   ok(s.preHref === `https://iris-workspace-dl.pages.dev/${NA}`, '② 최신판 단추 = 빠른 미러 주소');
   ok(s.stableHref.endsWith(stableAsset), '② 안정판 단추는 그대로 안정판');
   ok(s.preSha === 'abc123', '② 최신판 SHA-256 = 그 판 값');
@@ -95,25 +96,25 @@ try {
   // ③ 최신판이 미러에 아직 없음 → GitHub 첨부
   mirrorExtra = [];
   p = await open(); s = await state(p);
-  ok(s.hidden === false && s.preHref.startsWith('https://github.com/') && s.preHref.endsWith(NA), '③ 미러에 없으면 최신판 단추 = GitHub 첨부');
+  ok(s.hidden === false && s.off === false && s.preHref.startsWith('https://github.com/') && s.preHref.endsWith(NA), '③ 미러에 없으면 최신판 단추 = GitHub 첨부');
   await p.close();
 
   // ④ 최신판 판 = 안정판 판 → 숨김
   previewLiteral = PRE(stable, stableAsset);
   p = await open(); s = await state(p);
-  ok(s.hidden === true, '④ 최신판이 안정판보다 높지 않으면 숨김');
+  ok(s.hidden === false && s.off === true && s.preHref === null, '④ 최신판이 안정판보다 높지 않으면 비활성');
   await p.close();
 
   // ⑤ 그 최신판이 안정판으로 승격돼 API 가 새 안정판을 주면 → 상자 숨김
   previewLiteral = PRE(NV, NA); mirrorExtra = [NA];
   p = await open({ api: 'ok', stableApi: { v: NV, asset: NA } }); s = await state(p);
-  ok(s.hidden === true && s.stableHref.endsWith(NA), '⑤ API 의 안정판이 따라잡으면 최신판 상자 숨김 · 안정판 단추가 새 판');
+  ok(s.off === true && s.stableHref.endsWith(NA), '⑤ API 의 안정판이 따라잡으면 최신판 카드 비활성 · 안정판 단추가 새 판');
   await p.close();
 
   // ⑥ 형식이 아닌 판(사전 공개 꼬리표) → 숨김
   previewLiteral = PRE(`${NV}-rc.1`, NA);
   p = await open(); s = await state(p);
-  ok(s.hidden === true, '⑥ X.Y.Z 가 아닌 판은 그리지 않음');
+  ok(s.off === true && s.preHref === null, '⑥ X.Y.Z 가 아닌 판은 켜지 않음(비활성)');
   await p.close();
 } finally {
   await browser.close();
