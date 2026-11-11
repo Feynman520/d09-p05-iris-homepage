@@ -1,6 +1,7 @@
 // IRIS homepage · 입자 군무(Particle Swarm) · © 2026 Sejun Ham (함세준) · MIT
 /* 하는 일: 화면 뒤에 고정된 three.js 입자 무대 하나를 두고, 스크롤 위치에 따라 입자가 장면마다 다른 모양으로 모인다.
-   ① IRIS 글자 → ② 상자 → ③ 폴더 나무 → ④ 규칙의 폭포 → ⑤ 두 성운과 창틀 → ⑥ 기능 이름 컷 → ⑦ 1·2·3 → ⑧ 다시 IRIS.
+   ① IRIS 글자 → ② 상자 → ③ 폴더 지도(폴더 나무 → 규칙의 폭포, 두 컷) → ④ 두 성운과 창틀 → ⑤ 장비 이름 컷(3) → ⑥ 다시 IRIS.
+   톤(2026-11-11 사용자 결정): ② 상자만 원래 밝기·크기, 나머지 장면은 입자 밝기 ×TONE_B · 입자 글자 ×TONE_T(차분한 문서형).
    모양은 화면 밖 캔버스에 글자·도형을 그려 픽셀을 뽑아 목표 위치로 쓴다.
    안전장치: WebGL 이 없으면 html.nogl(평범한 문서), 움직임 줄이기면 html.rm(모양만 정지 상태로), 탭이 숨으면 멈춤,
    느린 PC 는 프레임 시간을 재서 입자 수를 줄인다(초당 45장 목표). 다운로드 단추·글은 모두 HTML 이라 입자와 무관하게 동작한다.
@@ -14,6 +15,7 @@ const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const lerp = (a, b, t) => a + (b - a) * t;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const rnd = Math.random;
+const TONE_B = .38, TONE_T = .52; // ② 상자 밖 장면의 입자 밝기·입자 글자 크기 배율
 const FAM = '"Pretendard Variable", "Pretendard", "Malgun Gothic", sans-serif';
 
 /* ---------- 모드 결정: WebGL 이 되는지 먼저 본다 ---------- */
@@ -37,8 +39,8 @@ const grainEl = $('.grain');
 /* ---------- 입자로 그릴 짧은 글 (두 언어) ---------- */
 let LANG = root.lang === 'en' ? 'en' : 'ko';
 const FEATS = {
-  ko: ['세션 여러 개, 한 창', '첫 실행 튜토리얼', '내 폴더 지도', '도구 설치 버튼 하나', '모델 이름 = 실제 모델', '한글 · 엑셀 · PDF', '폴더 하나 지우면 끝'],
-  en: ['Many sessions, one window', 'First-run tutorial', 'A map of your folders', 'One button, every tool', 'Model name = real model', 'HWP · Excel · PDF', 'Delete one folder. Done.']
+  ko: ['한글 · 엑셀 · PDF', '쌓이는 규칙', '계정 자동 전환'],
+  en: ['HWP · Excel · PDF', 'Rules that grow', 'Auto account switch']
 };
 
 /* ---------- 크기·입자 수 ---------- */
@@ -89,14 +91,15 @@ function sample(draw) {
   }
   return { xs, ys, ts, px: 1 / s };
 }
-function fitText(c, str, maxW, maxH, cx, cy, weight, ls) {
+function fitText(c, str, maxW, maxH, cx, cy, weight, ls, k) {
   c.textAlign = 'left'; c.textBaseline = 'alphabetic';
   const LS = 'letterSpacing' in c;
   c.font = weight + ' 200px ' + FAM;
   if (LS) c.letterSpacing = (200 * (ls || 0)).toFixed(1) + 'px';
   let m = c.measureText(str);
   let w = m.actualBoundingBoxLeft + m.actualBoundingBoxRight, h = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
-  const size = 200 * Math.min(maxW / w, maxH / h);
+  // 휴대폰은 화면이 좁아 입자 글자가 원래도 작으므로 덜 줄인다(.8)
+  const size = 200 * Math.min(maxW / w, maxH / h) * (k == null ? (SMALL() ? .8 : TONE_T) : k);
   c.font = weight + ' ' + size.toFixed(1) + 'px ' + FAM;
   if (LS) c.letterSpacing = (size * (ls || 0)).toFixed(1) + 'px';
   m = c.measureText(str);
@@ -211,7 +214,8 @@ const SHAPES = {
     const smp = sample((c) => {
       ys.forEach((y, r) => {
         c.fillStyle = r === 2 ? '#f00' : '#fff';
-        const m = fitText(c, 'AGENTS.md', tw, th, xs[r] + tw / 2, y, 800, -.03);
+        // 톤: 글자는 줄이되(폭 .66) 왼쪽 끝은 물줄기 자리(xs)에 붙여 둔다 — 가운데 정렬로 줄이면 물줄기와 떨어져 보인다
+        const m = fitText(c, 'AGENTS.md', tw * .66, th * .7, xs[r] + tw * .33, y, 700, -.03, 1);
         if (r < 2) { c.strokeStyle = '#fff'; c.lineWidth = 1.6; c.setLineDash([2, 7]); c.beginPath(); c.moveTo(xs[r] + 6, y + m.h * .62); c.lineTo(xs[r] + 6, ys[r + 1] - m.h * .5); c.lineTo(xs[r + 1] - 4, ys[r + 1] - m.h * .5); c.stroke(); c.setLineDash([]); }
       });
     });
@@ -232,7 +236,7 @@ const SHAPES = {
     sh.k = .1; sh.damp = .8; sh.flow = .04; sh.fade = .1;
     return sh;
   },
-  // ⑤ 서로 도는 두 성운 + 하나의 창틀
+  // ④ 서로 도는 두 성운 + 하나의 창틀
   agents() {
     const sh = blank(), s = SMALL(), a = area();
     const fw = Math.min(a.w * .98, a.h * 1.55), fh = Math.min(a.h * .94, fw * .66);
@@ -261,7 +265,7 @@ const SHAPES = {
     sh.Rn = Rn; sh.k = .09; sh.flow = .03; sh.fade = .14;
     return sh;
   },
-  // ⑥ 기능 이름 컷
+  // ⑤ 장비 이름 컷
   feat(o) {
     if (RM) return SHAPES.dust();
     const sh = blank(), s = SMALL();
@@ -270,16 +274,13 @@ const SHAPES = {
     sh.k = .16; sh.damp = .74; sh.flow = .04; sh.fade = .2; sh.bright = 1.15;
     return sh;
   },
-  // ⑦ 1·2·3
-  step(o) {
-    if (RM) return SHAPES.dust();
-    const sh = blank(), s = SMALL();
-    const smp = sample((c) => fitText(c, String(o.sub + 1), W * (s ? .6 : .44), H * (s ? .36 : .78), s ? W / 2 : W * .32, H * (s ? .32 : .5), 250, 0));
-    place(sh, smp, 0, Math.floor(nA * .9), { z: 14, delay: () => rnd() * .06 });
-    sh.k = .14; sh.damp = .76; sh.flow = .04; sh.fade = .18; sh.bright = 1.15;
+  // ③ 폴더 지도 — 첫 컷은 폴더 나무, 둘째 컷은 규칙의 폭포
+  map(o) {
+    const sh = o.sub ? SHAPES.rules() : SHAPES.tree();
+    LAYOUT.map = o.sub ? null : LAYOUT.tree;
     return sh;
   },
-  // ⑧ 다시 IRIS — 폭발했다가 모임(구역 맨 위, 내려받기 글 위쪽)
+  // ⑥ 다시 IRIS — 폭발했다가 모임(구역 맨 위, 내려받기 글 위쪽)
   finale() {
     const sh = blank(), s = SMALL();
     const smp = sample((c) => fitText(c, 'IRIS', W * (s ? .86 : .62), H * (s ? .17 : .3), W / 2, s ? 116 + H * .17 : 140 + H * .19, 900, -.045));
@@ -288,12 +289,12 @@ const SHAPES = {
     return sh;
   }
 };
-const ORDER = ['hero', 'box', 'tree', 'rules', 'agents', 'feat', 'step', 'finale'];
+const ORDER = ['hero', 'box', 'map', 'agents', 'feat', 'finale'];
 const cache = new Map();
 function getShape(si, sub, intro) {
   const key = si + ':' + sub + ':' + LANG + ':' + W + 'x' + H + ':' + nA + ':' + (intro ? 1 : 0);
   let sh = cache.get(key);
-  if (!sh) { sh = SHAPES[ORDER[si]]({ sub, intro }); sh.L = LAYOUT[ORDER[si]]; cache.set(key, sh); }
+  if (!sh) { sh = SHAPES[ORDER[si]]({ sub, intro }); sh.L = LAYOUT[ORDER[si]]; if (ORDER[si] !== 'box') sh.bright = (sh.bright || 1) * TONE_B; cache.set(key, sh); }
   return sh;
 }
 
@@ -448,15 +449,15 @@ function go(si, sub, force) {
   if (intro) { introDone = true; after(2.05, () => { impact(.85); dolly = .05; }); return; }
   if (si !== prev) {
     // 장면이 바뀜 — 확대해 들어가는 컷
-    dolly = -.26; fadeKick = .75; burst(si === 7 ? 0 : 5);
+    dolly = -.26; fadeKick = .75; burst(si === 5 ? 0 : 5);
     impact(.32);
-    if (si === 7) { burst(26, 0, H / 2 - (SMALL() ? 116 + H * .17 : 140 + H * .19), true); impact(.45); dolly = .18; after(1.05, () => { impact(.5); dolly = -.06; }); }
+    if (si === 5) { burst(26, 0, H / 2 - (SMALL() ? 116 + H * .17 : 140 + H * .19), true); impact(.45); dolly = .18; after(1.05, () => { impact(.5); dolly = -.06; }); }
     if (si === 2) after(.95, () => impact(.35));
   } else {
-    // 같은 장면 안의 컷 (⑥ 기능, ⑦ 단계)
+    // 같은 장면 안의 컷 (③ 폴더 지도 2컷, ⑤ 장비 3컷)
     fadeKick = .6;
-    if (si === 5) { burst(9, 0, 0, true); impact(.8); dolly = -.12; }
-    else { burst(15, SMALL() ? 0 : -W * .18, 0, true); impact(1); dolly = -.16; }
+    if (si === 4) { burst(9, 0, 0, true); impact(.8); dolly = -.12; }
+    else { burst(7, 0, 0, true); impact(.45); dolly = -.08; }
   }
 }
 
@@ -555,16 +556,15 @@ function scrollState() {
   let a = 0; for (let i = 0; i < secs.length; i++) if (tops[i] <= y) a = i;
   const p = clamp((scrollY - tops[a]) / Math.max(1, hs[a] - innerHeight), 0, 1);
   let sub = 0;
-  if (!RM && a === 5) sub = Math.min(6, Math.floor(p * 7));
-  if (!RM && a === 6) sub = Math.min(2, Math.floor(p * 3));
+  if (!RM && a === 2) sub = Math.min(1, Math.floor(p * 2));
+  if (!RM && a === 4) sub = Math.min(2, Math.floor(p * 3));
   return { a, p, sub };
 }
 
 /* ---------- 글 상자 갱신 ---------- */
 const chap = $('#chap'), chapBox = $('.chap'), cnt = $('#cnt'), bar = $('#bar');
 const n6 = $('#n6'), cap6 = $('#cap6'), ticks6 = $$('#ticks6 b'), feats = $$('#featList li');
-const steps = $$('#stepList li'), ticks7 = $$('#ticks7 b');
-const tags3 = $$('#tags3 .tag'), tags5 = $$('#tags5 .tag');
+const tags3 = $$('#tags3 .tag'), tags5 = $$('#tags5 .tag'), tagsBox3 = $('#tags3');
 const heroSec = secs[0];
 let domScene = -1, domSub = -1;
 const rebump = (el) => { if (!el || RM) return; el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); };
@@ -577,16 +577,11 @@ function syncDom(a, sub) {
     if (a !== 0 && introDone) heroSec.classList.add('seen');
   }
   if (a !== domScene || sub !== domSub) {
-    if (a === 5 && !RM) {
+    if (tagsBox3) tagsBox3.classList.toggle('off', !(a === 2 && sub === 0));
+    if (a === 4 && !RM) {
       if (n6) n6.textContent = String(sub + 1).padStart(2, '0');
       if (cap6 && feats[sub]) cap6.textContent = feats[sub].textContent;
       ticks6.forEach((b, i) => b.classList.toggle('a', i <= sub)); rebump(cap6); rebump(n6);
-    }
-    if (a === 6 || domScene === -1) {
-      const s = RM ? -1 : sub;
-      steps.forEach((li, i) => li.classList.toggle('cur', i === s || (s < 0)));
-      ticks7.forEach((b, i) => b.classList.toggle('a', i <= sub));
-      if (a === 6 && a === domScene && steps[sub]) rebump(steps[sub]);
     }
   }
   domScene = a; domSub = sub;
@@ -597,7 +592,7 @@ function placeTags() {
     const L = sh.L;
     tags3.forEach((el, r) => { const x = Math.max(12, L.pos[r][0] - (L.pos[r].length === 1 ? L.fh * .7 : L.fh * .68)); el.style.transform = 'translate(' + x.toFixed(0) + 'px,' + (L.ys[r] - L.fh / 2 - 26).toFixed(0) + 'px)'; });
   }
-  if (curScene === 4 && sh.L) {
+  if (curScene === 3 && sh.L) {
     const L = sh.L, Rn = sh.Rn || 100;
     const toS = (x, y) => [x + W / 2, H / 2 - y];
     const A = toS(NEB[0], NEB[1]), B = toS(NEB[2], NEB[3]);
@@ -666,7 +661,7 @@ function tick(now) {
   svPush = RM ? 0 : clamp(sv * .03, -1.6, 1.6);
   dissolve = RM ? 0 : Math.pow(clamp((scrollY / (innerHeight * .85) - .08) / .92, 0, 1), 1.4);
   const st = scrollState();
-  camY = st.a === 7 ? -(scrollY - tops[7]) : 0;
+  camY = st.a === 5 ? -(scrollY - tops[5]) : 0;
   if (started) { go(st.a, st.sub); syncDom(st.a, st.sub); }
   flash *= Math.pow(.86, f); aberr *= Math.pow(.9, f); shake *= Math.pow(.88, f); fadeKick *= Math.pow(.93, f);
   dolly *= Math.pow(.9, f); ptr.vx *= Math.pow(.8, f); ptr.vy *= Math.pow(.8, f);
@@ -715,7 +710,7 @@ new MutationObserver(() => {
 
 /* ---------- 시작 ---------- */
 const hm = location.hash.match(/review-scene=(\d)/);
-const JUMP = hm ? clamp(+hm[1], 1, 8) : 0;
+const JUMP = hm ? clamp(+hm[1], 1, 6) : 0;
 const hh = hm ? location.hash.match(/hold=([\d.]+)/) : null;
 const HOLD = hh ? +hh[1] : 0;
 resizeGL(); measure(); kick();

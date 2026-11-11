@@ -42,7 +42,7 @@
 
 <div class="chap mono" aria-hidden="true"><span id="chap">N° 01 — AI WORKSPACE ON YOUR PC</span></div>
 <div class="side l mono" aria-hidden="true">AI WORKSPACE ON YOUR PC — WINDOWS 10 / 11 — 64-BIT</div>
-<div class="side r" aria-hidden="true"><span class="cnt" id="cnt">01</span><span class="bar"><i id="bar"></i></span><span class="cnt">08</span></div>
+<div class="side r" aria-hidden="true"><span class="cnt" id="cnt">01</span><span class="bar"><i id="bar"></i></span><span class="cnt">06</span></div>
 
 <main>
 <!-- ① 첫 화면 -->
@@ -54,7 +54,7 @@
       <div class="sl">
         <p class="kr wipe" style="--d:1.9s" data-i18n="p.kicker">내 PC 안의 AI 비서 작업실</p>
         <h1 class="slogan"><span class="ln"><span style="--d:2s" data-i18n="p.motto1">해결은 에이전트가,</span></span><span class="ln"><span style="--d:2.1s"><em data-i18n="p.motto2">정의는 우리가.</em></span></span></h1>
-        <p class="sub fade" style="--d:2.25s" data-i18n="p.sub">폴더 체계와 규칙, 에이전트(Claude Code · Codex)를 한 상자에 담아 zip 하나로 설치합니다.</p>
+        <p class="sub fade" style="--d:2.25s" data-i18n="p.sub">Claude Code와 Codex가 내 일의 지도와 규칙을 보고 일합니다.</p>
       </div>
       <div class="hero-cta fade" style="--d:2.35s">
         <a class="btn" id="dock-dl" href="https://iris-workspace-dl.pages.dev/IRIS-Setup_v2.0.55_2026-11-09.zip"><span data-i18n="dock.title">IRIS 내려받기</span><span class="o" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg></span></a>
@@ -69,15 +69,15 @@
 <section class="sc decl" id="about" data-chap="N° 02 — WHAT IT IS" style="--h:175vh">
   <div class="stage">
     <div class="txt">
-      <h2 class="statement"><span class="ln"><span style="--d:.15s" data-i18n="p.decl1">폴더 체계와 규칙,</span></span><span class="ln"><span style="--d:.24s" data-i18n="p.decl2">에이전트를 <strong>한 상자</strong>에.</span></span><span class="ln"><span style="--d:.33s" data-i18n="p.decl3"><strong>zip 하나</strong>로 설치.</span></span></h2>
-      <p class="sub2 fade" style="--d:.6s" data-i18n="p.declsub">일이 놓일 자리, 일하는 방식을 적은 규칙, 실제로 일하는 손. 셋이 C:\IRIS 한 폴더에 함께 들어갑니다.</p>
+      <h2 class="statement"><span class="ln"><span style="--d:.15s" data-i18n="p.decl1">폴더 지도, 에이전트,</span></span><span class="ln"><span style="--d:.24s" data-i18n="p.decl2">장비를 <strong>한 상자</strong>에.</span></span><span class="ln"><span style="--d:.33s" data-i18n="p.decl3"><strong>zip 하나</strong>로 설치.</span></span></h2>
+      <p class="sub2 fade" style="--d:.6s" data-i18n="p.declsub">내 일의 지도와 규칙, 실제로 일하는 에이전트, 문서 도구와 계정 전환 같은 장비. 셋이 C:\IRIS 한 폴더에 함께 들어갑니다.</p>
     </div>
   </div>
 </section>
 
 <div id="how">
-<!-- ③ 폴더 체계 -->
-<section class="sc tree" data-chap="N° 03 — FOLDERS" style="--h:195vh">
+<!-- ③ 무기 1 · 폴더 지도 (두 컷: 폴더 나무 → 규칙의 폭포) -->
+<section class="sc map" id="map" data-chap="N° 03 — FOLDER MAP" style="--h:300vh">
   <div class="stage">
     <div class="tags" id="tags3" aria-hidden="true">
       <span class="tag mono fade" style="--d:.2s">ROLE</span>
@@ -85,77 +85,47 @@
       <span class="tag mono fade" style="--d:.8s">PROJECT</span>
     </div>
     <div class="txt">
-      <h2><span class="ln"><span style="--d:.1s" data-i18n="what.1h">폴더 체계</span></span></h2>
-      <p class="fade" style="--d:.35s" data-i18n="p.f1">역할 → 분야 → 프로젝트 순서로 자리를 잡습니다. <b>비서는 지금 어느 자리에서 일하는지 폴더로 압니다.</b></p>
+      <h2><span class="ln"><span style="--d:.1s"><span data-i18n="p.maph">폴더 지도</span> <small data-i18n="p.mapo">(온톨로지)</small></span></span></h2>
+      <p class="fade" style="--d:.35s" data-i18n="p.map">역할 → 분야 → 프로젝트 폴더가 곧 내 일의 지도입니다. 폴더마다 AGENTS.md 규칙이 있고, 위 폴더의 규칙은 아래로 이어집니다. <b>비서는 어느 폴더에서 열든 지도와 그 자리의 규칙을 보고 시작합니다.</b></p>
     </div>
   </div>
 </section>
 
-<!-- ④ 규칙 파일 -->
-<section class="sc rules" data-chap="N° 04 — RULES" style="--h:195vh">
-  <div class="stage">
-    <div class="txt">
-      <h2><span class="ln"><span style="--d:.1s" data-i18n="what.2h">규칙 파일</span></span></h2>
-      <p class="fade" style="--d:.35s" data-i18n="p.f2">폴더마다 AGENTS.md 하나가 그 자리의 규칙입니다. <b>위 폴더의 규칙은 아래로 자동으로 이어집니다.</b></p>
-    </div>
-  </div>
-</section>
-
-<!-- ⑤ 에이전트와 창 -->
-<section class="sc agents" data-chap="N° 05 — AGENTS" style="--h:205vh">
+<!-- ④ 무기 2 · 여러 에이전트, 같은 지도 -->
+<section class="sc agents" data-chap="N° 04 — AGENTS" style="--h:205vh">
   <div class="stage">
     <div class="tags" id="tags5" aria-hidden="true">
       <span class="tag mono v fade" style="--d:.4s">CLAUDE CODE</span>
       <span class="tag mono fade" style="--d:.55s">CODEX</span>
-      <span class="tag mono fade" style="--d:.7s">ONE WINDOW</span>
+      <span class="tag mono fade" style="--d:.7s">SAME MAP · SAME RULES</span>
     </div>
     <div class="txt">
-      <h2><span class="ln"><span style="--d:.1s" data-i18n="what.3h">에이전트와 창</span></span></h2>
-      <p class="fade" style="--d:.35s" data-i18n="p.f3">Claude Code와 Codex가 실제 손입니다. <b>IRIS 창은 그 세션 여러 개를 한 화면에서 지휘합니다.</b></p>
+      <h2><span class="ln"><span style="--d:.1s" data-i18n="p.agh">여러 에이전트, 같은 지도</span></span></h2>
+      <p class="fade" style="--d:.35s" data-i18n="p.ag">Claude Code와 Codex가 같은 지도와 같은 규칙을 읽고 일합니다. <b>에이전트가 바뀌어도 내 일의 정의는 그대로 — 다음 에이전트도 같은 자리에 꽂힙니다.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ 무기 3 · 장비 (세 컷) -->
+<section class="sc feats" id="features" data-chap="N° 05 — GEAR" style="--h:260vh">
+  <div class="stage">
+    <h2 class="vh" data-i18n="p.gearh">장비</h2>
+    <ul class="feat-list" id="featList">
+      <li data-i18n="p.g1">문서 도구 — 한글 · 엑셀 · 파워포인트 · 워드 · PDF를 바로 다룹니다</li>
+      <li data-i18n="p.g2">자기개선 — “앞으로는 이렇게” 한마디가 규칙으로 쌓입니다</li>
+      <li data-i18n="p.g3">계정 중계 — 구독 계정이 여럿이면, 한도가 찬 계정에서 다음 계정으로 자동 전환합니다</li>
+    </ul>
+    <div class="cut" aria-hidden="true">
+      <div class="ticks" id="ticks6"><b></b><b></b><b></b></div>
+      <div class="count"><span id="n6">01</span> <i>/ 03</i></div>
+      <div class="cap mono" id="cap6">문서 도구 — 한글 · 엑셀 · 파워포인트 · 워드 · PDF를 바로 다룹니다</div>
     </div>
   </div>
 </section>
 </div>
 
-<!-- ⑥ 기능 몰아치기 -->
-<section class="sc feats" id="features" data-chap="N° 06 — INSIDE THE BOX" style="--h:430vh">
-  <div class="stage">
-    <h2 class="vh" data-i18n="feat.h">기능</h2>
-    <ul class="feat-list" id="featList">
-      <li data-i18n="p.ft1">세션 여러 개, 한 창</li>
-      <li data-i18n="p.ft2">첫 실행 튜토리얼</li>
-      <li data-i18n="p.ft3">온톨로지 — 내 폴더 지도</li>
-      <li data-i18n="p.ft4">도구 설치는 버튼 하나</li>
-      <li data-i18n="p.ft5">모델 이름 = 실제 모델</li>
-      <li data-i18n="p.ft6">한글 · 엑셀 · PDF 도구 동봉</li>
-      <li data-i18n="p.ft7">지울 때는 폴더 하나 지우면 끝</li>
-    </ul>
-    <div class="cut" aria-hidden="true">
-      <div class="ticks" id="ticks6"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
-      <div class="count"><span id="n6">01</span> <i>/ 07</i></div>
-      <div class="cap mono" id="cap6">MANY SESSIONS — ONE WINDOW</div>
-    </div>
-  </div>
-</section>
-
-<!-- ⑦ 시작 3단계 -->
-<section class="sc steps" id="install" data-chap="N° 07 — THREE STEPS" style="--h:310vh">
-  <div class="stage">
-    <div class="txt">
-      <h2 class="vh" data-i18n="dl.stepsh">설치 3단계</h2>
-      <ol class="step-list" id="stepList">
-        <li><span class="mono">STEP 01</span><b data-i18n="p.s1b">zip 내려받기</b><span class="sx" data-i18n="p.s1s">파일 하나를 받습니다.</span></li>
-        <li><span class="mono">STEP 02</span><b data-i18n="p.s2b">두 번 클릭</b><span class="sx" data-i18n="p.s2s">압축을 풀고 <code>IRIS-설치.cmd</code> 를 더블클릭합니다.</span></li>
-        <li><span class="mono">STEP 03</span><b data-i18n="p.s3b">로그인 하나</b><span class="sx" data-i18n="p.s3s">Claude 또는 ChatGPT 구독 계정으로 로그인하면 끝.</span></li>
-      </ol>
-      <div class="ticks" id="ticks7" aria-hidden="true"><b></b><b></b><b></b></div>
-      <p class="help fade" style="--d:.5s" data-i18n="p.help">파란 경고 창(PC 보호)이나 “스마트 앱 컨트롤이 차단했습니다”가 나오면 → <a href="/install#blocked">설치 안내의 「윈도우가 막을 때」</a></p>
-    </div>
-  </div>
-</section>
-
-<!-- ⑧ 내려받기 -->
-<section class="sc dl8" id="download" data-chap="N° 08 — DOWNLOAD">
+<!-- ⑥ 내려받기 -->
+<section class="sc dl8" id="download" data-chap="N° 06 — DOWNLOAD">
   <div class="dl-in">
     <div class="label mono fade" style="--d:.6s">DOWNLOAD — FREE — MIT</div>
     <div class="dl-space" aria-hidden="true"></div>
