@@ -53,6 +53,12 @@
       'what.1h': 'Folder system', 'what.1p': 'Places are laid out as role → domain → project → step. The assistant knows what the work is from the folder it is in.',
       'what.2h': 'Rule files', 'what.2p': 'The AGENTS.md in each folder is the rule for that place. Rules from the folders above carry down on their own.',
       'what.3h': 'Agents and the window', 'what.3p': 'Claude Code and Codex are the hands that do the work. The IRIS window steers several of their sessions from one screen.',
+      // 그림 A1 직업별 폴더 나무(폴더 이름 자체는 실제 이름이라 번역하지 않는다)
+      'jt.h': 'Folders shaped to your work, ready from day one',
+      'jt.lead': 'Pick your job during installation and IRIS creates role (R) → domain (D) → project (P) folders, each with its own rule file. You can rename them any time.',
+      'jt.j0': 'Teacher', 'jt.j1': 'Researcher', 'jt.j2': 'Business owner', 'jt.j3': 'Developer', 'jt.j4': 'Office worker', 'jt.j5': 'Student', 'jt.j6': 'Writer',
+      'jt.cap': 'folders, each with an AGENTS.md',
+      'jt.sm': 'Step (S) folders are made with your assistant as the project moves along. Choose “Start from scratch” to begin with an empty tree.',
       // 비교표
       'cmp.h': 'Terminal, desktop app, and IRIS',
       'cmp.lead': 'The same Claude Code works differently depending on where you use it. Only IRIS also installs the place your work lives in, and its rules.',
@@ -75,9 +81,25 @@
       'feat.3b': 'Previews inside the conversation', 'feat.3s': 'Images, HTML, PDF and local addresses open right in the conversation. Hangul and Office documents are converted to PDF in place.',
       'feat.4b': 'Helper tasks are visible', 'feat.4s': 'Helper tasks the agent starts appear as chips; click one to read its log, read-only.',
       'feat.5b': 'Done notes and approval cards', 'feat.5s': 'A small note when a request finishes, and a card with the choices when the agent asks for permission. Voice input is processed only on your PC.',
+      // 그림 B5 IRIS 창 설명
+      'ws.1b': 'Task list', 'ws.1d': 'Move between sessions. Each one remembers its own folder, agent and model.',
+      'ws.2b': 'Usage left', 'ws.2d': 'Shows how much of each Claude and Codex account is left, as a battery.',
+      'ws.3b': 'Settings', 'ws.3d': 'Updates and extension modules live here.',
+      'ws.4b': 'Folder', 'ws.4d': 'Pick the folder to work in, and the agent reads the rules of that place.',
+      'ws.5b': 'Agent', 'ws.5d': 'Choose between Claude Code and Codex.',
+      'ws.6b': 'Model and thinking depth', 'ws.6d': 'The same choices as the terminal, passed only as start options.',
+      'ws.7b': 'Request box', 'ws.7d': 'Ask with text, voice, photos or files. Voice is processed only on your PC.',
       'feat.6b': 'Extension modules', 'feat.6s': 'Pick official modules in settings and install them. The first is IRIS Messenger, for sending text and files between people with end-to-end encryption.',
       // 내려받기
       'dl.h': 'Download', 'dl.btn': 'Download IRIS', 'dl.all': 'All releases',
+      // 그림 B1 설치 흐름 띠
+      'fl.1b': 'Download', 'fl.1p': 'One zip file',
+      'fl.2b': 'Unblock', 'fl.2p': 'Before extracting: Properties → “Unblock”',
+      'fl.3b': 'Double-click',
+      'fl.4b': 'Follow the installer', 'fl.4p': 'You decide two things: subscription and work folders',
+      'fl.5b': 'Log in and start', 'fl.5p': 'One account login → the IRIS window',
+      'fl.net': 'Internet', 'fl.off': 'This part works offline',
+      'fl.you': 'Steps you do by hand', 'fl.rest': 'The installer does the rest',
       'dl.reqh': 'What you need',
       'dl.req1': 'Windows 10 (1809) or later, 64-bit', 'dl.req2': 'At least 3 GB free on drive C',
       'dl.req3': 'Internet — used only in the final “Connect accounts” step. Every step before it works offline.',

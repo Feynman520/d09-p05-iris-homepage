@@ -76,6 +76,28 @@
     <div><span class="no mono">02</span><h3 data-i18n="what.2h">규칙 파일</h3><p data-i18n="what.2p">폴더마다 있는 AGENTS.md가 그 자리의 규칙입니다. 위 폴더의 규칙은 아래 폴더로 저절로 이어집니다.</p></div>
     <div><span class="no mono">03</span><h3 data-i18n="what.3h">에이전트와 창</h3><p data-i18n="what.3p">Claude Code와 Codex가 실제로 일하는 손입니다. IRIS 창은 그 세션 여러 개를 한 화면에서 지휘합니다.</p></div>
   </div>
+  <!-- 그림 A1 직업별 폴더 나무(2026-11-11 채택). 직업 = 설치기 presets.json 7종, R 번호는 직업 순서(R01 교사 … R07 작가 — 사용자 지정). 나무는 figures.js 가 그린다 -->
+  <div class="fig" id="folders">
+    <h3 data-i18n="jt.h">내 일에 맞춘 폴더가 미리 놓입니다</h3>
+    <p class="lead" data-i18n="jt.lead">설치할 때 직업을 고르면 역할(R) → 분야(D) → 프로젝트(P) 폴더가 만들어지고, 폴더마다 규칙 파일이 하나씩 들어갑니다. 이름은 언제든 고칠 수 있습니다.</p>
+    <div class="jt-jobs" id="jt-jobs" role="group" aria-label="직업 고르기">
+      <button type="button" data-job="0" aria-pressed="true" data-i18n="jt.j0">교사</button>
+      <button type="button" data-job="1" aria-pressed="false" data-i18n="jt.j1">연구자</button>
+      <button type="button" data-job="2" aria-pressed="false" data-i18n="jt.j2">사업가</button>
+      <button type="button" data-job="3" aria-pressed="false" data-i18n="jt.j3">개발자</button>
+      <button type="button" data-job="4" aria-pressed="false" data-i18n="jt.j4">직장인</button>
+      <button type="button" data-job="5" aria-pressed="false" data-i18n="jt.j5">학생</button>
+      <button type="button" data-job="6" aria-pressed="false" data-i18n="jt.j6">작가</button>
+    </div>
+    <div class="jt">
+      <div class="jt-tree" id="jt-tree" aria-live="polite"></div>
+      <div class="jt-side">
+        <div class="big" id="jt-count">8</div>
+        <div class="cap" data-i18n="jt.cap">개 폴더, 폴더마다 AGENTS.md</div>
+        <p class="sm" data-i18n="jt.sm">단계(S) 폴더는 프로젝트를 진행하며 비서와 함께 만듭니다. 「처음부터 직접」을 고르면 빈 나무에서 시작합니다.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="blk" id="compare">
@@ -103,6 +125,28 @@
 <section class="blk" id="features">
   <div class="label mono">N° 04 — FEATURES</div>
   <h2 data-i18n="feat.h">기능</h2>
+  <!-- 그림 B5 IRIS 창 설명(2026-11-11 채택). 점 위치는 img/face-home.png(1280×800) 기준 % — 캡처를 바꾸면 점도 다시 맞춘다 -->
+  <div class="ws">
+    <div class="ws-shot" id="ws-shot">
+      <img src="img/face-home.png" alt="IRIS 창 첫 화면" width="1280" height="800" loading="lazy">
+      <span class="ws-dot" data-k="1" style="--x:10.5%;--y:8.9%">1</span>
+      <span class="ws-dot" data-k="2" style="--x:80%;--y:8.8%">2</span>
+      <span class="ws-dot" data-k="3" style="--x:97.5%;--y:8.8%">3</span>
+      <span class="ws-dot" data-k="4" style="--x:28.5%;--y:84.2%">4</span>
+      <span class="ws-dot" data-k="5" style="--x:36.4%;--y:84.2%">5</span>
+      <span class="ws-dot" data-k="6" style="--x:48.6%;--y:84.2%">6</span>
+      <span class="ws-dot" data-k="7" style="--x:79%;--y:94.4%">7</span>
+    </div>
+    <ol class="ws-keys" id="ws-keys">
+      <li data-k="1"><span class="n">01</span><div><b data-i18n="ws.1b">작업 목록</b><span class="d" data-i18n="ws.1d">세션 여러 개를 오갑니다. 세션마다 폴더·에이전트·모델을 따로 기억합니다.</span></div></li>
+      <li data-k="2"><span class="n">02</span><div><b data-i18n="ws.2b">남은 한도</b><span class="d" data-i18n="ws.2d">Claude·Codex 계정별 사용량을 배터리로 보여 줍니다.</span></div></li>
+      <li data-k="3"><span class="n">03</span><div><b data-i18n="ws.3b">설정</b><span class="d" data-i18n="ws.3d">업데이트와 확장 모듈 설치가 여기 있습니다.</span></div></li>
+      <li data-k="4"><span class="n">04</span><div><b data-i18n="ws.4b">폴더</b><span class="d" data-i18n="ws.4d">어느 폴더에서 일할지 고르면, 그 자리의 규칙을 읽습니다.</span></div></li>
+      <li data-k="5"><span class="n">05</span><div><b data-i18n="ws.5b">에이전트</b><span class="d" data-i18n="ws.5d">Claude Code와 Codex 가운데 고릅니다.</span></div></li>
+      <li data-k="6"><span class="n">06</span><div><b data-i18n="ws.6b">모델과 사고 깊이</b><span class="d" data-i18n="ws.6d">터미널과 같은 선택을 시작 옵션으로만 넘깁니다.</span></div></li>
+      <li data-k="7"><span class="n">07</span><div><b data-i18n="ws.7b">요청 입력</b><span class="d" data-i18n="ws.7d">글·음성·사진·파일로 요청합니다. 음성은 PC 안에서만 처리합니다.</span></div></li>
+    </ol>
+  </div>
   <div class="rows">
     <div class="row"><span class="no mono">01</span><div><b data-i18n="feat.1b">세션 여러 개, 창 하나</b><p data-i18n="feat.1s">왼쪽 작업 목록에서 세션을 오갑니다. 세션마다 폴더·에이전트·모델을 따로 기억합니다.</p></div></div>
     <div class="row"><span class="no mono">02</span><div><b data-i18n="feat.2b">터미널과 같은 선택</b><p data-i18n="feat.2s">에이전트·모델·사고 깊이·권한 모드는 CLI 시작 옵션으로만 넘깁니다. 설정 파일은 건드리지 않습니다.</p></div></div>
@@ -116,6 +160,17 @@
 <section class="blk" id="download">
   <div class="label mono">N° 05 — DOWNLOAD · FREE · MIT</div>
   <h2 data-i18n="dl.h">내려받기</h2>
+  <!-- 그림 B1 설치 흐름 띠(2026-11-11 채택): 아래 안내 글의 요약. 보라 테두리 = 사람이 직접 하는 걸음 -->
+  <div class="fl">
+    <div class="fl-st"><span class="o">1</span><b data-i18n="fl.1b">내려받기</b><p data-i18n="fl.1p">zip 파일 하나</p></div>
+    <div class="fl-st you"><span class="o">2</span><b data-i18n="fl.2b">차단 해제</b><p data-i18n="fl.2p">풀기 전에 속성 → 「차단 해제」</p></div>
+    <div class="fl-st you"><span class="o">3</span><b data-i18n="fl.3b">더블클릭</b><p><code>IRIS-설치.cmd</code></p></div>
+    <div class="fl-st you"><span class="o">4</span><b data-i18n="fl.4b">설치 화면 따라가기</b><p data-i18n="fl.4p">정할 것은 구독과 작업 폴더 둘</p>
+      <div class="fl-th"><img src="img/install-1-precheck.png" alt="" loading="lazy"><img src="img/install-2-subscription.png" alt="" loading="lazy"><img src="img/install-3-structure.png" alt="" loading="lazy"><img src="img/install-4-progress.png" alt="" loading="lazy"><img src="img/install-5-done.png" alt="" loading="lazy"></div></div>
+    <div class="fl-st you"><span class="o">5</span><b data-i18n="fl.5b">로그인하고 시작</b><p data-i18n="fl.5p">계정 로그인 하나 → IRIS 창</p></div>
+  </div>
+  <div class="fl-net" aria-hidden="true"><span data-i18n="fl.net">인터넷</span><span class="off" data-i18n="fl.off">여기는 인터넷 없이 됩니다</span><span data-i18n="fl.net">인터넷</span></div>
+  <p class="fl-cap"><span><i></i><span data-i18n="fl.you">사람이 직접 하는 걸음</span></span><span data-i18n="fl.rest">나머지는 설치기가 합니다</span></p>
   <!-- 안내 세 묶음: 왼쪽 제목 + 오른쪽 넓은 내용(2026-11-11 사용자: 3열이면 줄바꿈이 많아 불편) -->
   <div class="dl-guide">
     <div>
@@ -262,5 +317,6 @@
 <script src="vendor/three.iife.js"></script>
 <script src="particles.js"></script>
 <script src="site.js"></script>
+<script src="figures.js"></script>
 </body>
 </html>
