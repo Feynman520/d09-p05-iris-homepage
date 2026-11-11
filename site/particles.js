@@ -1,6 +1,7 @@
 // IRIS homepage · 입자 군무(Particle Swarm) · © 2026 Sejun Ham (함세준) · MIT
 /* 하는 일: 화면 뒤에 고정된 three.js 입자 무대 하나를 두고, 스크롤 위치에 따라 입자가 장면마다 다른 모양으로 모인다.
    ① IRIS 글자 → ② 상자 → ③ 폴더 지도(폴더 나무 → 규칙의 폭포, 두 컷) → ④ 두 성운과 창틀 → ⑤ 장비 이름 컷(3) → ⑥ 다시 IRIS.
+   2026-11-11 사용자 결정: 지금 페이지에는 ① 첫 화면(main .sc 하나)만 있다 — ②~⑥ 모양은 쓰지 않고 남겨 둔 것(장면을 다시 쓰게 되면 index.html 에 .sc 를 더하면 된다).
    톤(2026-11-11 사용자 결정): ② 상자만 원래 밝기·크기, 나머지 장면은 입자 밝기 ×TONE_B · 입자 글자 ×TONE_T(차분한 문서형).
    모양은 화면 밖 캔버스에 글자·도형을 그려 픽셀을 뽑아 목표 위치로 쓴다.
    안전장치: WebGL 이 없으면 html.nogl(평범한 문서), 움직임 줄이기면 html.rm(모양만 정지 상태로), 탭이 숨으면 멈춤,
@@ -669,11 +670,18 @@ function tick(now) {
   if (started) { go(st.a, st.sub); syncDom(st.a, st.sub); }
   flash *= Math.pow(.86, f); aberr *= Math.pow(.9, f); shake *= Math.pow(.88, f); fadeKick *= Math.pow(.93, f);
   dolly *= Math.pow(.9, f); ptr.vx *= Math.pow(.8, f); ptr.vy *= Math.pow(.8, f);
-  const steps_ = RM ? 1 : Math.min(4, Math.max(1, Math.ceil(dt / .05)));
-  for (let s = 0; s < steps_; s++) simulate(dt / steps_);
-  placeTags();
-  render(dt);
-  if (started && frame > 5) adapt(dtRaw);
+  // 2026-11-11: 입자 장면은 첫 화면 하나뿐이다. 첫 화면을 지나 정보 구역(검정 바탕)이 화면을 덮으면 계산·그리기를 쉬고(CPU·배터리 아낌),
+  // 다시 올라오면 이어서 그린다. 커서 고리만 계속 따라간다.
+  const heroGone = tops.length > 0 && scrollY > tops[0] + hs[0] + 40;
+  // 첫 화면 끝무렵에는 위로 풀려 올라간 입자 연기가 화면 위쪽에 밝게 몰리므로, 정보 구역이 올라오기 전에 무대를 서서히 어둡게 한다
+  if (!RM && hs.length) { const fe = Math.max(1, hs[0] - innerHeight); canvas.style.opacity = (1 - clamp((scrollY - fe * .3) / (fe * .7 + innerHeight * .25), 0, 1)).toFixed(3); }
+  if (!heroGone) {
+    const steps_ = RM ? 1 : Math.min(4, Math.max(1, Math.ceil(dt / .05)));
+    for (let s = 0; s < steps_; s++) simulate(dt / steps_);
+    placeTags();
+    render(dt);
+    if (started && frame > 5) adapt(dtRaw);
+  }
   const maxS = document.documentElement.scrollHeight - innerHeight;
   if (bar) bar.style.transform = 'scaleY(' + (maxS > 0 ? scrollY / maxS : 0).toFixed(4) + ')';
   if (ring && !RM) {
