@@ -42,7 +42,8 @@ html[lang="en"] .lang-ko { display: none; }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); }
 .brand:hover { text-decoration: none; }
 .mark-slot { display: inline-grid; place-items: center; width: 22px; height: 22px; --mk-1: var(--iris); --mk-2: var(--iris-2); }
-.mark { display: block; }
+.mark { display: block; width: 100%; height: 100%; }
+.brand .mark-slot { width: 34px; height: 34px; } /* 제목 그림(28px, 글자 약 25.7px)에 맞춤 — 2026-11-11 사용자 지정 */
 .mark .a1 { transform-origin: 12px 12px; animation: mk-spin 8s linear infinite; }
 @keyframes mk-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .mark .a1 { animation: none; } }

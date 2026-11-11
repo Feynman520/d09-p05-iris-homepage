@@ -42,8 +42,8 @@ code { font-family: var(--mono); font-size: .88em; }
 .past .top::before { inset: 0; background: #000; } /* 반투명(.97)이어도 글자가 비쳐 보여 완전 검정 */
 .brand { display: flex; align-items: center; gap: 10px; }
 /* 옛 홈페이지의 제목 IRIS + 천천히 도는 큐브(2026-11-11 사용자 지정) */
-.mark-slot { display: inline-grid; place-items: center; width: 22px; height: 22px; --mk-1: var(--paper); --mk-2: var(--violet); }
-.mark { display: block; }
+.mark-slot { display: inline-grid; place-items: center; width: 36px; height: 36px; /* 육각형 높이(칸의 3/4 = 27px) = 손글씨 글자 높이(30px 그림 중 약 27.5px) — 2026-11-11 사용자 지정 */ --mk-1: var(--paper); --mk-2: var(--violet); }
+.mark { display: block; width: 100%; height: 100%; }
 .mark .a1 { transform-origin: 12px 12px; animation: mk-spin 8s linear infinite; }
 @keyframes mk-spin { to { transform: rotate(360deg); } }
 .wordmark { font-family: var(--pen); font-weight: 700; font-size: 18px; letter-spacing: .06em; line-height: 1; transform: translateY(1px); user-select: none; }
