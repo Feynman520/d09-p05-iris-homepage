@@ -54,6 +54,7 @@ let DPR = Math.min(window.devicePixelRatio || 1, 1.5);
 
 const P = new Float32Array(N * 3), V = new Float32Array(N * 3), HOME = new Float32Array(N * 3);
 const SPD = new Float32Array(N), TINT = new Float32Array(N), SIZE = new Float32Array(N), SEED = new Float32Array(N);
+const ON = new Float32Array(N); // 0~1: 장면 모양에 든 입자만 보인다(떠도는 배경 점은 0 — 2026-11-11 사용자 결정)
 const sizeK = MOBILE ? 1.05 : 1.15; // 입자가 적은 만큼 조금 크게
 for (let i = 0; i < N; i++) { SIZE[i] = (rnd() < .82 ? 2.3 + rnd() * 1.6 : 1.2 + Math.pow(rnd(), 2) * 5.5) * sizeK; SEED[i] = rnd(); }
 function makeHome() {
@@ -311,12 +312,13 @@ try {
   const pa = new THREE.BufferAttribute(P, 3); pa.setUsage(THREE.DynamicDrawUsage); geo.setAttribute('position', pa);
   const sa = new THREE.BufferAttribute(SPD, 1); sa.setUsage(THREE.DynamicDrawUsage); geo.setAttribute('aSpd', sa);
   const ta = new THREE.BufferAttribute(TINT, 1); ta.setUsage(THREE.DynamicDrawUsage); geo.setAttribute('aTint', ta);
+  const oa = new THREE.BufferAttribute(ON, 1); oa.setUsage(THREE.DynamicDrawUsage); geo.setAttribute('aOn', oa);
   geo.setAttribute('aSize', new THREE.BufferAttribute(SIZE, 1));
   geo.setAttribute('aSeed', new THREE.BufferAttribute(SEED, 1));
   geo.setDrawRange(0, nA);
   const mat = new THREE.ShaderMaterial({
     uniforms: { uPR: { value: DPR }, uDist: { value: 1000 }, uBright: { value: 1 }, uT: { value: 0 } },
-    vertexShader: `attribute float aSpd;attribute float aTint;attribute float aSize;attribute float aSeed;
+    vertexShader: `attribute float aSpd;attribute float aTint;attribute float aSize;attribute float aSeed;attribute float aOn;
       uniform float uPR;uniform float uDist;uniform float uBright;uniform float uT;
       varying float vA;varying float vT;
       void main(){
@@ -331,7 +333,7 @@ try {
         float n=sin(p.x*.0055+uT*.45)*sin(p.y*.0072-uT*.33)+.6*sin((p.x+p.y)*.0026+uT*.21)+.35*sin(p.x*.013-p.y*.009+uT*.8);
         float sm=smoothstep(-.75,1.5,n);
         float smoke=.2+2.2*sm*sm;
-        vA=uBright*(.62+min(sp*.08,1.4))*tw*df*smoke;
+        vA=uBright*(.62+min(sp*.08,1.4))*tw*df*smoke*aOn;
         vT=aTint;
       }`,
     fragmentShader: `varying float vA;varying float vT;
@@ -545,6 +547,7 @@ function simulate(dt) {
     P[i3] = px; P[i3 + 1] = py; P[i3 + 2] = pz; V[i3] = vx; V[i3 + 1] = vy; V[i3 + 2] = vz;
     SPD[i] = m === 2 ? 5 + Math.abs(vx) : Math.abs(vx) + Math.abs(vy) + Math.abs(vz) * .5;
     TINT[i] += (sh.tint[i] - TINT[i]) * (RM ? 1 : .12);
+    ON[i] += ((m === 1 ? 0 : 1) - ON[i]) * (RM ? 1 : (m === 1 ? .06 : .14));
   }
 }
 
@@ -639,7 +642,7 @@ function render(dt) {
   const u = points.material.uniforms;
   u.uT.value = clock;
   u.uBright.value = RM ? (ACT.bright || 1) : lerp(u.uBright.value, ACT.bright || 1, 1 - Math.pow(.9, f));
-  geo.attributes.position.needsUpdate = true; geo.attributes.aSpd.needsUpdate = true; geo.attributes.aTint.needsUpdate = true;
+  geo.attributes.position.needsUpdate = true; geo.attributes.aSpd.needsUpdate = true; geo.attributes.aTint.needsUpdate = true; geo.attributes.aOn.needsUpdate = true;
   let a = ACT.fade * (1 - fadeKick * .7) - Math.min(Math.abs(sv) * .003, .08);
   a = RM ? 1 : clamp(a, .04, .6);
   fadeMat.uniforms.uA.value = RM ? 1 : 1 - Math.pow(1 - a, f);
@@ -677,7 +680,7 @@ function tick(now) {
     ptr.rx = lerp(ptr.rx, ptr.sx, .18); ptr.ry = lerp(ptr.ry, ptr.sy, .18);
     ring.style.transform = 'translate3d(' + ptr.rx.toFixed(1) + 'px,' + ptr.ry.toFixed(1) + 'px,0)';
   }
-  if (frame++ % 3 === 0 && !RM && grainEl) grainEl.style.transform = 'translate(' + (rnd() * 10 - 5).toFixed(1) + '%,' + (rnd() * 10 - 5).toFixed(1) + '%)';
+  frame++;
   if (!RM && !document.hidden) raf = requestAnimationFrame(tick);
 }
 // 코덱스 검토 4: WebGL 을 잃으면(드라이버 문제 등) 문서 모드로 바꾸고 엔진을 완전히 멈춘다 — 탭 복귀·창 크기 변경으로 다시 돌지 않게

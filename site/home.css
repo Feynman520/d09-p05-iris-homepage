@@ -31,7 +31,7 @@ code { font-family: var(--mono); font-size: .9em; }
 #gl { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; display: block; z-index: 0; background: #000; }
 .nogl #gl { display: none; }
 .grain { position: fixed; inset: -50%; z-index: 1; pointer-events: none; opacity: 0; mix-blend-mode: overlay; transition: opacity .8s; }
-body[data-s="1"] .grain { opacity: .08; } /* 잡티는 ② 한 상자에서만 */
+/* 잡티 막은 2026-11-11 사용자 결정(배경 움직이는 점 전부 삭제)으로 끔 */
 .vig { position: fixed; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(130% 100% at 50% 45%, transparent 56%, rgba(0,0,0,.6) 100%); }
 .nogl body, html.nogl { background: #000; }
 
