@@ -4,7 +4,7 @@
 @font-face { font-family: "Pretendard Variable"; src: url("fonts/PretendardVariable.woff2") format("woff2-variations"); font-weight: 45 920; font-display: swap; }
 @font-face { font-family: "Nanum Pen Script"; src: url("fonts/NanumPenScript-subset.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 :root {
-  --base: #0a0c14; --surface: #10131d; --raised: #171b28; --overlay: #1d2233;
+  --base: #000; --surface: #0c0c0f; --raised: #15151a; --overlay: #1c1c22; /* 2026-11-11 완전한 검정 바탕(옛 남색 #0a0c14) */
   --line: rgba(255,255,255,.075); --line-2: rgba(255,255,255,.14);
   --ink: #e9ecf5; --ink-2: #a6adbf; --ink-3: #6e7689;
   --iris: #8fa8ff; --iris-2: #c9b8ff; --iris-soft: rgba(143,168,255,.16);
@@ -81,6 +81,20 @@ html[lang="en"] .lang-ko { display: none; }
 .send { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--iris); color: #0a0c14; display: grid; place-items: center; }
 .dock-bar:hover .send { background: var(--iris-2); }
 .hero-foot { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; font-size: 12px; color: var(--ink-3); z-index: 1; }
+
+/* ---- 첫 페이지 첫 화면: 입자 IRIS(hero.js) — 2026-11-11. 글자는 위쪽, 표어·단추는 아래쪽 ---- */
+.home #hero { justify-content: flex-end; padding-bottom: 56px; }
+#gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: #000; }
+.nogl #gl { display: none; }
+.nogl .home #hero, html.nogl body.home #hero { justify-content: center; }
+/* 최신판 줄: 시험 중인 판이 없으면 비활성(흐리게·단추 꺼짐·안내 한 줄) */
+.dl-pre .pnone { display: none; }
+.dl-pre.off .btn { opacity: .45; pointer-events: none; cursor: default; filter: grayscale(1); }
+.dl-pre.off .pm { display: none; }
+.dl-pre.off .pnone { display: block; }
+.dl-more { margin-top: 18px; }
+.dl-more summary { cursor: pointer; color: var(--ink-2); font-size: 13.5px; }
+.dl-more[open] summary { margin-bottom: 8px; }
 
 /* ---- 본문 절 ---- */
 main { display: block; }
