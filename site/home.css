@@ -381,3 +381,27 @@ html:not(.motion) .ring { display: none; }
 }
 @media (max-width: 480px) { .jt-tree { font-size: 13px; } .jt-r .md { display: none; } }
 @media (prefers-reduced-motion: reduce) { .jt-r { animation: none; opacity: 1; transform: none; } }
+
+/* ---------- N° 05 보이지 않는 곳에서 하는 일(2026-11-12 사용자 채택, 시안 = docs\시안-새구역-2026-11-12\) ---------- */
+.duo { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 clamp(24px, 3vw, 44px); margin-bottom: 8px; }
+.duo > div { border-top: 1px solid var(--hair); padding: 22px 0 34px; }
+.duo h3 { font-size: 20px; }
+.duo p { margin: 0 0 22px; font-size: 14.5px; line-height: 1.75; color: var(--dim); }
+.fig-mini { border: 1px solid var(--hair); border-radius: 14px; padding: 18px; background: rgba(238,236,243,.025); }
+.fig-mini svg { display: block; width: 100%; height: auto; }
+.fig-mini svg text { font-family: var(--sans); font-size: 12px; fill: var(--paper); }
+.fig-mini svg .t-dim { fill: rgba(216,214,222,.58); font-size: 10.5px; }
+.fig-mini svg .t-acc { fill: var(--violet); font-size: 10.5px; }
+.learn { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.learn li { position: relative; border: 1px solid var(--hair); border-radius: 10px; padding: 12px 12px 14px; font-size: 13px; line-height: 1.5; color: var(--dim); }
+.learn li b { display: block; margin-bottom: 4px; font-size: 13.5px; font-weight: 600; color: var(--paper); }
+.learn li .n { display: block; margin-bottom: 8px; font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.learn li + li::before { content: ""; position: absolute; left: -10px; top: 50%; width: 10px; height: 1px; background: var(--hair); }
+.learn li.on { border-color: var(--violet); }
+.learn li.on b, .learn li.on .n { color: var(--violet); }
+.duo .learn-cap { margin: 12px 0 0; font-size: 12.5px; color: var(--faint); }
+@media (max-width: 860px) {
+  .duo { grid-template-columns: 1fr; }
+  .learn { grid-template-columns: 1fr 1fr; }
+  .learn li + li::before { display: none; }
+}

@@ -110,6 +110,8 @@
       <tr><th data-i18n="cmp.r1">처음 세팅</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r1a">Node·Git·Python·CLI를 하나씩 직접 설치</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r1b">앱 설치 한 번, 문서 도구는 따로</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r1c"><b>zip 하나, 더블클릭 한 번</b><small>런타임·에이전트·문서 도구가 <code>C:\IRIS</code> 한 폴더에</small></td></tr>
       <tr><th data-i18n="cmp.r2">일이 놓일 자리</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r2a">사용자가 알아서</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r2b">프로젝트 폴더를 고름</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r2c"><b>역할 → 분야 → 프로젝트 → 단계 폴더가 미리</b><small>직업별 프리셋 7종</small></td></tr>
       <tr><th data-i18n="cmp.r3">규칙 파일</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r3a">직접 작성·관리</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r3b">직접 작성</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r3c"><b>폴더마다 AGENTS.md, 위 규칙 자동 상속</b><small>어느 폴더에서 열든 그 자리의 규칙을 앎</small></td></tr>
+      <tr><th data-i18n="cmp.r12">일의 지도</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r12a">없음</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r12a">없음</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r12c"><b>폴더·규칙을 읽어 지도(온톨로지)로 자동 정리</b><small>"그 일 어디 있지?"에 비서가 바로 찾아감</small></td></tr>
+      <tr><th data-i18n="cmp.r13">배우는 규칙</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r13a">직접 적어 둠</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r13a">직접 적어 둠</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r13c"><b>되풀이된 교정을 규칙으로 자동 정리</b><small>같은 실수를 두 번 고쳐 주면 다음부터 지킴</small></td></tr>
       <tr><th data-i18n="cmp.r4">에이전트</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r4a">한 번에 하나</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r4b">Claude만</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r4c"><b>Claude Code + Codex</b><small>대화 맥락을 둘 사이에 넘김</small></td></tr>
       <tr><th data-i18n="cmp.r5">화면</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r5a">글자가 흐르는 검은 창</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r5b">깔끔한 대화 창</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r5c"><b>대화 창 + 세션 카드</b><small>창을 닫아도 세션은 살아 있음</small></td></tr>
       <tr><th data-i18n="cmp.r11">여러 작업 동시에</th><td data-c="터미널" data-c-en="Terminal" data-i18n="cmp.r11a">창 여러 개를 직접 오감</td><td data-c="데스크탑 앱" data-c-en="Desktop app" data-i18n="cmp.r11b">세션 여러 개를 열 수 있음</td><td class="is-iris" data-c="IRIS" data-c-en="IRIS" data-i18n="cmp.r11c"><b>한 화면에서 여러 세션 지휘</b><small>끝나면 알림, 허락 요청은 카드로</small></td></tr>
@@ -157,8 +159,68 @@
   </div>
 </section>
 
+<!-- N° 05 보이지 않는 곳에서 하는 일(2026-11-12 사용자 채택, 시안 = docs\시안-새구역-2026-11-12\) — 온톨로지·자기개선·문서 도구·계정 여러 개·대화 보관 -->
+<section class="blk" id="hood">
+  <div class="label mono">N° 05 — UNDER THE HOOD</div>
+  <h2 data-i18n="hood.h">일할수록 내 일에 맞춰지는 작업실</h2>
+  <p class="lead" data-i18n="hood.lead">IRIS 창 뒤에서는 다섯 가지가 함께 돕니다. 내 일의 지도를 그리고, 고쳐 준 것을 배우고, 문서를 직접 다루고, 내 계정 여러 개를 이어 쓰고, 대화는 내 PC에 둡니다.</p>
+  <div class="duo">
+    <div>
+      <span class="no mono">01</span>
+      <h3 data-i18n="hood.1h">일의 지도</h3>
+      <p data-i18n="hood.1p">폴더마다 있는 규칙 파일의 머리말을 읽어, 무엇이 어디 있고 무엇이 무엇과 이어지는지를 지도(온톨로지)로 정리합니다. 폴더를 만들거나 옮기면 지도도 다시 그립니다. 비서는 "지난 학기 평가 계획 어디 있지?", "이 양식의 원본은?"을 이 지도에 물어 바로 찾아갑니다.</p>
+      <div class="fig-mini">
+        <svg viewBox="0 0 420 168" role="img" aria-label="역할 → 분야 → 프로젝트로 이어지는 일의 지도와 원본 연결 예시">
+          <g fill="none" stroke="rgba(238,236,243,.22)" stroke-width="1">
+            <path d="M74 84 L150 44"/><path d="M74 84 L150 124"/>
+            <path d="M226 44 L300 26"/><path d="M226 44 L300 70"/><path d="M226 124 L300 124"/>
+          </g>
+          <path d="M388 70 C 414 78, 414 116, 388 124" fill="none" stroke="#bdb8ff" stroke-width="1.2" stroke-dasharray="4 4"/>
+          <g fill="#000" stroke="rgba(238,236,243,.35)">
+            <rect x="14" y="70" width="60" height="28" rx="7"/>
+            <rect x="150" y="30" width="76" height="28" rx="7"/>
+            <rect x="150" y="110" width="76" height="28" rx="7"/>
+            <rect x="300" y="12" width="88" height="28" rx="7"/>
+            <rect x="300" y="56" width="88" height="28" rx="7" stroke="#bdb8ff"/>
+            <rect x="300" y="110" width="88" height="28" rx="7"/>
+          </g>
+          <text x="44" y="88" text-anchor="middle" data-i18n="hood.m1">교사</text>
+          <text x="188" y="48" text-anchor="middle" data-i18n="hood.m2">수업</text>
+          <text x="188" y="128" text-anchor="middle" data-i18n="hood.m3">업무</text>
+          <text x="344" y="30" text-anchor="middle" data-i18n="hood.m4">물리학 1학기</text>
+          <text x="344" y="74" text-anchor="middle" data-i18n="hood.m5">물리학 2학기</text>
+          <text x="344" y="128" text-anchor="middle" data-i18n="hood.m6">평가 양식</text>
+          <text class="t-acc" x="344" y="101" text-anchor="middle" data-i18n="hood.m7">이 양식이 원본</text>
+          <text class="t-dim" x="44" y="118" text-anchor="middle" data-i18n="hood.mr">역할</text>
+          <text class="t-dim" x="188" y="160" text-anchor="middle" data-i18n="hood.md">분야</text>
+          <text class="t-dim" x="344" y="160" text-anchor="middle" data-i18n="hood.mp">프로젝트</text>
+        </svg>
+      </div>
+    </div>
+    <div>
+      <span class="no mono">02</span>
+      <h3 data-i18n="hood.2h">스스로 배우는 규칙</h3>
+      <p data-i18n="hood.2p">내가 결과를 고쳐 주거나 "앞으로는 이렇게 해"라고 말한 순간을 교훈으로 기록합니다. 같은 교훈이 되풀이되면 그 일에 맞는 폴더의 규칙 파일에 한 줄로 적고, 다음 세션부터 지킵니다. 마음에 안 들면 "그 규칙 빼"라고 말하면 됩니다.</p>
+      <div class="fig-mini">
+        <ol class="learn">
+          <li><span class="n">01</span><b data-i18n="hood.l1b">고쳐 줌</b><span data-i18n="hood.l1d">"표는 맨 뒤 말고 본문에"</span></li>
+          <li><span class="n">02</span><b data-i18n="hood.l2b">교훈 기록</b><span data-i18n="hood.l2d">한 문장으로 적어 둠</span></li>
+          <li><span class="n">03</span><b data-i18n="hood.l3b">또 고쳐 줌</b><span data-i18n="hood.l3d">같은 교훈이 되풀이됨</span></li>
+          <li class="on"><span class="n">04</span><b data-i18n="hood.l4b">규칙이 됨</b><span data-i18n="hood.l4d">규칙 파일에 한 줄, 다음부터 지킴</span></li>
+        </ol>
+        <p class="learn-cap" data-i18n="hood.lcap">기록과 규칙은 모두 내 PC의 IRIS 폴더 안에만 남습니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="three">
+    <div><span class="no mono">03</span><h3 data-i18n="hood.3h">문서를 직접 다루는 손</h3><p data-i18n="hood.3p">한/글·엑셀·파워포인트·워드·PDF를 비서가 직접 열고, 빈칸을 채우고, PDF로 바꿉니다. 한컴·오피스가 없는 PC에서는 기다렸다가, 깔면 켜집니다.</p></div>
+    <div><span class="no mono">04</span><h3 data-i18n="hood.4h">내 계정 여러 개, 창 하나</h3><p data-i18n="hood.4p">Claude·ChatGPT 구독 계정을 여러 개 연결해 두면 한 창에서 이어 씁니다. 한 계정의 한도가 차면 다음 계정으로 넘어가고, 남은 사용량은 계정별 배터리로 봅니다.</p></div>
+    <div><span class="no mono">05</span><h3 data-i18n="hood.5h">내 대화는 내 PC에</h3><p data-i18n="hood.5p">IRIS에서 나눈 대화 기록은 이 PC 안에만 저장됩니다. Claude·ChatGPT 웹이나 앱의 대화 목록에는 나오지 않고, IRIS도 밖으로 보내지 않습니다.</p></div>
+  </div>
+</section>
+
 <section class="blk" id="download">
-  <div class="label mono">N° 05 — DOWNLOAD · FREE · MIT</div>
+  <div class="label mono">N° 06 — DOWNLOAD · FREE · MIT</div>
   <h2 data-i18n="dl.h">내려받기</h2>
   <!-- 그림 B1 설치 흐름 띠(2026-11-11 채택): 아래 안내 글의 요약. 보라 테두리 = 사람이 직접 하는 걸음 -->
   <div class="fl">
@@ -244,7 +306,7 @@
 </section>
 
 <section class="blk" id="inside">
-  <div class="label mono">N° 06 — INSIDE</div>
+  <div class="label mono">N° 07 — INSIDE</div>
   <h2 data-i18n="in.h">안에 든 것</h2>
   <p class="lead" data-i18n="in.lead">전부 C:\IRIS 한 폴더에 들어갑니다. 바깥에 생기는 것은 바탕화면 「IRIS」 바로가기 하나뿐이고, 지우려면 그 폴더를 지우면 됩니다.</p>
   <div class="tbl-wrap"><table class="list">
@@ -255,6 +317,8 @@
       <tr><td data-i18n="in.r3t">계정 중계기와 한도 화면</td><td data-i18n="in.r3">구독 계정이 여럿이어도 한 창에서 쓰게 해 주는 작은 서버와, 계정별 사용량 화면(IRIS 창 머리의 배터리)입니다. 둘 다 PC 안에서만 돕니다.</td></tr>
       <tr><td data-i18n="in.r4t">IRIS 창</td><td data-i18n="in.r4">세션 여러 개를 한 창에서 지휘하는 데스크톱 앱입니다. 첫 확장 모듈인 메신저도 함께 들어 있습니다.</td></tr>
       <tr><td data-i18n="in.r6t">문서 자동화 도구</td><td data-i18n="in.r6">한/글·엑셀·파워포인트·워드·PDF를 다루는 도구 서버입니다. 한컴·오피스가 없는 PC에서는 「대기」로 두었다가, 깔면 켜집니다.</td></tr>
+      <tr><td data-i18n="in.r7t">온톨로지 도구</td><td data-i18n="in.r7">폴더와 규칙 파일을 읽어 일의 지도를 만들고, 비서가 그 지도에 위치·원본·관계를 묻게 해 줍니다. 지도는 한 장짜리 화면으로도 볼 수 있습니다.</td></tr>
+      <tr><td data-i18n="in.r8t">자기개선 도구</td><td data-i18n="in.r8">고쳐 준 실수와 "앞으로는"을 교훈으로 기록하고, 되풀이되면 규칙 파일에 규칙으로 적습니다. 기록은 PC 안에만 남습니다.</td></tr>
       <tr><td data-i18n="in.r5t">규칙 파일과 인수 문서</td><td data-i18n="in.r5">설치기가 작업 폴더·규칙·도구 세팅을 끝내고 인수 문서를 남깁니다. 첫 실행 때 비서는 그 문서를 읽고 인사부터 합니다.</td></tr>
     </tbody>
   </table></div>
@@ -262,7 +326,7 @@
 </section>
 
 <section class="blk" id="components">
-  <div class="label mono">N° 07 — RELEASES</div>
+  <div class="label mono">N° 08 — RELEASES</div>
   <h2 data-i18n="comp.h">구성 요소와 새 소식</h2>
   <p class="lead" data-i18n="comp.lead">세 부품의 지금 판은 방문할 때마다 GitHub에서 새로 읽어 옵니다. 그 아래는 IRIS가 지금까지 걸어온 길입니다(최근 것이 위).</p>
   <!-- 지금 판(GitHub 에서 자동): site.js renderComponent 가 comp-*-ver·comp-*-date 를 채운다 -->
@@ -287,7 +351,7 @@
 </section>
 
 <section class="blk" id="faq">
-  <div class="label mono">N° 08 — FAQ</div>
+  <div class="label mono">N° 09 — FAQ</div>
   <h2 data-i18n="faq.h">자주 묻는 질문</h2>
   <div class="acc">
     <details><summary data-i18n="faq.1q">유료 구독이 꼭 필요한가요?</summary><p data-i18n="faq.1a">네. IRIS는 AI를 따로 만들지 않고, 이미 쓰는 Claude 또는 ChatGPT 구독으로 Claude Code·Codex를 돌립니다. IRIS 자체는 무료입니다.</p></details>
@@ -297,6 +361,7 @@
     <details><summary data-i18n="faq.5q">이미 Claude Code가 설치되어 있으면 충돌하나요?</summary><p data-i18n="faq.5a">아니요. IRIS는 자기 폴더 안의 별도 사본을 쓰고, 기존 설치본과 설정에는 손대지 않습니다.</p></details>
     <details><summary data-i18n="faq.6q">새 판이 나오면 다시 설치해야 하나요?</summary><p data-i18n="faq.6a">아니요. IRIS 창의 설정 → 업데이트에서 한 번에 갱신되고, 새 zip을 실행해도 「업데이트 시작」이 나옵니다. 어느 길이든 자료·설정·로그인은 그대로입니다. 1.x에서 2.0으로 넘어올 때만 새로 설치합니다(기존 자료는 그대로).</p></details>
     <details><summary data-i18n="faq.7q">ChatGPT 구독만 있어도 되나요?</summary><p data-i18n="faq.7a">네. 설치기에서 ChatGPT만 고르면 Codex가 앞장섭니다. Claude Code도 함께 설치되어 IRIS 창에는 처음부터 Claude·Codex 단추가 둘 다 보이고, 나중에 Claude 구독이 생기면 한도 화면에서 계정만 더하면 됩니다.</p></details>
+    <details><summary data-i18n="faq.8q">구독 계정이 여러 개면 어떻게 쓰나요?</summary><p data-i18n="faq.8a">IRIS 창 머리의 한도 화면(배터리)에서 내 계정을 더하면 됩니다. Claude와 ChatGPT 계정을 섞어 더할 수 있고, 한 계정의 한도가 차면 다음 계정으로 이어서 일합니다. 계정마다 남은 사용량이 따로 보입니다.</p></details>
   </div>
 </section>
 
