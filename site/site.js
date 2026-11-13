@@ -19,7 +19,7 @@
         page: 'https://github.com/Feynman520/d09-p03-iris-installer/releases/tag/iris-installer--v2.0.59', // 릴리스 노트 쪽
         sha: 'b115b0368d0097e94b3bfd045bb24b40470d8bcd70a3ba365afc0bb043b1dc15' }, // 릴리스 첨부 .sha256 은 CORS 가 막혀 브라우저가 못 읽는다 → 아는 판의 값만 여기 둔다
     },
-    // 최신판(2026-11-09 두 갈래 배포, P03 docs\설계-배포채널-2026-11-09.md): 위 fallback = 안정판, 여기 = 사전 공개(prerelease)로 낸 최신판.
+    // 최신판(2026-11-09 두 갈래 배포, P02 docs\설계-배포채널-2026-11-09.md): 위 fallback = 안정판, 여기 = 사전 공개(prerelease)로 낸 최신판.
     // 릴리스 도구(iris-release.mjs)가 최신판을 낼 때 채우고, promote 로 안정판에 올리면 비운다(null). GitHub API 로 찾지 않는다 —
     // 학교망 공유 IP 의 익명 호출 한도를 더 쓰지 않고, 사람이 시험 단계로 고른 판만 보이게(코덱스 검토 10).
     // installer 가 null 이거나 판이 안정판보다 높지 않으면 최신판 상자는 숨는다.
@@ -32,9 +32,9 @@
     },
     // 미러(2026-09-14): 일부 네트워크(학교·회사)가 GitHub 릴리스 첨부 서버(release-assets.githubusercontent.com)만 끊는다(실측: github.com 은 열리고 첨부만 연결 재설정).
     // 같은 파일을 Cloudflare R2 에도 둔다(릴리스 도구가 올림). assets = 미러에 있는 첨부 이름 목록 — 여기 있는 판만 미러 링크를 보인다.
-    // 2026-09-17: 300MB 한도는 S3 멀티파트(P03 build/mirror-upload.mjs)로 넘겼다. 새 판을 낼 때마다 zip+.sha256 을 R2 에 올리고 여기 이름을 더한다 —
+    // 2026-09-17: 300MB 한도는 S3 멀티파트(P02 build/mirror-upload.mjs)로 넘겼다. 새 판을 낼 때마다 zip+.sha256 을 R2 에 올리고 여기 이름을 더한다 —
     // 여기 있는 판은 내려받기 단추가 **미러를 1순위**로 가리킨다(GitHub 첨부 서버가 막힌 학교·회사 망 실측 4회).
-    // 2026-11-09: base 를 r2.dev → 같은 버킷의 빠른 창구 iris-workspace-dl.pages.dev(P03 mirror-worker)로 바꿨다 — 학교 유선 실측
+    // 2026-11-09: base 를 r2.dev → 같은 버킷의 빠른 창구 iris-workspace-dl.pages.dev(P02 mirror-worker)로 바꿨다 — 학교 유선 실측
     // r2.dev 초당 60~80KB(미국 LA, 556MB 에 2시간+) / pages.dev 초당 30~43MB(서울, 약 15초). r2.dev 는 옛 IRIS 창용으로 살아 있다.
     mirror: { base: 'https://iris-workspace-dl.pages.dev', assets: ['IRIS-Setup_v2.0.19_2026-09-18.zip', 'IRIS-Setup_v2.0.20_2026-09-18.zip', 'IRIS-Setup_v2.0.21_2026-09-19.zip', 'IRIS-Setup_v2.0.22_2026-09-19.zip', 'IRIS-Setup_v2.0.23_2026-09-19.zip', 'IRIS-Setup_v2.0.24_2026-09-19.zip', 'IRIS-Setup_v2.0.25_2026-09-19.zip', 'IRIS-Setup_v2.0.26_2026-09-19.zip', 'IRIS-Setup_v2.0.27_2026-09-19.zip', 'IRIS-Setup_v2.0.28_2026-09-20.zip', 'IRIS-Setup_v2.0.29_2026-09-20.zip', 'IRIS-Setup_v2.0.30_2026-09-20.zip', 'IRIS-Setup_v2.0.31_2026-09-20.zip', 'IRIS-Setup_v2.0.32_2026-09-20.zip', 'IRIS-Setup_v2.0.33_2026-09-21.zip', 'IRIS-Setup_v2.0.34_2026-09-21.zip', 'IRIS-Setup_v2.0.35_2026-09-21.zip', 'IRIS-Setup_v2.0.36_2026-09-23.zip', 'IRIS-Setup_v2.0.37_2026-09-23.zip', 'IRIS-Setup_v2.0.38_2026-09-23.zip', 'IRIS-Setup_v2.0.39_2026-09-28.zip', 'IRIS-Setup_v2.0.40_2026-10-02.zip', 'IRIS-Setup_v2.0.41_2026-10-03.zip', 'IRIS-Setup_v2.0.42_2026-10-12.zip', 'IRIS-Setup_v2.0.43_2026-10-12.zip', 'IRIS-Setup_v2.0.44_2026-10-16.zip', 'IRIS-Setup_v2.0.45_2026-10-16.zip', 'IRIS-Setup_v2.0.46_2026-10-21.zip', 'IRIS-Setup_v2.0.47_2026-10-22.zip', 'IRIS-Setup_v2.0.48_2026-10-23.zip', 'IRIS-Setup_v2.0.49_2026-10-27.zip', 'IRIS-Setup_v2.0.50_2026-10-27.zip', 'IRIS-Setup_v2.0.51_2026-10-28.zip', 'IRIS-Setup_v2.0.52_2026-10-28.zip', 'IRIS-Setup_v2.0.53_2026-11-02.zip', 'IRIS-Setup_v2.0.54_2026-11-04.zip', 'IRIS-Setup_v2.0.55_2026-11-09.zip', 'IRIS-Setup_v2.0.56_2026-11-09.zip', 'IRIS-Setup_v2.0.57_2026-11-09.zip', 'IRIS-Setup_v2.0.58_2026-11-10.zip', 'IRIS-Setup_v2.0.59_2026-11-10.zip', 'IRIS-Setup_v2.0.60_2026-11-11.zip', 'IRIS-Setup_v2.0.61_2026-11-11.zip', 'IRIS-Setup_v2.0.62_2026-11-12.zip', 'IRIS-Setup_v2.0.63_2026-11-13.zip'] },
   };

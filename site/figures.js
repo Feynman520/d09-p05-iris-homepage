@@ -1,6 +1,6 @@
 /* IRIS homepage figures · © 2026 Sejun Ham (함세준) · MIT
    2026-11-11 채택 그림 둘의 동작(시안 원본 = docs\시안-그림-2026-11-11\그림시안.html):
-   A1 직업별 폴더 나무 — 직업 단추를 누르면 #jt-tree 를 새로 그린다. 직업과 R·D·P 이름 = 설치기(P03) installer/ui/presets.json 7종.
+   A1 직업별 폴더 나무 — 직업 단추를 누르면 #jt-tree 를 새로 그린다. 직업과 R·D·P 이름 = 설치기(P02) installer/ui/presets.json 7종.
       R 번호는 직업 순서(R01 교사 … R07 작가 — 사용자 지정). 폴더 이름은 실제 이름이라 영어 화면에서도 그대로 둔다.
       presets.json 을 고치면 아래 JOBS 도 함께 고친다.
    B5 IRIS 창 설명 — 설명 줄(또는 번호 점)에 마우스를 올리면 짝이 되는 점·줄을 밝힌다. */

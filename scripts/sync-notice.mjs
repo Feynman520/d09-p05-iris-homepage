@@ -1,6 +1,6 @@
-// sync-notice.mjs — P03 install-notice.txt → site/install.html #sac 절 HTML 생성
+// sync-notice.mjs — 설치 패키지 install-notice.txt → site/install.html #sac 절 HTML 생성
 //
-// P03(아이리스 설치 패키지)의 payload-src/policy/install-notice.txt 가 SAC(스마트 앱 컨트롤)
+// 설치 패키지 저장소(아이리스 설치 패키지)의 payload-src/policy/install-notice.txt 가 SAC(스마트 앱 컨트롤)
 // 차단 안내문의 정본이다. 이 스크립트는 그 평문을 읽어 HTML로 바꾸고, site/install.html 안의
 // `<!-- notice:begin -->...<!-- notice:end -->` 사이만 갈아 끼운다. 손으로 그 사이를 고치지
 // 말 것 — 다음 실행 때 덮어써진다.
@@ -24,7 +24,7 @@
 //                                       문단의 마지막 한 줄을 그 목록의 제목으로 승격한다
 //                                       (예: "그래도 안 될 때" — 원문엔 대괄호가 없는 절 제목).
 //   - UTF-8 BOM은 읽을 때 제거한다.
-//   - install-notice.txt는 P03 소관 파일이라 이 스크립트는 절대 쓰지 않는다(읽기 전용 입력).
+//   - install-notice.txt는 설치 패키지 저장소 소관 파일이라 이 스크립트는 절대 쓰지 않는다(읽기 전용 입력).
 //   - 영어 번역(site.js의 I18N.en['inst.sacbody'])은 이 스크립트가 만들지 않는다 —
 //     install-notice.txt에 영어판이 없어 손으로 옮겨 쓴 번역을 site.js에 계속 둔다. 원문이
 //     바뀌면 영어 쪽도 사람이 같이 고칠 것.
@@ -36,11 +36,20 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SITE_DIR = path.join(__dirname, '..', 'site');
 const INSTALL_HTML = path.join(SITE_DIR, 'install.html');
-const NOTICE_TXT = path.join(
-  __dirname, '..', '..',
-  'P03-아이리스 설치 패키지(IRIS Installer) 〖Local App〗',
-  'payload-src', 'policy', 'install-notice.txt'
-);
+// 설치 패키지 저장소는 이 저장소의 형제 폴더다. P 번호가 아니라 제품 이름 "(IRIS Installer)" 로 찾는다
+// (2026-11-13 P 번호 다시 매기기 — 번호가 바뀌어도 따라가게). 정확히 하나가 아니면 멈춘다.
+function findInstallerRepo() {
+  const parent = path.join(__dirname, '..', '..');
+  const hits = fs.readdirSync(parent, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && /^P\d\d-/.test(e.name) && e.name.includes('(IRIS Installer)'))
+    .map((e) => e.name);
+  if (hits.length !== 1) {
+    console.error(`실패: 설치 패키지 폴더 "(IRIS Installer)" 를 정확히 하나 찾아야 하는데 ${hits.length}개입니다: ${hits.join(', ') || '없음'}`);
+    process.exit(1);
+  }
+  return path.join(parent, hits[0]);
+}
+const NOTICE_TXT = path.join(findInstallerRepo(), 'payload-src', 'policy', 'install-notice.txt');
 
 const BEGIN = '<!-- notice:begin -->';
 const END = '<!-- notice:end -->';
