@@ -1,7 +1,7 @@
 /* IRIS homepage · © 2026 Sejun Ham (함세준) · MIT · https://feynman520.github.io/card/#home */
 /* 의견 보내기(/feedback) — 설계 정본 = docs/설계-의견함-2026-11-12.md (② 분류 레일).
    보내기 = IRIS 공용 DB(메신저 허브 Supabase)의 넣기 전용 함수 submit_feedback 하나. 이 anon 키는 공개해도 안전하다
-   (표는 직접 읽기·쓰기 전부 막혀 있고 함수 안에서 길이·횟수·크기 상한을 건다 — P03 hub/server/migrations/0005_feedback.sql).
+   (표는 직접 읽기·쓰기 전부 막혀 있고 함수 안에서 길이·횟수·크기 상한을 건다 — P08 허브 server/migrations/0005_feedback.sql).
    언어는 site.js 의 setLang 이 data-i18n 을 바꾸고, 여기서 만드는 글(입력 안내·오류)은 <html lang> 을 보고 고른다. */
 (function () {
   'use strict';
