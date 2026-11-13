@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="fb.title">IRIS — 의견 보내기</title>
+<meta name="description" content="IRIS의 고장·바뀌면 좋을 점·있으면 좋을 기능을 개발자에게 보냅니다. 로그인 없이.">
+<meta name="theme-color" content="#0a0c14">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+<style>
+/* 의견 보내기 — ⑥ 분류 레일(2026-11-13 사용자 확정, 시안 = docs/시안-의견-2026-11-12/site/n6-rail.html). 전역 클래스와 안 겹치게 fb- 접두. */
+.nav a.cur { color: var(--ink); background: var(--raised); }
+.fb { max-width: 960px; margin: 0 auto; padding: calc(var(--top) + 70px) 24px 96px; }
+.fb h1 { font-size: 28px; font-weight: 600; letter-spacing: -.03em; margin: 0; }
+.fb-sub { color: var(--ink-2); font-size: 14px; margin: 8px 0 40px; }
+.fb-layout { display: grid; grid-template-columns: 174px minmax(0, 1fr); gap: 42px; }
+.fb-rail { position: relative; align-self: start; display: grid; }
+.fb-rail button { text-align: left; height: 48px; padding: 0 0 0 18px; font-size: 14.5px; color: var(--ink-3); transition: color .15s; }
+.fb-rail button:hover { color: var(--ink-2); }
+.fb-rail button[aria-pressed="true"] { color: var(--ink); font-weight: 600; }
+.fb-rail { --i: 0; }
+.fb-marker { position: absolute; left: 0; top: 13px; width: 2px; height: 22px; border-radius: 2px; background: var(--iris); transform: translateY(calc(var(--i) * 48px)); transition: transform .26s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
+.fb-short { display: none; }
+.fb-form { min-width: 0; }
+.fb-where { display: flex; align-items: center; gap: 14px; height: 48px; font-size: 13px; color: var(--ink-2); }
+.fb-sel { position: relative; display: inline-flex; align-items: center; }
+.fb-sel svg { position: absolute; right: 2px; pointer-events: none; color: var(--ink-3); }
+.fb-sel select { appearance: none; -webkit-appearance: none; font: inherit; font-size: 14px; color: var(--ink); background: none; border: 0; border-radius: 0; padding: 6px 24px 6px 0; cursor: pointer; }
+.fb-sel select.unset { color: var(--ink-3); }
+.fb-sel select option { background: var(--overlay); color: var(--ink); }
+.fb-cap { display: flex; justify-content: space-between; gap: 12px; margin: 14px 0 10px; font-size: 12px; color: var(--ink-2); }
+.fb-text { display: block; width: 100%; height: 208px; padding: 18px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--surface); color: var(--ink); font: 16px/1.85 var(--sans); resize: none; overflow: hidden; transition: border-color .2s; }
+.fb-text:focus { border-color: rgba(143,168,255,.45); outline: none; }
+.fb-text::placeholder, .fb-mail::placeholder { color: var(--ink-3); }
+.fb-tip { color: var(--ink-2); font-size: 13px; margin: 10px 0 0; }
+.fb-tip b { color: var(--warn); font-weight: 600; }
+.fb-info { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-3); }
+.fb-info span { color: var(--ink-2); }
+.fb-reply { display: flex; align-items: center; gap: 18px; margin-top: 26px; font-size: 13px; color: var(--ink-2); }
+.fb-mail { flex: 1; min-width: 0; font: 14px var(--sans); color: var(--ink); background: none; border: 0; border-bottom: 1px solid var(--line-2); padding: 10px 0; border-radius: 0; outline: none; }
+.fb-mail:focus { border-bottom-color: var(--iris); }
+.fb-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.fb-privacy { font-size: 12.5px; color: var(--ink-3); margin: 22px 0; line-height: 1.8; }
+.fb-privacy a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
+.fb-err { margin: 0 0 14px; font-size: 13.5px; color: var(--bad); }
+.fb-actions { display: flex; justify-content: flex-end; }
+.fb-send { background: var(--ink); color: var(--base); border-radius: 8px; min-height: 44px; padding: 0 30px; font-size: 14.5px; font-weight: 600; }
+.fb-send:hover { background: #fff; }
+.fb-send:disabled { background: var(--raised); color: var(--ink-3); cursor: progress; }
+.fb-gh { margin-top: 30px; font-size: 12.5px; color: var(--ink-3); }
+.fb-gh a { color: var(--ink-2); }
+.fb-form :is(input, textarea, select):focus-visible { outline: 2px solid var(--iris); outline-offset: 4px; }
+.fb-done { padding: 28px 0 120px 216px; }
+.fb-done h2 { font-size: 24px; font-weight: 600; margin: 0 0 26px; outline: none; }
+.fb-receipt { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; color: var(--ink-2); font-size: 14px; }
+.fb-receipt output { font-family: var(--mono); font-size: 16px; color: var(--ink); }
+.fb-copy { color: var(--iris); font-size: 13px; min-height: 40px; }
+.fb-copy:hover { text-decoration: underline; text-underline-offset: 3px; }
+.fb-note { margin: 18px 0 0; color: var(--ink-2); font-size: 14px; }
+.fb-status { min-height: 1.6em; margin: 6px 0 28px; font-size: 12.5px; color: var(--ink-3); }
+.fb-again { font-size: 13.5px; color: var(--ink-2); padding: 8px 14px; border-radius: 8px; border: 1px solid var(--line-2); }
+.fb-again:hover { background: var(--raised); color: var(--ink); }
+@media (max-width: 720px) {
+  .fb { padding: calc(var(--top) + 40px) 20px 80px; }
+  .fb h1 { font-size: 26px; }
+  .fb-sub { font-size: 13.5px; margin-bottom: 26px; }
+  .fb-layout { display: block; }
+  .fb-rail { grid-template-columns: repeat(4, 1fr); margin-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .fb-rail button { padding: 0; text-align: center; height: 44px; }
+  .fb-long { display: none; } .fb-short { display: inline; }
+  .fb-marker { top: auto; bottom: -1px; height: 2px; width: 25%; transform: translateX(calc(var(--i) * 100%)); }
+  .fb-text { font-size: 15px; padding: 14px; }
+  .fb-reply { display: block; margin-top: 20px; }
+  .fb-mail { width: 100%; margin-top: 2px; }
+  .fb-privacy { font-size: 13px; }
+  .fb-send { width: 100%; }
+  .fb-done { padding: 24px 0 100px; }
+}
+@media (prefers-reduced-motion: reduce) { .fb-marker, .fb-rail button { transition: none; } }
+</style>
+</head>
+<body>
+<header id="top">
+  <a class="brand" href="/" aria-label="IRIS">
+    <span class="mark-slot" aria-hidden="true"><svg class="mark" viewBox="0 0 24 24" width="22" height="22"><g class="a1"><path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9Z" fill="none" stroke="var(--mk-1)" stroke-width="1.3"/><path d="M12 3v9m0 0l7.8 4.5M12 12l-7.8 4.5" stroke="var(--mk-2)" stroke-width="1" opacity=".7"/></g></svg></span>
+    <img class="wordmark wm-img" src="img/iris-wordmark.png" alt="IRIS" width="78" height="30">
+  </a>
+  <div class="top-right">
+    <nav class="nav" aria-label="주 메뉴">
+      <a href="/#what" data-i18n="nav.what">소개</a>
+      <a href="/#compare" data-i18n="nav.cmp">비교</a>
+      <a href="/install" data-i18n="nav.install">설치 안내</a>
+      <a href="/feedback" class="cur" aria-current="page" data-i18n="nav.fb">의견 보내기</a>
+    </nav>
+    <div class="lang" role="group" aria-label="언어">
+      <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="top-dl" href="/#download" data-i18n="nav.download">내려받기</a>
+  </div>
+</header>
+
+<main class="fb">
+  <h1 data-i18n="fb.h">의견 보내기</h1>
+  <p class="fb-sub" data-i18n="fb.sub">로그인 없이 보냅니다. 개발자만 읽습니다.</p>
+
+  <div class="fb-layout" id="fb-write">
+    <div class="fb-rail" role="group" aria-label="의견 종류">
+      <span class="fb-marker" aria-hidden="true"></span>
+      <button type="button" aria-pressed="true"><span data-i18n="fb.k0">고장</span></button>
+      <button type="button" aria-pressed="false"><span class="fb-long" data-i18n="fb.k1">바뀌면 좋을 점</span><span class="fb-short" data-i18n="fb.k1s">개선</span></button>
+      <button type="button" aria-pressed="false"><span class="fb-long" data-i18n="fb.k2">있으면 좋을 기능</span><span class="fb-short" data-i18n="fb.k2s">기능</span></button>
+      <button type="button" aria-pressed="false"><span class="fb-long" data-i18n="fb.k3">그 밖의 말</span><span class="fb-short" data-i18n="fb.k3s">그 밖</span></button>
+    </div>
+    <form class="fb-form" id="fb-form" novalidate>
+      <div class="fb-where"><label for="fb-where" data-i18n="fb.where">어디서</label>
+        <span class="fb-sel"><select id="fb-where" class="unset">
+          <option value="" selected data-i18n="fb.w0">고르기</option>
+          <option value="install" data-i18n="fb.w1">설치</option>
+          <option value="face" data-i18n="fb.w2">IRIS 창</option>
+          <option value="messenger" data-i18n="fb.w3">메신저</option>
+          <option value="site" data-i18n="fb.w4">홈페이지</option>
+          <option value="unknown" data-i18n="fb.w5">잘 모름</option>
+        </select><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span></div>
+      <div class="fb-cap"><label for="fb-body" data-i18n="fb.body">내용</label><span id="fb-help" data-i18n="fb.help">첫 줄이 제목이 됩니다.</span></div>
+      <textarea id="fb-body" class="fb-text" maxlength="4000" aria-describedby="fb-help"></textarea>
+      <p class="fb-tip" id="fb-tip" hidden data-i18n="fb.tip"><b>설치하다 멈췄다면</b> 설치기 화면의 「개발자에게 신고하기」가 더 빠릅니다. 이미 닫았다면 여기에 적어 주세요.</p>
+      <p class="fb-info" id="fb-info" hidden><span data-i18n="fb.info">함께 보내는 정보</span> · <span id="fb-info-v"></span></p>
+      <div class="fb-reply"><label for="fb-mail" data-i18n="fb.mail">답장 받을 이메일 · 선택</label><input class="fb-mail" id="fb-mail" type="email" maxlength="254" autocomplete="email" placeholder="name@example.com"></div>
+      <div class="fb-trap" aria-hidden="true"><label for="fb-website">Website</label><input id="fb-website" type="text" tabindex="-1" autocomplete="off"></div>
+      <p class="fb-privacy" data-i18n="fb.privacy">화면 캡처·파일은 받지 않습니다. 이메일은 답장에만 씁니다. 내용에 이름·연락처는 적지 마세요. <a href="/privacy#feedback">처리방침</a></p>
+      <p class="fb-err" id="fb-err" role="alert" hidden></p>
+      <div class="fb-actions"><button type="submit" class="fb-send" id="fb-send" data-i18n="fb.send">보내기</button></div>
+      <p class="fb-gh" data-i18n="fb.gh">공개로 남기고 싶다면 <a href="https://github.com/Feynman520/d09-p03-iris-installer/issues" rel="noopener">GitHub 게시판</a>도 있습니다. 누구나 볼 수 있습니다.</p>
+    </form>
+  </div>
+
+  <section class="fb-done" id="fb-done" hidden aria-labelledby="fb-done-title">
+    <h2 id="fb-done-title" tabindex="-1" data-i18n="fb.done">의견을 보냈습니다.</h2>
+    <div class="fb-receipt"><span data-i18n="fb.rc">접수 번호</span><output id="fb-number"></output><button class="fb-copy" id="fb-copy" type="button" data-i18n="fb.copy">복사</button></div>
+    <p class="fb-note" id="fb-reply-note" hidden data-i18n="fb.replyNote">답장이 필요하면 남겨 주신 이메일로 연락드립니다.</p>
+    <p class="fb-status" id="fb-copy-status" role="status"></p>
+    <button class="fb-again" id="fb-again" type="button" data-i18n="fb.again">하나 더 보내기</button>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-in">
+    <span>Sejun Ham (함세준)</span>
+    <a href="https://feynman520.github.io/card/#home" rel="noopener" data-i18n="foot.card">디지털 명함</a>
+    <a href="https://github.com/Feynman520/d09-p03-iris-installer" rel="noopener" data-i18n="foot.installer">설치 패키지</a>
+    <a href="/privacy" data-i18n="foot.privacy">처리방침</a>
+    <span class="ver">MIT</span>
+  </div>
+</footer>
+<script src="site.js"></script>
+<script src="feedback.js"></script>
+</body>
+</html>
