@@ -18,3 +18,9 @@ python -m http.server 8765 --bind 127.0.0.1 -d site
 Fonts: Pretendard Variable and a subset of Nanum Pen Script, both SIL OFL (`site/fonts/OFL-*.txt`).
 
 MIT · Sejun Ham
+
+## 기여 (Contributing)
+
+의견과 PR 안내는 [CONTRIBUTING.md](CONTRIBUTING.md)를, 보안 문제 신고는 [SECURITY.md](SECURITY.md)를 봐 주세요.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute and [SECURITY.md](SECURITY.md) for reporting security issues.
