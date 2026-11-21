@@ -4,10 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-i18n="inst.title">IRIS — 설치 안내</title>
-<meta name="description" content="IRIS 설치기의 화면별 설명과 막혔을 때의 대처, 삭제 방법.">
+<meta name="description" content="IRIS를 내려받아 설치하고, 새 판으로 바꾸고, 지우는 방법. 설치기의 화면별 설명과 막혔을 때의 대처.">
 <meta name="theme-color" content="#0a0c14">
 <link rel="icon" href="favicon.ico">
 <link rel="stylesheet" href="style.css">
+<style>
+/* 설치 안내 전용(2026-11-21 최신화). 본문은 안정판 기준, 최신판에서 다른 점은 .pre-note 로 그 자리에 적는다. */
+.nav a.cur { color: var(--ink); background: var(--raised); }
+.inst-toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; }
+.inst-toc a { font-size: 13px; color: var(--ink-2); border: 1px solid var(--line-2); border-radius: 999px; padding: 4px 13px; }
+.inst-toc a:hover { color: var(--ink); background: var(--raised); text-decoration: none; }
+.pre-note { display: block; margin: 10px 0 0; padding: 1px 0 1px 13px; border-left: 2px solid var(--iris); color: var(--ink-2); font-size: 13.5px; }
+.pre-note b { color: var(--iris); font-weight: 600; }
+/* 순서 흐름(.flow) 안의 명령어 상자는 글 칸(둘째 칸)에 놓는다 — 번호 칸에 끼어 글자가 잘리던 것(2026-11-21 발견) */
+.page .flow > li > pre { grid-column: 2; min-width: 0; margin: 10px 0 0; }
+.page .steps { padding-left: 22px; }
+.page .steps li { margin: 8px 0; }
+.page .steps b, .page .facts b { color: var(--ink); font-weight: 600; }
+.page .facts li { margin: 6px 0; }
+</style>
 </head>
 <body>
 <header id="top">
@@ -16,12 +31,12 @@
     <img class="wordmark wm-img" src="img/iris-wordmark.png" alt="IRIS" width="78" height="30">
   </a>
   <div class="top-right">
-    <nav class="nav" aria-label="본문">
+    <nav class="nav" aria-label="주 메뉴">
       <a href="/#what" data-i18n="nav.what">소개</a>
-      <a href="/#how" data-i18n="nav.how">작동</a>
+      <a href="/#compare" data-i18n="nav.cmp">비교</a>
+      <a href="/install" class="cur" aria-current="page" data-i18n="nav.install">설치 안내</a>
       <a href="/community" data-i18n="nav.cm">커뮤니티</a>
       <a href="/feedback" data-i18n="nav.fb">의견 보내기</a>
-      <a href="https://github.com/Feynman520/d09-p03-iris-installer" rel="noopener">GitHub</a>
     </nav>
     <div class="lang" role="group" aria-label="언어">
       <button type="button" data-lang="ko" aria-pressed="true">KO</button>
@@ -34,13 +49,22 @@
 <main class="page">
   <div class="crumb"><a href="/" data-i18n="crumb.home">IRIS</a> / <span data-i18n="inst.h">설치 안내</span></div>
   <h1 data-i18n="inst.h">설치 안내</h1>
-  <p class="lead" data-i18n="inst.lead">설치기의 여덟 화면이 차례로 무엇을 하는지, 그리고 중간에 멈췄을 때 무엇을 하면 되는지 적었습니다. 사람이 정하는 것은 구독·작업 폴더·로그인 셋뿐입니다.</p>
+  <p class="lead" data-i18n="inst.lead">IRIS를 내려받아 설치하고, 새 판으로 바꾸고, 지우는 방법을 차례로 적었습니다. 설치하는 동안 사람이 정하는 것은 가진 구독 고르기와 로그인 둘뿐입니다. 큰 단추로 받는 안정판을 기준으로 썼고, 최신판에서 다른 점은 그 자리에 따로 적었습니다.</p>
+  <nav class="inst-toc" aria-label="이 쪽의 차례">
+    <a href="#get" data-i18n="inst.t1">받기와 실행</a>
+    <a href="#blocked" data-i18n="inst.t2">윈도우가 막을 때</a>
+    <a href="#screens" data-i18n="inst.t3">설치 화면</a>
+    <a href="#first" data-i18n="inst.t4">설치 뒤 첫 대화</a>
+    <a href="#update" data-i18n="inst.t5">업데이트</a>
+    <a href="#stuck" data-i18n="inst.t6">막혔을 때</a>
+    <a href="#remove" data-i18n="inst.t7">지우기</a>
+  </nav>
 
-  <h2 data-i18n="inst.s0h">받기 — 내려받기와 압축 풀기</h2>
+  <h2 id="get" data-i18n="inst.s0h">받기 — 내려받기와 압축 풀기</h2>
   <p data-i18n="inst.s0">홈에서 zip을 내려받습니다. <strong>압축을 풀기 전에</strong> zip 파일을 오른쪽 클릭 → 속성 → 아래쪽 「차단 해제」에 체크 → 확인을 누르세요(윈도우가 인터넷에서 받은 파일에 붙이는 표식을 지우는 것으로, 건너뛰면 윈도우 11의 스마트 앱 컨트롤이 다음 단계를 막습니다 — 막히면 바로 아래 <a href="#blocked">윈도우가 막을 때</a>를 보세요). 그다음 아무 곳에나 압축을 풉니다.</p>
 
   <h2 data-i18n="inst.s1h">실행 — IRIS-설치.cmd 파일 더블클릭</h2>
-  <p data-i18n="inst.s1">풀어 둔 폴더에서 <code>IRIS-설치.cmd</code> 파일을 마우스로 더블클릭합니다 — 명령 창을 열어 무언가를 칠 필요는 없습니다(이름 끝의 .cmd는 파일 종류일 뿐입니다). 검은 창이 잠깐 보였다가 브라우저에 설치 화면(127.0.0.1:3460)이 열립니다. 사람이 손으로 하는 일은 여기까지가 대부분이고, 다음 화면부터는 구독과 작업 폴더 두 가지를 정하는 것 말고는 설치기가 알아서 진행합니다.</p>
+  <p data-i18n="inst.s1">풀어 둔 폴더에서 <code>IRIS-설치.cmd</code> 파일을 마우스로 더블클릭합니다 — 명령 창을 열어 무언가를 칠 필요는 없습니다(이름 끝의 .cmd는 파일 종류일 뿐입니다). 검은 창이 잠깐 보였다가 브라우저에 설치 화면(127.0.0.1:3460)이 열립니다. 그다음부터는 가진 구독을 고르고 로그인하는 것 말고는 설치기가 알아서 진행합니다.</p>
 
   <section class="blocked" id="blocked">
     <h2 data-i18n="inst.blkh">서명이 없는 파일이라 윈도우가 막을 때</h2>
@@ -50,53 +74,70 @@
       <li><b data-i18n="inst.blk1b">파란 창 "Windows의 PC 보호" (SmartScreen)</b><div class="flow-body" data-i18n="inst.blk1s">「추가 정보」를 누르면 「실행」 단추가 나타납니다 → 실행. 이 스크립트는 동봉된 Node.js를 시작할 뿐입니다.<em class="next">창이 아예 안 뜨거나 "스마트 앱 컨트롤이 차단했습니다"라면 ↓</em></div></li>
       <li><b data-i18n="inst.blk2b">스마트 앱 컨트롤(SAC) 끄기 — 새 PC는 대개 켜져(또는 평가 모드) 있습니다</b><div class="flow-body" data-i18n="inst.blk2s">설정 › 개인 정보 및 보안 › Windows 보안 › 앱 및 브라우저 컨트롤 › 스마트 앱 컨트롤 설정 › 「끄기」. <span class="warn">한 번 끄면 다시 켤 수 없습니다 — 윈도우를 새로 설치하지 않는 한.</span> 켠 채로는 서명 없는 프로그램 대부분이 막힙니다. 끈 뒤 <code>IRIS-설치.cmd</code>를 다시 두 번 클릭합니다.<em class="next">그래도 아무 반응이 없으면 ↓</em></div></li>
       <li><b data-i18n="inst.blk3b">명령 창에서 직접 실행</b><div class="flow-body" data-i18n="inst.blk3s"><ol class="sub"><li>압축을 푼 폴더를 엽니다.</li><li>주소 표시줄(폴더 경로가 적힌 칸)을 클릭해 <code>cmd</code>라고 치고 Enter → 그 폴더에서 검은 창(명령 프롬프트)이 열립니다.</li><li>검은 창에 다음 한 줄을 붙여 넣고 Enter:<br><code>IRIS-설치.cmd</code></li><li>몇 초 뒤 브라우저가 열리며 설치 화면이 나오면 성공. 검은 창은 스스로 닫힙니다.</li></ol><em class="next">검은 창에 오류가 찍히면 ↓</em></div></li>
-      <li><b data-i18n="inst.blk4b">문의</b><div class="flow-body" data-i18n="inst.blk4s">그 화면을 사진으로 찍어(또는 글자를 복사해) 문의해 주세요. zip 뿌리의 「설치가 안 되면.txt」에 같은 안내가 있습니다.</div></li>
+      <li><b data-i18n="inst.blk4b">알려 주기</b><div class="flow-body" data-i18n="inst.blk4s">검은 창에 찍힌 글자를 복사해 <a href="/feedback">의견 보내기</a>로 알려 주세요(로그인 없이 보냅니다. 화면 캡처는 받지 않으니 글자로 적어 주세요). zip 뿌리의 「설치가 안 되면.txt」에 같은 안내가 있습니다.</div></li>
     </ol>
     <h3 data-i18n="inst.blkhashh">받은 파일이 원본인지 확인 (선택)</h3>
     <p data-i18n="inst.blkhash">PowerShell을 열고 zip이 있는 폴더에서 아래 명령을 실행합니다. 나온 값이 그 아래 값과 같으면 같은 파일입니다.</p>
-    <pre><code id="inst-hashcmd">Get-FileHash .\IRIS-Setup_v2.0.55_2026-11-09.zip -Algorithm SHA256</code></pre>
-    <p class="sha" id="inst-sha">e8f9e229955360dede07e416b2cfddb852993a5f1cf7fd2b7b06ec024034a831</p>
-    <h3 data-i18n="inst.blksach">설치 중 스마트 앱 컨트롤이 켜져 있으면 (2.0.1부터)</h3>
-    <p data-i18n="inst.blksac">설치기의 사전 점검이 「스마트 앱 컨트롤이 켜져 있습니다」라고 미리 알립니다. 그 상태로도 대개 설치는 되지만, 동봉한 파이썬 도구가 차단돼 세팅이 venv(파이썬 환경) 단계에서 멈출 수 있습니다. 그러면 위 ②대로 끄고 「다시 시도」를 누르면 됩니다.</p>
+    <pre><code id="inst-hashcmd">Get-FileHash .\IRIS-Setup_v2.0.59_2026-11-10.zip -Algorithm SHA256</code></pre>
+    <p class="sha" id="inst-sha">b115b0368d0097e94b3bfd045bb24b40470d8bcd70a3ba365afc0bb043b1dc15</p>
+    <h3 data-i18n="inst.blksach">설치 중 스마트 앱 컨트롤이 켜져 있으면</h3>
+    <p data-i18n="inst.blksac">설치기의 준비 확인이 「앱 보호 기능(SAC)이 켜져 있습니다」라고 미리 알립니다. 그 상태로도 대개 설치는 되지만, 동봉한 파이썬 도구가 차단돼 설치가 파이썬 환경 단계에서 멈출 수 있습니다. 그러면 위 ②대로 끄고 「다시 시도」를 누르면 됩니다.</p>
   </section>
 
-  <h2 data-i18n="inst.scrh">설치기의 여덟 화면</h2>
-  <p data-i18n="inst.scr">설치 화면은 ①부터 ⑧까지 차례로 넘어가고, 위쪽 진행 막대가 몇 번째 화면인지 보여 줍니다. 사람이 정하는 것은 ③ 구독, ④ 작업 폴더, ⑦ 로그인 셋뿐이고 나머지는 설치기가 알아서 합니다. 인터넷은 ⑦에서만 씁니다.</p>
+  <h2 id="screens" data-i18n="inst.scrh">설치 화면</h2>
+  <p data-i18n="inst.scr">설치 화면은 준비 확인부터 완료까지 차례로 넘어가고, 위쪽 진행 막대가 어디까지 왔는지 보여 줍니다. 화면 번호는 ①~⑧이지만 ④ 작업 폴더 화면은 건너뛰므로 실제로 보는 화면은 일곱입니다. 사람이 정하는 것은 ③ 구독과 ⑦ 로그인 둘뿐이고 나머지는 설치기가 알아서 합니다. 인터넷은 ⑦에서만 씁니다.</p>
 
   <h3 data-i18n="inst.s2h">① 준비 확인</h3>
-  <p data-i18n="inst.s2">윈도우 판, 64비트 CPU, C 드라이브 여유(3 GB), PowerShell, 포트, 받은 파일의 무결성을 자동으로 확인합니다. 아무것도 바꾸지 않고 읽기만 하며, 보통 10초가 걸립니다. 막는 것이 있으면 무엇을 하면 되는지 그 자리에 적히고, 인터넷이나 스마트 앱 컨트롤처럼 나중에 영향이 있을 수 있는 것은 「알아 두기」로만 남깁니다.</p>
-  <div class="win"><div class="win-bar"><span>①</span><span class="dot"></span></div><img src="img/install-1-precheck.png" width="1100" height="934" alt="준비 확인 결과 화면 — 검사 항목과 통과 표시" loading="lazy"></div>
+  <p data-i18n="inst.s2">윈도우 판, 64비트 CPU, C 드라이브 여유(3 GB), PowerShell, 포트, 기본 브라우저, 기존 설치, 받은 파일의 무결성을 자동으로 확인합니다. 아무것도 바꾸지 않고 읽기만 하며, 보통 10초, 느린 PC에서는 45초쯤 걸립니다. 막는 것이 있으면 무엇을 하면 되는지 그 자리에 적히고, 인터넷이나 스마트 앱 컨트롤처럼 나중에 영향이 있을 수 있는 것은 「알아 두기」로만 남깁니다. 통과하면 저절로 다음 화면으로 넘어갑니다.</p>
+  <div class="win"><div class="win-bar"><span>①</span><span class="dot"></span></div><img src="img/inst-1-precheck.png" width="1100" height="934" alt="준비 확인 결과 화면 — 검사 항목과 통과 표시" loading="lazy"></div>
 
   <h3 data-i18n="inst.s3h">② 설치 위치</h3>
-  <p data-i18n="inst.s3">IRIS는 항상 <code>C:\IRIS</code>에 설치되며 위치를 묻지 않습니다 — 그 자리를 쓸 수 있는지만 확인하고 「다음」을 누릅니다. 이미 IRIS가 설치된 PC라면 이 자리에 「새 판으로 업데이트」 화면이 대신 나오고, 「업데이트 시작」을 누르면 자료·설정·로그인을 그대로 둔 채 바뀐 부품만 갈아 끼웁니다.</p>
+  <p data-i18n="inst.s3">IRIS는 항상 <code>C:\IRIS</code> 폴더 하나에 설치되며 위치를 묻지 않습니다 — 그 자리를 쓸 수 있는지만 확인하고 「다음」을 누릅니다. 바탕화면에는 「IRIS」 바로가기 하나만 만듭니다. 이미 IRIS가 설치된 PC라면 이 자리에 「새 판으로 업데이트」 화면이 대신 나옵니다(아래 <a href="#update">업데이트</a>).</p>
 
   <h3 data-i18n="inst.s4h">③ 구독 고르기</h3>
-  <p data-i18n="inst.s4">가진 유료 구독을 모두 표시합니다: Claude, ChatGPT, 또는 둘 다. 둘 다면 Claude Code가 앞장서고 그 뒤로는 둘 다 씁니다. ChatGPT만 골랐다면 Codex가 앞장섭니다. 어느 쪽을 고르든 두 비서를 모두 설치하므로, 나중에 다른 구독 계정을 더하면 바로 연결됩니다.</p>
-  <div class="win"><div class="win-bar"><span>③</span><span class="dot"></span></div><img src="img/install-2-subscription.png" width="1100" height="900" alt="구독 고르기 화면" loading="lazy"></div>
+  <p data-i18n="inst.s4">가진 유료 구독을 모두 표시합니다: Claude, ChatGPT, 또는 둘 다. 무료 계정으로는 비서가 일할 수 없습니다. 둘 다면 Claude Code가 앞장서고 그 뒤로는 둘 다 씁니다. ChatGPT만 골랐다면 Codex가 앞장섭니다. 어느 쪽을 고르든 두 비서를 모두 설치하므로, 나중에 다른 구독 계정을 더하면 바로 연결됩니다. 여기서 고른 것은 ⑦ 계정 연결 화면에서 다시 바꿀 수 있습니다.</p>
+  <div class="win"><div class="win-bar"><span>③</span><span class="dot"></span></div><img src="img/inst-2-subscription.png" width="1100" height="900" alt="구독 고르기 화면" loading="lazy"></div>
 
-  <h3 data-i18n="inst.s5h">④ 작업 폴더 구성</h3>
-  <p data-i18n="inst.s5">비서와 함께 쓸 일의 방(역할 → 분야 → 일거리 폴더)을 미리 만들어 둡니다. 교사·연구자·사업가·개발자·직장인·학생·작가 프리셋 7종 가운데 하나를 누르면 오른쪽에 만들어질 폴더 나무가 바로 보이고, 이름을 고치거나 칸을 더할 수 있습니다. 영어 이름은 비워 둬도 됩니다. 지금 정하기 어려우면 「나중에 비서와 정하기」로 넘어가도 됩니다.</p>
-  <div class="win"><div class="win-bar"><span>④</span><span class="dot"></span></div><img src="img/install-3-structure.png" width="1100" height="1141" alt="작업 폴더 구성 화면 — 프리셋 단추와 폴더 나무 미리보기" loading="lazy"></div>
+  <h3 data-i18n="inst.s5h">④ 작업 폴더 — 건너뜁니다</h3>
+  <p data-i18n="inst.s5">예전 판에는 여기서 직업을 골라 폴더를 미리 만드는 화면이 있었습니다. 지금은 건너뜁니다. 설치기는 IRIS 폴더 하나만 만들고, 그 안의 작업 폴더는 설치가 끝난 뒤 IRIS 창에서 비서가 여쭤 보며 함께 만듭니다(아래 <a href="#first">설치 뒤 첫 대화</a>).</p>
 
   <h3 data-i18n="inst.s6h">⑤ 이대로 설치할까요</h3>
-  <p data-i18n="inst.s6">고른 구독과 만들어질 폴더 나무를 요약으로 보여 줍니다. 여기까지가 사람이 정하는 전부이며, 「이대로 설치 시작」을 누르면 다음부터는 설치기가 혼자 진행합니다.</p>
+  <p data-i18n="inst.s6">고른 구독과, 작업 폴더는 설치 뒤 인터뷰로 만든다는 안내를 보여 줍니다. 여기까지가 설치 전에 사람이 정하는 전부이며, 「이대로 설치 시작」을 누르면 다음부터는 설치기가 혼자 진행합니다.</p>
 
   <h3 data-i18n="inst.s7h">⑥ 설치 중</h3>
-  <p data-i18n="inst.s7">인터넷 없이 아홉 가지 일을 순서대로 합니다 — 동봉된 프로그램 풀기, 환경변수, 작업실 뼈대, 작업 폴더, 파이썬 환경, 에이전트 연결, 중계기 준비, 목록 카드, 검사. 진행 막대에 지금 하는 일이 표시되고, 중간에 오류가 나면 오류 코드와 로그 위치가 그 자리에 적힙니다. 「다시 시도」는 그 단계부터 다시 하며 이미 만든 파일을 지우지 않습니다. 몇 분이 걸립니다.</p>
-  <div class="win"><div class="win-bar"><span>⑥</span><span class="dot"></span></div><img src="img/install-4-progress.png" width="1100" height="900" alt="설치 중 화면 — 아홉 단계 진행 막대" loading="lazy"></div>
+  <p data-i18n="inst.s7">인터넷 없이 아홉 가지 일을 순서대로 합니다 — 동봉된 프로그램 풀기, 환경변수, 기본 폴더와 지침, 작업 폴더, 파이썬 환경, 에이전트 연결, 중계기 준비, 목록 카드, 검사. 진행 막대에 지금 하는 일이 표시되고, 중간에 멈추면 오류 코드와 까닭이 그 자리에 적힙니다. 「다시 시도」는 그 단계부터 다시 하며 이미 만든 파일을 지우지 않습니다. 몇 분이 걸리니 창을 닫지 말고 기다려 주세요.</p>
+  <div class="win"><div class="win-bar"><span>⑥</span><span class="dot"></span></div><img src="img/inst-3-progress.png" width="1100" height="900" alt="설치 중 화면 — 아홉 단계 진행 막대" loading="lazy"></div>
 
   <h3 data-i18n="inst.s8h">⑦ 계정 연결</h3>
-  <p data-i18n="inst.s8">여기부터 인터넷을 씁니다. 먼저 연결을 확인하고(막힌 주소가 있으면 이름을 알려 주고 멈춥니다 — 인터넷이 되는 곳에서 다시 열면 여기서부터 이어집니다), Claude Code를 내려받습니다(무엇을 골랐든 두 비서를 모두 설치합니다 — 고르지 않은 쪽에서 받기가 실패하면 경고만 하고 넘어갑니다). 그다음 고른 구독마다 「로그인」 단추를 누르면 브라우저에 그 계정의 로그인 페이지가 열립니다 — 둘 다면 Claude, ChatGPT 순서입니다. 로그인 창이 늦게 뜨거나 안 보여도 몇 번이고 다시 눌러도 안전합니다. 로그인이 끝나면 계정 중계기가 켜지고 계정이 연결됩니다.</p>
+  <p data-i18n="inst.s8">여기부터 인터넷을 씁니다. 사람이 직접 하는 일은 구독 로그인 하나뿐이고, 세 가지가 차례로 일어납니다.</p>
+  <ol class="steps">
+    <li data-i18n="inst.s8a"><b>연결 확인</b> — 필요한 주소에 닿는지 봅니다. 막힌 주소가 있으면 이름을 알려 주고 멈춥니다. 학교·회사 인터넷이 막는 경우 휴대폰 핫스팟에 연결하고 「다시 확인」을 누르면 여기서부터 이어집니다.</li>
+    <li data-i18n="inst.s8b"><b>Claude Code 내려받기</b> — 무엇을 골랐든 두 비서를 모두 설치합니다. 받지 못하면 「Claude Code 다시 받기」 단추가 나옵니다. ChatGPT만 고른 경우에는 받지 못해도 경고만 하고 넘어갑니다.</li>
+    <li data-i18n="inst.s8c"><b>로그인</b> — 고른 구독마다 「로그인」을 누르면 브라우저에 그 계정의 로그인 화면이 뜹니다(검은 창은 열리지 않습니다). 평소 쓰는 계정으로 로그인하고 「허용(Authorize)」을 누르면 브라우저가 저절로 돌아오고 화면이 다음으로 넘어갑니다. 코드를 복사해 붙여 넣는 일은 없습니다. 둘 다 골랐다면 Claude, ChatGPT 순서입니다.</li>
+  </ol>
+  <p data-i18n="inst.s8d">로그인이 끝나면 계정을 이 컴퓨터로 옮겨 담고(보통 몇 초) 계정 중계기가 켜집니다. 한쪽 구독의 로그인이 계속 안 되면 화면의 「이번 설치에서 쓸 구독」에서 그 구독의 체크를 풀고 「바꾼 대로 적용」을 누르세요 — 남은 구독만으로 설치를 마치고, 뺀 구독은 나중에 IRIS 안에서 다시 더할 수 있습니다.</p>
+  <div class="win"><div class="win-bar"><span>⑦</span><span class="dot"></span></div><img src="img/inst-4-login.png" width="1100" height="1119" alt="계정 연결 화면 — 구독마다 로그인 단추" loading="lazy"></div>
 
   <h3 data-i18n="inst.s9h">⑧ 완료</h3>
-  <p data-i18n="inst.s9">하려던 일, 기존 자료의 안전, 결과, 남은 일의 뜻, 이제 할 일 — 다섯 항목의 보고를 보여 줍니다(같은 내용이 <code>C:\IRIS\_agent\setup\설치보고-*.md</code>에도 남습니다). 「IRIS 열기」를 누르면 IRIS 창이 뜨고 비서가 인수 문서를 읽고 먼저 인사합니다. 메신저 로그인 안내 카드가 한 번 뜨는데, 「메신저 열기」로 지금 하거나 「나중에」로 넘겨도 됩니다.</p>
-  <div class="win"><div class="win-bar"><span>⑧</span><span class="dot"></span></div><img src="img/install-5-done.png" width="1100" height="1232" alt="설치 완료 보고 화면" loading="lazy"></div>
+  <p data-i18n="inst.s9">하려던 일, 기존 자료의 안전, 결과, 남은 일의 뜻, 이제 할 일 — 다섯 항목의 보고를 보여 줍니다(같은 내용이 <code>C:\IRIS\_agent\setup\설치보고-*.md</code>에도 남습니다). 「남은 일」은 고장이 아니라 이 PC에 아직 없는 프로그램(예: Edge, 엑셀·워드) 때문에 잠시 못 하는 기능입니다. 「IRIS 열기」를 누르면 IRIS 창이 뜹니다. 창이 열린 뒤 메신저 로그인 안내 카드가 한 번 뜨는데, 「메신저 열기」로 지금 하거나 「나중에」로 넘겨도 됩니다.<span class="pre-note"><b>최신판에서는</b> 메신저가 함께 설치되지 않아 이 카드가 뜨지 않습니다. 메신저가 필요하면 IRIS 창의 설정 → 확장 모듈에서 설치합니다.</span></p>
+  <div class="win"><div class="win-bar"><span>⑧</span><span class="dot"></span></div><img src="img/inst-5-done.png" width="1100" height="1035" alt="설치 완료 보고 화면" loading="lazy"></div>
 
-  <h2 data-i18n="inst.updh">업데이트</h2>
-  <p data-i18n="inst.upd">새 판이 나오면 두 길 가운데 하나로 갱신합니다. 어느 쪽이든 자료·설정·로그인은 그대로 둡니다. <b>①</b> IRIS 창의 설정 → 업데이트에 새 판이 표시되면 그 절 위쪽의 「업데이트」 단추를 누르세요 — 내려받기와 검사가 끝나면 확인 카드가 뜹니다. 확인하면 열려 있던 세션이 모두 끝나고 새 판이 적용된 뒤, 창이 다시 열리며 그 세션들이 자동으로 이어집니다. <b>②</b> 홈에서 새 zip을 받아 실행해도 됩니다 — 이미 설치된 PC를 알아보고 「새 판으로 업데이트」 화면을 보이며, 「업데이트 시작」을 누르면 IRIS 프로그램을 닫고 바뀐 부품만 갈아 끼운 뒤 IRIS 창을 다시 엽니다. 창의 업데이트 확인이 GitHub에 막혀 새 판을 못 보는 망에서는 ②가 확실합니다.</p>
-  <p id="upd1x" data-i18n="inst.upd1x">1.x를 쓰고 계셨다면: 2.0은 설치 방식이 바뀌어 새로 설치합니다. 기존 자료는 그대로 두고 설치기를 실행하면 됩니다. 위 「업데이트」 단추 대신 홈의 내려받기로 새 zip을 받아 이 페이지의 순서(받기·실행 → ①~⑧)를 그대로 따르세요.</p>
+  <h2 id="first" data-i18n="inst.ivh">설치 뒤 첫 대화 — 작업 폴더를 함께 만듭니다</h2>
+  <p data-i18n="inst.iv">IRIS 창을 처음 열면 비서가 짧게 인사한 뒤 바로 질문을 시작합니다. 어떤 자리(역할)에서 어떤 일을 하시는지 한 번에 하나씩 여쭙고, 답을 모아 만들 폴더를 표로 보여 드립니다. "이대로 만들까요?"에 "네"라고 하신 뒤에만 폴더를 만듭니다. 보통 10~15분이 걸리고, "간단히"라고 하시면 질문을 줄입니다. 중간에 창을 닫아도 다음에 이어서 합니다.</p>
 
-  <h2 data-i18n="inst.stuckh">막혔을 때</h2>
+  <h2 id="update" data-i18n="inst.updh">업데이트</h2>
+  <p data-i18n="inst.upd">판은 두 갈래로 나옵니다. 어느 길로 갱신하든 자료·설정·로그인은 그대로 둡니다.</p>
+  <ul class="facts">
+    <li data-i18n="inst.ch1"><b>안정판</b> — 먼저 써 보고 시험을 마친 판입니다. 홈의 큰 단추와 IRIS 창의 「업데이트」가 이 판을 받습니다.</li>
+    <li data-i18n="inst.ch2"><b>최신판</b> — 가장 새로 나왔고 아직 시험 중인 판입니다. 홈의 「최신판」 단추에서만 받을 수 있고, IRIS 창의 「업데이트」는 이 판을 받지 않습니다.</li>
+  </ul>
+  <ol class="steps">
+    <li data-i18n="inst.upd1"><b>IRIS 창에서</b> — 설정 → 업데이트에 새 안정판이 표시되면 「업데이트」 단추를 누르세요. 내려받기와 검사가 끝나면 확인 카드가 뜹니다. 확인하면 열려 있던 세션이 모두 끝나고 새 판이 적용된 뒤, 창이 다시 열리며 그 세션들이 자동으로 이어집니다.</li>
+    <li data-i18n="inst.upd2"><b>새 zip으로</b> — 홈에서 새 zip을 받아 <code>IRIS-설치.cmd</code>를 실행해도 됩니다. 이미 설치된 PC를 알아보고 「새 판으로 업데이트」 화면을 보이며, 「업데이트 시작」을 누르면 IRIS 프로그램을 닫고 바뀐 부품만 갈아 끼운 뒤 IRIS 창을 다시 엽니다. 최신판을 써 보려면 이 길로 받습니다. 창의 업데이트 확인이 막혀 새 판이 안 보이는 인터넷에서도 이 길이 확실합니다.</li>
+  </ol>
+  <p id="upd1x" data-i18n="inst.upd1x">1.x를 쓰고 계셨다면: 2.0은 설치 방식이 바뀌어 새로 설치합니다. 기존 자료는 그대로 두고, 홈에서 새 zip을 받아 이 쪽의 순서(받기·실행 → 설치 화면)를 그대로 따르세요.</p>
+
+  <h2 id="stuck" data-i18n="inst.stuckh">막혔을 때</h2>
   <h3 id="sac" data-i18n="inst.sach">설치가 안 되면 — 「차단 해제」를 건너뛴 경우의 자세한 해결법</h3>
   <p class="note" data-i18n="inst.sacnote">순서대로 짚어 보려면 위 <a href="#blocked">「서명이 없는 파일이라 윈도우가 막을 때」</a>가 먼저입니다. 아래는 zip 안 「설치가 안 되면.txt」와 같은 내용입니다.</p>
   <div data-i18n="inst.sacbody">
@@ -127,13 +168,15 @@
   </ul>
   <!-- notice:end -->
   </div>
-  <h3 data-i18n="inst.k2h">로그인 창이 뜨지 않습니다</h3>
-  <p data-i18n="inst.k2">뒤에 열린 브라우저 탭이 있는지 보세요. 1분이 지나도 없으면 설치 화면의 「다시 시도」를 누릅니다. 로그인 단계는 몇 번을 반복해도 안전합니다.</p>
+  <h3 data-i18n="inst.k2h">로그인 화면이 뜨지 않습니다</h3>
+  <p data-i18n="inst.k2">먼저 화면 맨 아래 작업 표시줄에 새 브라우저 창이 떠 있는지 보세요. 로그인 칸의 「브라우저가 열리지 않았으면 여기를 누르세요」 링크를 눌러도 됩니다. 20초가 지나도 없으면 「다시 로그인」을 누릅니다 — 기다릴 필요 없이 몇 번이고 눌러도 안전합니다. 탭이 두 개 열렸으면 하나에서만 진행하세요. 학교·회사 인터넷에서 계속 안 되면 휴대폰 핫스팟으로 바꿔 다시 해 보세요.</p>
+  <h3 data-i18n="inst.k4h">Claude 「로그인」 단추가 눌리지 않습니다</h3>
+  <p data-i18n="inst.k4">Claude Code를 아직 내려받는 중이거나 받지 못한 것입니다. 내려받기가 끝나면 단추가 켜집니다. 받지 못했다면 그 칸의 「Claude Code 다시 받기」를 누르세요. 학교·회사 인터넷이 내려받기를 막으면 휴대폰 핫스팟에 연결한 뒤 다시 받으면 됩니다.</p>
   <h3 data-i18n="inst.k3h">다른 문제가 생겼습니다</h3>
-  <p data-i18n="inst.k3">설치기가 멈춘 화면(⑥ 설치 중·⑦ 계정 연결·업데이트·완료)에는 「개발자에게 신고하기」 단추가 있습니다. 누르면 멈춘 단계·오류 코드·진단·로그 끝부분이 윈도 계정 이름을 가린 채 개발자에게 전달됩니다(2.0.20부터). 기록 파일은 <code>C:\IRIS\_agent\setup\installer.log</code>와 <code>%LOCALAPPDATA%\IRIS-Installer\server.log</code>에 있습니다. 그래도 안 되면 아래 <a href="#clean">깨끗이 지우고 새로 설치</a>를 보세요.</p>
+  <p data-i18n="inst.k3">설치기가 멈춘 화면(⑥ 설치 중·⑦ 계정 연결·업데이트·완료)에는 「개발자에게 신고하기」 단추가 있습니다. 누르면 멈춘 단계·오류 코드·진단·로그 끝부분이 윈도 계정 이름을 가린 채 개발자에게 전달됩니다(보내기 전에 내용을 볼 수 있습니다). 설치기를 이미 닫았다면 <a href="/feedback">의견 보내기</a>로 알려 주세요. 기록 파일은 <code>C:\IRIS\_agent\setup\installer.log</code>와 <code>%LOCALAPPDATA%\IRIS-Installer\server.log</code>에 있습니다. 그래도 안 되면 아래 <a href="#clean">깨끗이 지우고 새로 설치</a>를 보세요.</p>
 
   <h2 id="clean" data-i18n="inst.cleanh">그래도 안 되면 — 깨끗이 지우고 새로 설치</h2>
-  <p data-i18n="inst.clean0">업데이트도, 위 방법도 안 될 때의 마지막 방법입니다. <strong>2.0.x가 이미 설치된 PC는 보통 이 단계가 필요 없습니다</strong> — 새 zip을 실행하면 「업데이트 시작」 단추가 나오고 자료·설정·로그인은 그대로 남습니다. 아래는 그것마저 막힐 때, 그리고 1.x에서 올라올 때의 순서입니다. <span class="warn">C:\IRIS 안에 만든 문서가 있으면 먼저 다른 곳에 옮겨 두세요 — ③에서 폴더째 지워집니다.</span></p>
+  <p data-i18n="inst.clean0">업데이트도, 위 방법도 안 될 때의 마지막 방법입니다. <strong>IRIS가 이미 설치된 PC는 보통 이 단계가 필요 없습니다</strong> — 새 zip을 실행하면 「업데이트 시작」 단추가 나오고 자료·설정·로그인은 그대로 남습니다. 지우기만 하려는 것이라면 아래 <a href="#remove">지우기</a>가 먼저입니다. 여기는 그것마저 막힐 때의 순서입니다. <span class="warn">C:\IRIS 안에 만든 문서가 있으면 먼저 다른 곳에 옮겨 두세요 — ③에서 폴더째 지워집니다.</span></p>
   <ol class="flow">
     <li><b data-i18n="inst.clean1b">① PC를 다시 시작합니다</b><div class="flow-body" data-i18n="inst.clean1s">뒤에 남아 있는 IRIS 창·설치기·중계기가 전부 꺼집니다. 이 단계를 건너뛰면 지우기가 「접근이 거부되었습니다」로 막히거나, 새 설치기가 옛 설치기 화면을 열어 줍니다.</div></li>
     <li><b data-i18n="inst.clean2b">② PowerShell을 관리자 권한으로 엽니다</b><div class="flow-body" data-i18n="inst.clean2s">시작 단추를 오른쪽 클릭 → 「터미널(관리자)」 또는 「Windows PowerShell(관리자)」 → 파란(또는 검은) 창이 뜹니다.</div></li>
@@ -144,11 +187,25 @@ Remove-Item -LiteralPath ([Environment]::GetFolderPath('Desktop') + '\IRIS.lnk')
 Test-Path 'C:\IRIS'; Test-Path "$env:LOCALAPPDATA\IRIS-Installer"</code></pre></li>
     <li><b data-i18n="inst.clean4b">④ (선택) IRIS를 완전히 떠날 때만 — 환경변수 지우기</b><div class="flow-body" data-i18n="inst.clean4s">다시 설치할 계획이면 이 줄은 필요 없습니다(새 설치기가 덮어씁니다). IRIS를 완전히 지우는 경우에만 붙여 넣으세요. 설치기가 등록해 둔 사용자 환경변수 4개를 지웁니다.</div>
 <pre><code>foreach ($n in 'CLAUDE_CONFIG_DIR','CODEX_HOME','ANTHROPIC_BASE_URL','TEAMCLAUDE_CONFIG') { [Environment]::SetEnvironmentVariable($n, $null, 'User') }</code></pre></li>
-    <li><b data-i18n="inst.clean5b">⑤ 홈에서 최신 zip을 받아 처음부터 설치</b><div class="flow-body" data-i18n="inst.clean5s">이 페이지의 받기·실행 → ①~⑧ 순서 그대로입니다. 구독 로그인을 한 번 다시 합니다. 설치기 화면 오른쪽 위의 판 표시가 홈의 최신 판과 같은지 확인하세요 — 다르면 ①(다시 시작)부터 다시.</div></li>
+    <li><b data-i18n="inst.clean5b">⑤ 홈에서 zip을 받아 처음부터 설치</b><div class="flow-body" data-i18n="inst.clean5s">이 쪽의 받기·실행 → 설치 화면 순서 그대로입니다. 구독 로그인을 한 번 다시 합니다. 설치기 화면 위쪽의 판 표시가 받은 zip의 판과 같은지 확인하세요 — 다르면 ①(다시 시작)부터 다시.</div></li>
   </ol>
 
-  <h2 data-i18n="inst.rmh">지우기</h2>
-  <p data-i18n="inst.rm">받은 zip을 푼 폴더의 <code>IRIS-삭제.cmd</code>를 두 번 클릭하면 됩니다(2.0.39부터 — 옛 판으로 설치한 PC도 최신 zip의 이 파일로 지울 수 있습니다. 2.0.39 이상으로 설치하거나 업데이트한 PC에는 <code>C:\IRIS\_agent\setup\installer\installer</code>에도 있습니다). 켜져 있는 IRIS를 스스로 끄고, 무엇을 지우고 무엇을 남기는지 먼저 보여 준 뒤 지웁니다. 기본값 「내 작업은 남기기」는 직접 만든 폴더·파일을 <code>C:\IRIS-보관-날짜</code>로 옮겨 두고, 「전부 지우기」는 한 번 더 확인합니다. 환경변수·PATH·로그온 자동 시작·바탕화면 바로가기도 함께 정리하며, 설치 전에 쓰던 환경변수 값은 되돌립니다. 구독 해지는 claude.ai·chatgpt.com에서 따로 하세요. 이 파일이 막히면 위 「깨끗이 지우고 새로 설치」의 ①~④(⑤는 빼고)를 따르면 됩니다.</p>
+  <h2 id="remove" data-i18n="inst.rmh">지우기</h2>
+  <p data-i18n="inst.rm">받은 zip을 푼 폴더의 <code>IRIS-삭제.cmd</code>를 두 번 클릭하면 한국어 창이 떠서 무엇을 지우는지 보여 주고, 고른 대로 지웁니다. zip을 이미 지웠다면 <code>C:\IRIS\_agent\setup\installer\installer</code> 안에도 같은 파일이 있습니다. 옛 판으로 설치한 PC도 지금 zip의 이 파일로 지울 수 있습니다.</p>
+  <ol class="flow">
+    <li><b data-i18n="inst.rm1b">① 무엇을 남길지 고릅니다</b><div class="flow-body" data-i18n="inst.rm1s">창에 지울 IRIS 폴더와 지워지는 것이 나옵니다. 둘 중 하나를 고릅니다. 「내 작업은 남기기(추천)」는 IRIS가 깐 것만 지우고, 내가 만든 폴더와 파일은 <code>C:\IRIS-보관-날짜</code> 폴더로 옮겨 둡니다. 「전부 지우기」는 내가 만든 자료까지 통째로 지우며, 되돌릴 수 없어서 한 번 더 확인합니다.</div></li>
+    <li><b data-i18n="inst.rm2b">② 「삭제 시작」을 누릅니다</b><div class="flow-body" data-i18n="inst.rm2s">켜져 있는 IRIS 프로그램을 스스로 끄고 여덟 가지를 차례로 합니다 — IRIS 프로그램 닫기, 로그온 자동 시작 빼기, 환경변수 되돌리기, PATH 설정 빼기, 바탕화면 바로가기 지우기, 내 작업 옮기기, IRIS 폴더 지우기, 설치기 작업 폴더 지우기. 창을 닫지 말고 기다려 주세요.</div></li>
+    <li><b data-i18n="inst.rm3b">③ 결과를 확인합니다</b><div class="flow-body" data-i18n="inst.rm3s">다 지웠으면 내 작업을 옮겨 둔 보관 폴더의 위치를 알려 줍니다. 일부가 남았다면 그 파일을 붙잡고 있는 프로그램 이름을 알려 주니, 그 프로그램을 닫고 「다시 시도」를 누르세요. 그래도 남으면 PC를 다시 시작한 뒤 <code>IRIS-삭제.cmd</code>를 한 번 더 실행합니다.</div></li>
+  </ol>
+  <h3 data-i18n="inst.rmwh">지워지는 것과 남는 것</h3>
+  <ul class="facts">
+    <li data-i18n="inst.rmw1"><b>항상 지워집니다</b> — IRIS 폴더 안의 프로그램·설정·지침, 바탕화면 「IRIS」 바로가기, 사용자 환경변수와 PATH 설정, 로그온 자동 시작. 설치 전에 쓰던 환경변수 값은 되돌립니다.</li>
+    <li data-i18n="inst.rmw2"><b>함께 지워지니 미리 알아 두세요</b> — 저장된 API 키, 구독 로그인 정보, 비서의 기억과 대화 기록. 「내 작업은 남기기」를 골라도 지워집니다.</li>
+    <li data-i18n="inst.rmw3"><b>남길 수 있습니다</b> — 내가 만든 폴더와 파일. 「내 작업은 남기기」를 고르면 <code>C:\IRIS-보관-날짜</code>로 옮겨집니다.</li>
+    <li data-i18n="inst.rmw4"><b>PC에서는 안 됩니다</b> — 구독(Claude·ChatGPT) 해지. claude.ai·chatgpt.com의 계정 설정에서 따로 하세요.</li>
+    <li data-i18n="inst.rmw5"><b>안전 장치</b> — 설치 기록(영수증)이 있는 IRIS 폴더만 지웁니다. 그 기록이 없는 폴더는 건드리지 않습니다.</li>
+  </ul>
+  <p data-i18n="inst.rmlast">지운 뒤에는 열려 있던 명령 창을 닫고 새로 여세요(바뀐 설정은 새 창부터 적용됩니다). 다시 설치하려면 홈에서 zip을 받아 처음부터 하면 됩니다. <code>IRIS-삭제.cmd</code>가 막히면 위 <a href="#clean">깨끗이 지우고 새로 설치</a>의 ①~④를 따르세요.<span class="pre-note"><b>최신판에서는</b> 시작 메뉴에 생긴 IRIS 바로가기도 함께 지웁니다.</span></p>
 </main>
 
 <footer>
