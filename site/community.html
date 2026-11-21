@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="cm.title">IRIS — 커뮤니티</title>
+<meta name="description" content="사람들이 자기 쓰임에 맞게 아이리스를 고쳐 만든 판과 그것을 만든 사람을 소개합니다. 소개된 판은 만든 사람이 관리하고 배포합니다.">
+<meta name="theme-color" content="#0a0c14">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+<style>
+/* 커뮤니티 — 명판 벽(2026-11-21 사용자 확정, 시안 = docs/시안-커뮤니티-2026-11-21/e-wall.html). 전역 클래스와 안 겹치게 cm- 접두.
+   첫 쪽 본문에는 이 구역이 없고 머리·바닥 메뉴로만 들어온다. 판 목록 = community-data.js, 그리기 = community.js. */
+.nav a.cur { color: var(--ink); background: var(--raised); }
+.cm { max-width: 1040px; margin: 0 auto; padding: calc(var(--top) + 70px) 24px 96px; }
+.cm h1 { font-size: clamp(30px, 4.4vw, 46px); font-weight: 650; letter-spacing: -.035em; line-height: 1.2; margin: 0; text-wrap: balance; }
+.cm-sub { color: var(--ink-2); font-size: 15px; margin: 14px 0 0; }
+/* 책임 문구 — 명판보다 먼저 읽히는 자리 */
+.cm-note { margin: 30px 0 0; padding: 2px 0 2px 16px; border-left: 2px solid var(--warn); color: var(--ink-2); font-size: 13.5px; line-height: 1.8; max-width: 46em; }
+.cm-note b { color: var(--ink); font-weight: 600; }
+.cm-none { margin: 56px 0 -38px; color: var(--ink-2); font-size: 15px; }
+/* 명판 벽 */
+.cm-wall { list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.cm-tile { position: relative; display: flex; flex-direction: column; justify-content: space-between; width: 100%; aspect-ratio: 5 / 4; padding: 18px 20px 17px; text-align: left; background: var(--surface); border: 1px solid var(--line-2); border-radius: 4px; overflow: hidden; transition: border-color .15s; }
+.cm-tile > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: top center; opacity: .34; transition: opacity .2s; }
+.cm-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--surface) 38%, transparent 82%); }
+.cm-tile > span { position: relative; z-index: 1; display: block; }
+.cm-tile:hover, .cm-tile:focus-visible { border-color: rgba(143,168,255,.5); }
+.cm-tile:hover > img, .cm-tile:focus-visible > img { opacity: .7; }
+.cm-tile.rest > img { opacity: .1; }
+.cm-tile .cm-top { display: flex; justify-content: space-between; align-items: center; }
+.cm-n { font: 12px var(--mono); color: var(--iris); letter-spacing: .02em; }
+.cm-nm { display: block; font-size: 30px; font-weight: 650; letter-spacing: -.03em; line-height: 1.15; color: var(--ink); }
+.cm-by { color: var(--ink-2); font-size: 13.5px; }
+.cm-by b { color: var(--ink); font-weight: 600; }
+.cm-tile .cm-by { display: block; margin-top: 6px; }
+.cm-on { display: block; margin-top: 10px; font-size: 13px; color: var(--ink-3); line-height: 1.5; }
+.cm-rest { font-size: 11.5px; font-weight: 600; color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent); padding: 1px 8px; border-radius: 999px; letter-spacing: 0; }
+a.cm-tile.cm-seat { background: none; border-style: dashed; color: var(--ink-2); }
+a.cm-tile.cm-seat::after { display: none; }
+a.cm-tile.cm-seat:hover { text-decoration: none; color: var(--ink); }
+a.cm-tile.cm-seat .cm-nm { font-size: 20px; color: inherit; }
+/* 명판을 누르면 열리는 큰 화면 */
+.cm-dlg { width: min(940px, calc(100vw - 32px)); padding: 0; color: var(--ink); background: var(--surface); border: 1px solid var(--line-2); border-radius: 6px; }
+.cm-dlg::backdrop { background: rgba(5,6,11,.78); }
+.cm-dlg-in { display: grid; grid-template-columns: minmax(0, 56fr) minmax(0, 44fr); gap: 30px; padding: 22px; align-items: start; }
+.cm-dlg-in.noshot { grid-template-columns: 1fr; }
+.cm-shot { display: block; border: 1px solid var(--line-2); border-radius: 10px; overflow: hidden; background: var(--base); aspect-ratio: 16 / 10; }
+.cm-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.cm-shot.rest img { opacity: .5; }
+.cm-dlg h2 { font-size: 26px; font-weight: 650; letter-spacing: -.025em; margin: 4px 36px 0 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.cm-dlg .cm-by { margin: 4px 0 14px; }
+.cm-when { font: 12px var(--mono); color: var(--ink-3); margin-left: 6px; }
+.cm-base { font-size: 12px; color: var(--ink-3); letter-spacing: .02em; margin: 0; }
+.cm-one { color: var(--ink); font-size: 15px; margin: 12px 0 0; }
+.cm-chg { list-style: none; margin: 10px 0 0; padding: 0; color: var(--ink-2); font-size: 13.5px; }
+.cm-chg li { position: relative; padding-left: 14px; margin: 3px 0; }
+.cm-chg li::before { content: ''; position: absolute; left: 0; top: .78em; width: 5px; height: 1px; background: var(--ink-3); }
+.cm-meta { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 14px 0 0; font-size: 12.5px; color: var(--ink-3); }
+.cm-meta .d { font-family: var(--mono); font-size: 12px; color: var(--ink-2); }
+.cm-go { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; min-height: 38px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--line-2); color: var(--ink); font-size: 13.5px; }
+.cm-go:hover { background: var(--raised); text-decoration: none; border-color: rgba(143,168,255,.45); }
+.cm-go svg { color: var(--ink-3); }
+.cm-x { position: absolute; right: 10px; top: 8px; width: 34px; height: 34px; border-radius: 7px; color: var(--ink-2); font-size: 20px; line-height: 1; }
+.cm-x:hover { background: var(--raised); color: var(--ink); }
+/* 내 판 올리기 */
+.cm-apply { margin: 88px 0 0; padding-top: 30px; border-top: 1px solid var(--line-2); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 48px; }
+.cm-apply h2 { font-size: 19px; font-weight: 600; margin: 0 0 10px; }
+.cm-apply p { color: var(--ink-2); font-size: 14px; max-width: 30em; }
+.cm-send { display: inline-flex; align-items: center; min-height: 44px; padding: 0 24px; margin-top: 12px; border-radius: 8px; background: var(--ink); color: var(--base); font-size: 14.5px; font-weight: 600; }
+.cm-send:hover { background: #fff; text-decoration: none; }
+.cm-more { display: block; margin-top: 12px; font-size: 12.5px; color: var(--ink-3); }
+.cm-more a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
+.cm-cond { list-style: none; margin: 0; padding: 0; counter-reset: c; }
+.cm-cond li { counter-increment: c; display: grid; grid-template-columns: 26px 1fr; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; color: var(--ink-2); }
+.cm-cond li:first-child { padding-top: 0; }
+.cm-cond li::before { content: counter(c, decimal-leading-zero); font: 12px var(--mono); color: var(--ink-3); padding-top: 2px; }
+.cm-cond b { color: var(--ink); font-weight: 600; }
+@media (max-width: 900px) { .cm-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) {
+  .cm { padding: calc(var(--top) + 40px) 20px 80px; }
+  .cm-dlg-in { grid-template-columns: 1fr; gap: 18px; padding: 16px; }
+  .cm-apply { grid-template-columns: 1fr; gap: 28px; margin-top: 64px; }
+  .cm-send { width: 100%; justify-content: center; }
+}
+@media (max-width: 560px) { .cm-wall { grid-template-columns: 1fr; } .cm-tile { aspect-ratio: 16 / 10; } }
+@media (prefers-reduced-motion: reduce) { .cm-tile, .cm-tile > img { transition: none; } }
+</style>
+</head>
+<body>
+<header id="top">
+  <a class="brand" href="/" aria-label="IRIS">
+    <span class="mark-slot" aria-hidden="true"><svg class="mark" viewBox="0 0 24 24" width="22" height="22"><g class="a1"><path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9Z" fill="none" stroke="var(--mk-1)" stroke-width="1.3"/><path d="M12 3v9m0 0l7.8 4.5M12 12l-7.8 4.5" stroke="var(--mk-2)" stroke-width="1" opacity=".7"/></g></svg></span>
+    <img class="wordmark wm-img" src="img/iris-wordmark.png" alt="IRIS" width="78" height="30">
+  </a>
+  <div class="top-right">
+    <nav class="nav" aria-label="주 메뉴">
+      <a href="/#what" data-i18n="nav.what">소개</a>
+      <a href="/#compare" data-i18n="nav.cmp">비교</a>
+      <a href="/install" data-i18n="nav.install">설치 안내</a>
+      <a href="/community" class="cur" aria-current="page" data-i18n="nav.cm">커뮤니티</a>
+      <a href="/feedback" data-i18n="nav.fb">의견 보내기</a>
+    </nav>
+    <div class="lang" role="group" aria-label="언어">
+      <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="top-dl" href="/#download" data-i18n="nav.download">내려받기</a>
+  </div>
+</header>
+
+<main class="cm">
+  <h1 data-i18n="cm.h">저마다의 아이리스</h1>
+  <p class="cm-sub" data-i18n="cm.sub">사람들이 자기 쓰임에 맞게 바꿔 만든 아이리스와, 그것을 만든 사람을 소개합니다.</p>
+  <p class="cm-note" data-i18n="cm.note"><b>여기 소개된 판은 만든 사람이 관리하고 배포합니다.</b> IRIS 관리자가 설치해 보거나 검증한 판이 아닙니다. 쓰기 전에 만든 사람의 안내를 읽어 주세요.</p>
+
+  <p class="cm-none" id="cm-none" hidden data-i18n="cm.none">아직 올라온 판이 없습니다.</p>
+  <ol class="cm-wall" id="cm-wall"></ol>
+  <noscript><p class="cm-none">판 목록을 보려면 자바스크립트를 켜 주세요.</p></noscript>
+
+  <dialog class="cm-dlg" id="cm-dlg" aria-labelledby="cm-d-name">
+    <button type="button" class="cm-x" id="cm-d-x" aria-label="닫기">&times;</button>
+    <div class="cm-dlg-in" id="cm-d-in">
+      <span class="cm-shot" id="cm-d-shot"><img id="cm-d-img" alt=""></span>
+      <div>
+        <span class="cm-n" id="cm-d-no"></span>
+        <h2 id="cm-d-name"></h2>
+        <p class="cm-by"><span data-i18n="cm.by">만든 사람</span> <b id="cm-d-maker"></b><span class="cm-when" id="cm-d-listed"></span></p>
+        <p class="cm-base" data-i18n="cm.base">IRIS Workspace 기반 커뮤니티 판</p>
+        <p class="cm-one" id="cm-d-one"></p>
+        <ul class="cm-chg" id="cm-d-chg"></ul>
+        <p class="cm-meta"><span id="cm-d-updated-w"><span data-i18n="cm.updated">마지막 갱신</span> <span class="d" id="cm-d-updated"></span></span><span id="cm-d-checked-w"><span data-i18n="cm.checked">확인한 날</span> <span class="d" id="cm-d-checked"></span></span></p>
+        <a class="cm-go" id="cm-d-go" rel="noopener"><span data-i18n="cm.go">보러 가기</span> <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </dialog>
+
+  <section class="cm-apply" id="apply" aria-labelledby="cm-apply-h">
+    <div>
+      <h2 id="cm-apply-h" data-i18n="cm.applyH">내 판 올리기</h2>
+      <p data-i18n="cm.applyP">아이리스를 고쳐 만든 판이 있다면 이곳에 올릴 수 있습니다. 올릴지는 관리자가 정하며, 소개는 검증이나 보증이 아닙니다.</p>
+      <a class="cm-send" id="cm-send" href="https://github.com/Feynman520/iris-community/issues/new?template=community-listing.yml" rel="noopener" data-i18n="cm.send">소개 신청하기</a>
+      <span class="cm-more" data-i18n="cm.more">신청은 GitHub에서 받습니다. <a href="https://github.com/Feynman520/iris-community/blob/main/TRADEMARKS.md" rel="noopener">조건 자세히 보기</a></span>
+    </div>
+    <ol class="cm-cond">
+      <li><span data-i18n="cm.c1"><b>아이리스를 고쳐 만든 판</b> — 조금 고쳤든 많이 고쳤든 괜찮습니다.</span></li>
+      <li><span data-i18n="cm.c2"><b>소스 공개</b> — 누구나 들여다볼 수 있어야 합니다.</span></li>
+      <li><span data-i18n="cm.c3"><b>표시</b> — 첫 화면에 "IRIS Workspace 기반 커뮤니티 판"과 이 홈페이지 링크.</span></li>
+      <li><span data-i18n="cm.c4"><b>자기 이름과 자기 업데이트 주소</b> — 공식 판과 섞이지 않게.</span></li>
+      <li><span data-i18n="cm.c5"><b>고장 신고를 받는 곳</b> — 쓰는 사람이 물어볼 곳이 열려 있어야 합니다.</span></li>
+      <li><span data-i18n="cm.c6"><b>미리보기 그림과 바꾼 점 설명</b> — 무료로 나누는 판만 소개합니다.</span></li>
+    </ol>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-in">
+    <span>Sejun Ham (함세준)</span>
+    <a href="https://feynman520.github.io/card/#home" rel="noopener" data-i18n="foot.card">디지털 명함</a>
+    <a href="https://github.com/Feynman520/d09-p03-iris-installer" rel="noopener" data-i18n="foot.installer">설치 패키지</a>
+    <a href="/feedback" data-i18n="nav.fb">의견 보내기</a>
+    <a href="/privacy" data-i18n="foot.privacy">처리방침</a>
+    <span class="ver">MIT</span>
+  </div>
+</footer>
+<script src="site.js"></script>
+<script src="community-data.js"></script>
+<script src="community.js"></script>
+</body>
+</html>
