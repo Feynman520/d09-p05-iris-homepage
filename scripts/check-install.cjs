@@ -38,6 +38,7 @@ ok(!/작업 폴더 구성|프리셋 7종|여덟 화면/.test(inst), 'install.htm
 ok(/IRIS-삭제\.cmd/.test(inst) && /내 작업은 남기기/.test(inst) && /전부 지우기/.test(inst), 'install.html: 지우기 방법(삭제 파일·두 가지 선택)');
 ok(/안정판/.test(inst) && /최신판/.test(inst), 'install.html: 안정판·최신판 두 갈래 설명');
 ok(!/install-\d-/.test(home + inst), '옛 그림 이름(install-N-…)을 쓰는 곳이 없음');
+ok(!/여덟 화면|구독과 작업 폴더|설치할 때 직업을 고르면|설치기가 작업 폴더/.test(home) && !/eight screens|subscription and work folders|Pick your job during installation/.test(dict), '첫 쪽·영어 사전: 설치 때 작업 폴더를 고른다는 옛 설명이 없음');
 try {
   cp.execFileSync(process.execPath, [path.join(__dirname, 'sync-notice.mjs'), '--check'], { stdio: 'pipe' });
   ok(true, '안내문 구역 = 설치 패키지의 install-notice.txt 와 같음');
